@@ -11,11 +11,11 @@ export const topRatedFlixxit = async (req, res) => {
       .sort({ vote_average: -1 })
       .limit(5);
     let arr = [...movies, ...tv];
-    let toprated = arr.sort((a, b) => b.vote_count - a.vote_count);
+    let result = arr.sort((a, b) => b.vote_count - a.vote_count);
     res.send({
       status: 200,
-      toprated,
-      results: arr.length,
+      result,
+      results: result.length,
     });
   } catch (err) {
     res.send({
@@ -37,11 +37,11 @@ export const popularFlixxit = async (req, res) => {
       .limit(5);
     let arr = [];
     arr = [...movie, ...tv];
-    let popular = arr.sort((a, b) => b.vote_average - a.vote_average);
+    let result = arr.sort((a, b) => b.vote_average - a.vote_average);
     res.send({
       status: 200,
-      popular,
-      results: arr.length,
+      result,
+      results: result.length,
     });
   } catch (err) {
     res.send({
@@ -63,12 +63,12 @@ export const toptenFlixxit = async (req, res) => {
       .sort({ vote_count: -1 })
       .limit(5);
     let arr = [...movie, ...tv];
-    let topTen = arr.sort((a, b) => b.vote_average - a.vote_average);
+    let result = arr.sort((a, b) => b.vote_average - a.vote_average);
 
     res.send({
       status: 200,
-      topTen,
-      results: topTen.length,
+      result,
+      results: result.length,
     });
   } catch (err) {
     res.send({
@@ -88,11 +88,11 @@ export const documentaryFlixxit = async (req, res) => {
       .sort({ vote_average: -1 })
       .limit(5);
     let arr = [...movie,...tv];
-    let doc = arr.sort((a, b) => b.vote_average - a.vote_average);
+    let result = arr.sort((a, b) => b.vote_average - a.vote_average);
     res.send({
       status: 200,
-      doc,
-      results:doc.length
+      result,
+      results:result.length
     });
   } catch (err) {
     res.send({
