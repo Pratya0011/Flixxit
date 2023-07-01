@@ -2,8 +2,8 @@ import content from "../../model/contentList.js";
 
 export const searchContent =async(req,res)=>{
     try{
-        let {id} = req.params
-        const result = await content.findById(id)
+        let {name} = req.body
+        const result = await content.findOne({$or: [{name:name}, {title:name}]})
         if(!result){
             res.send({
                 status:401,
@@ -18,7 +18,8 @@ export const searchContent =async(req,res)=>{
     }catch(err){
         res.send({
             status:500,
-            msg:"Internal server Error"
+            msg:"Internal server Error",
+            err:err.name
         })
     }
 }

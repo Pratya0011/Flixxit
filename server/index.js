@@ -7,6 +7,8 @@ import adminDashboad from "./routes/AdminDashboard.js"
 import homeRouter from "./routes/homeRouts.js"
 import searchRouter from "./routes/searchRoute.js"
 import movieRouter from "./routes/movieRoutes.js"
+import tvRouter from "./routes/tvRoutes.js"
+import watchlistRouter from "./routes/watchlistRoutes.js"
 
 import { config } from "dotenv";
 config()
@@ -19,6 +21,8 @@ app.use('/admin', adminDashboad)
 app.use('/user',homeRouter)
 app.use('/user',searchRouter)
 app.use('/user',movieRouter)
+app.use('/user',tvRouter)
+app.use('/user',watchlistRouter)
 
 connection.then(()=>app.listen(process.env.PORT, ()=>{
     console.log('server listening on port 8080')

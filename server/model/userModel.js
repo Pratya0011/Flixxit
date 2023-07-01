@@ -37,6 +37,12 @@ const userSchema = new Schema({
         default: []
     }
   },
+  history:{
+    viewedContentIds:{
+      type:[String],
+      default:[]
+    }
+  },
   payment:{
     amountPaid :{
         type:Number,
