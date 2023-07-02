@@ -20,9 +20,30 @@ export const addWatchlist = async(req,res)=>{
       } catch (err) {
         res.send({
           status: 500,
-          err: err.code,
           success: false,
           message: "Internal Server Error",
         });
       }
+};
+export const getWatchlist =async(req,res)=>{
+  try{
+    const {id} = req.params
+    const user = await User.findById(id)
+    const contentPromise = user.watchlist.contentId.map(async(data)=>{
+      const list = await content.findById(data)
+      return list
+    })
+    const contentResult =await Promise.all(contentPromise)
+    res.send({
+      status:200,
+      contentResult,
+      results:contentResult.length
+    })
+  }catch(err){
+    res.send({
+      status:500,
+      success:false,
+      message:"Internal server error"
+    })
+  }
 }
