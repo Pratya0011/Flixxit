@@ -1,4 +1,5 @@
 import express from "express";
+import cors from 'cors'
 import bodyParser from "body-parser";
 import connection from "./db/index.js";
 import adminRouter from "./routes/AdminAuth.js";
@@ -13,8 +14,12 @@ import watchlistRouter from "./routes/watchlistRoutes.js"
 import { config } from "dotenv";
 config()
 const app = express()
+app.use(cors({origin:"http://localhost:3000"}))
 app.use(bodyParser.json())
 
+app.get("/", (req, res) => {
+    res.send("Login to get started");
+  });
 app.use('/admin', adminRouter)
 app.use('/user', userRouter)
 app.use('/admin', adminDashboad)

@@ -60,6 +60,7 @@ export const login = async (req, res) => {
         message: "Login succesfull",
         accessToken: accessToken,
         refreshToken: refreshToken,
+        user
       });
     }
   } catch (error) {

@@ -10,9 +10,7 @@ import { authenticateToken } from "../utils/Utils.js";
 
 const router = express.Router();
 
-router.get("/signup", (req, res) => {
-  res.send("user signup page");
-});
+
 router.post("/signup", userSignup);
 router.post("/login", login);
 router.post("/forgotPassword", forgotPassword);
