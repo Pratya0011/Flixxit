@@ -18,7 +18,7 @@ app.use(cors({origin:"http://localhost:3000"}))
 app.use(bodyParser.json())
 
 app.get("/", (req, res) => {
-    res.send("Login to get started");
+    res.send("See what's next");
   });
 app.use('/admin', adminRouter)
 app.use('/user', userRouter)

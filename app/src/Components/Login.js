@@ -1,34 +1,37 @@
 import React from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
+
 function Login() {
-  const [response, setResponse] = useState("");
+  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
- 
-  useEffect(() => {
-    axios.get("http://localhost:8080/").then((res) => {
-      setResponse(res.data);
-    });
-  }, []);
-
+  const [error, setError] = useState("")
+  const navigate = useNavigate()
+  
   const onSubmitHandler=(e)=>{
     e.preventDefault()
     axios.post("http://localhost:8080/user/login",{
         username,
         password
     }).then(res=>{
-        console.log(res)
-    }).catch(res=>{
-        console.log(res.message)
+      if(res.data.status === 200){
+        navigate('/Home')
+      }else if(res.data.status === 403){
+          setError(res.data.message)
+        }else{
+          setError(res.data.message)
+        }
+    }).catch(err=>{
+        setError("Request failed")
     })
   }
   return (
     <div>
-      <h1>Welcome to Flixxit</h1>
-      <p>{response}</p>
+      
       <form onSubmit={onSubmitHandler}>
         <label>Username</label>
         <input
@@ -50,6 +53,7 @@ function Login() {
         />
         <button type="submit">Log In</button>
       </form>
+      <p>{error}</p>
     </div>
   );
 }
