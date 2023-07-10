@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import '../App.css'
 
 
 function Login() {
@@ -30,7 +30,8 @@ function Login() {
     })
   }
   return (
-    <div>
+    <div className="login-component">
+      <div className="login">
       <form onSubmit={onSubmitHandler}>
         <label>Username</label>
         <input
@@ -52,6 +53,7 @@ function Login() {
         />
         <button type="submit">Log In</button>
       </form>
+      </div>
       <p>{error}</p>
     </div>
   );
