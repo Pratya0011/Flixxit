@@ -8,19 +8,33 @@ config();
 export const userSignup = async (req, res) => {
   const { name, email, username, password, role } = req.body;
   try {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    const user = new User({
-      name,
-      email,
-      username,
-      password: hashedPassword,
-      role,
-    });
-    await user.save();
-    res.send(user);
+    const checkUser = await User.findOne({username});
+    if (!checkUser) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      const user = new User({
+        name,
+        email,
+        username,
+        password: hashedPassword,
+        role,
+      });
+      await user.save();
+      res.send({
+        status: 200,
+        message: "Signup successful",
+      });
+    } else {
+      res.send({
+        status: 409,
+        message: "Username already taken!",
+      });
+    }
   } catch (error) {
-    res.send(error);
+    res.send({
+      status: 500,
+      error: "Internal server error!",
+    });
   }
 };
 
@@ -56,7 +70,7 @@ export const login = async (req, res) => {
               accessToken: accessToken,
               refreshToken: refreshToken,
             });
-          }else{
+          } else {
             return res.send({
               status: 403,
               message: "Invalid password",
