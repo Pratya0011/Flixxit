@@ -2,7 +2,9 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {useDispatch} from 'react-redux'
 import '../App.css'
+import { setId,setName } from "../features/AppSlice";
 
 
 function Login() {
@@ -11,6 +13,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("")
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   
   const onSubmitHandler=(e)=>{
     e.preventDefault()
@@ -19,6 +22,10 @@ function Login() {
         password
     }).then(res=>{
       if(res.data.status === 200){
+        dispatch(setId(res.data.id))
+        dispatch(setName(res.data.name))
+        localStorage.setItem('accessToken',res.data.accessToken)
+        localStorage.setItem('refreshToken',res.data.refreshToken)
         navigate('/Home')
       }else if(res.data.status === 403){
           setError(res.data.message)

@@ -16,5 +16,6 @@ router.post("/login", login);
 router.post("/forgotPassword", forgotPassword);
 router.patch("/updatePassword/:id", authenticateToken, updatePassword);
 router.patch("/updateName/:id", authenticateToken, updateName);
+router.post("/authenticate",authenticateToken)
 
 export default router;

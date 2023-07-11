@@ -27,6 +27,7 @@ export const authenticateToken = (req, res, next) => {
                       status: 500,
                       name: err.name,
                       message: "Access not allowed",
+                      message1:"Session Expired"
                     });
                   } else {
                     const newAccessToken = jwt.sign(
@@ -34,8 +35,12 @@ export const authenticateToken = (req, res, next) => {
                       process.env.JWT_SECRET,
                       { expiresIn: "1m" }
                     );
-                    req.user = user;
-                    req.newAccessToken = newAccessToken;
+                    
+                    res.send({
+                      status:200,
+                      accessToken: newAccessToken,
+                      message:'Access Allowed'
+                    })
                     next();
                   }
                 }
