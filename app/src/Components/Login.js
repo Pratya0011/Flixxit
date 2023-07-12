@@ -26,6 +26,7 @@ function Login() {
         dispatch(setName(res.data.name))
         localStorage.setItem('accessToken',res.data.accessToken)
         localStorage.setItem('refreshToken',res.data.refreshToken)
+        localStorage.setItem('userId',res.data.id)
         navigate('/Home')
       }else if(res.data.status === 403){
           setError(res.data.message)

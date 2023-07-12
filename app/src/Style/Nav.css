@@ -1,0 +1,84 @@
+.navbar-component{
+    color: white;
+    position: fixed;
+}
+.navbar{
+    width: 100vw;
+    position: fixed;
+    top: 0;
+}
+.right-menu {
+    text-align: right;
+    color: #e50914;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 5px;
+  }
+  .right-menu #logo{
+    float: left;
+    padding: 10px;
+    padding-left: 25px;
+  }
+  .right-menu ul{
+    float: left;
+    padding-left: 30px;
+    
+  }
+  .right-menu ul li{
+    display: inline-block;
+    justify-content: space-between;
+    padding: 20px 10px 10px 20px;
+   
+  }
+  .right-menu a:hover{
+    font-size: 20px;
+    transition: font-size 0.3s ease-in-out;
+  }
+  .right-menu a {
+    color: #fff;
+    font-size: 18px;
+  }
+  
+ .right-menu a.active{
+    color: #e50914;
+ } 
+ .right-menu a.inactive{
+    color: #fff;
+ }
+  .right-menu div{
+    display: inline-block;
+  }
+  .right-menu .search-container{
+    position: relative;
+    padding: 20px;
+  }
+  .search-container .search-input{
+  width: 0;
+  padding: 0;
+  border: none;
+
+  transition: width 0.3s ease;
+  outline: none;
+  color: #333;
+  }
+  .search-input.active {
+   width: 30vw;
+   height: 2rem;
+   border-radius: 10px;
+   padding-left: 10px;
+  }
+  .search-icon {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .search-icon:hover {
+    color: #333;
+  }
+  .profole-icon{
+    padding-right: 40px;
+    padding-left: 10px;
+  }

@@ -74,6 +74,9 @@ h1{
   color: #999;
   font-weight: bold;
 }
+.activeDiv{
+  border-bottom: 2px solid #e50914;
+}
 
 .form-component{
   text-align: center;
@@ -86,8 +89,12 @@ h1{
 .login-component {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   width: 30vw;
   height: 30vh;
+}
+.login-component p{
+  color: #e50914;
 }
 .login{
   display: flex;
@@ -113,6 +120,7 @@ padding: 5px;
   font-weight: 700;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 .login form label{
   padding: 15px;
@@ -149,7 +157,9 @@ padding: 5px;
   font-weight: 700;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 .signup form label{
   padding: 20px;
 }
+

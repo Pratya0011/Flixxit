@@ -1,13 +1,13 @@
 import React from 'react'
 import Nav from './Nav'
 
-function Home() {
+function Movies() {
   return (
     <div>
       <Nav/>
-      
+      <p>hello</p>
     </div>
   )
 }
 
-export default Home
+export default Movies
