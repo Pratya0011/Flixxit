@@ -27,7 +27,8 @@ function Login() {
         localStorage.setItem('accessToken',res.data.accessToken)
         localStorage.setItem('refreshToken',res.data.refreshToken)
         localStorage.setItem('userId',res.data.id)
-        navigate('/Home')
+        window.location.reload()
+        navigate('/')
       }else if(res.data.status === 403){
           setError(res.data.message)
         }else{

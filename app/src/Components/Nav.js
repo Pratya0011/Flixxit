@@ -11,6 +11,19 @@ function Nav() {
 
   useEffect(() => {
     getUser();
+    const handleScroll = () => {
+      if (window.scrollY > 160) {
+        document.getElementById("navbar-component").classList.add("dark");
+      } else {
+        document.getElementById("navbar-component").classList.remove("dark");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   });
 
   const getUser = () => {
@@ -23,8 +36,10 @@ function Nav() {
         console.log(err);
       });
   };
+  
+  
   return (
-    <div className="navbar-component">
+    <div className= "navbar-component" id="navbar-component">
       <div className="navbar">
         <div className="right-menu">
           <div id="logo">
@@ -43,12 +58,12 @@ function Nav() {
             )}
             <NavLink
               className={({ isActive }) => (isActive ? "active" : "inactive")}
-              to="/Home"
+              to="/"
             >
               <li>Home</li>
             </NavLink>
             <NavLink
-              className={({ isActive }) => (isActive? "active" : "inactive")}
+              className={({ isActive }) => (isActive ? "active" : "inactive")}
               to="/Movies"
             >
               <li>Movies</li>

@@ -22,7 +22,7 @@ function App() {
       access: accessToken,
       refresh: refreshToken,
     };
-    if (!accessToken || !refreshToken) {
+    if (!accessToken && !refreshToken) {
       setState(false);
     } else {
       axios
@@ -30,6 +30,7 @@ function App() {
         .then((res) => {
           if (res.data.status === 200) {
             setState(true);
+            localStorage.setItem('accessToken',res.data.accessToken)
           } else {
             setState(false);
             setMessage(res.data.message);
@@ -45,7 +46,6 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={state ? <Home /> : <Landing />} />
-          <Route path='/Home' element={<Home/>}></Route>
           <Route path="/Movies" element={<Movies/>}></Route>
           <Route path="/Shows" element={<Shows/>}></Route>
         </Routes>

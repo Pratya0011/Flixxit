@@ -7,7 +7,7 @@ export const authenticateToken = (req, res, next) => {
   let accessToken = req.header("access");
   let refreshToken = req.header("refresh");
   if (!accessToken) {
-    return res.status(401).send({ message: "No Access Token Provided" });
+    return res.status(401).send({ message: "Access not allowed" });
   } else {
     jwt.verify(accessToken, process.env.JWT_SECRET, (err, user) => {
       if (err) {
@@ -15,7 +15,7 @@ export const authenticateToken = (req, res, next) => {
           if (!refreshToken) {
             return res
               .status(401)
-              .send({ message: "No Refresh Token Provided" });
+              .send({ message: "Access not allowed" });
           } else {
             jwt.verify(
               refreshToken,
@@ -25,8 +25,7 @@ export const authenticateToken = (req, res, next) => {
                   return res.send({
                     status: 502,
                     name: err.name,
-                    message: "Access not allowed",
-                    message1: "Session Expired",
+                    message: "Session Expired",
                   });
                 } else {
                   const newAccessToken = jwt.sign(
@@ -50,6 +49,7 @@ export const authenticateToken = (req, res, next) => {
       } else {
         res.send({
           status: 200,
+          accessToken: accessToken,
           message: "Access Allowed",
         });
         next();

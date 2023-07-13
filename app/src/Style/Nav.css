@@ -1,11 +1,17 @@
 .navbar-component{
     color: white;
     position: fixed;
+    top: 0;
+    box-shadow: inset 0px 60px 28px -10px rgba(0, 0, 0, 0.5), inset 0px -2px 10px -10px rgba(0, 0, 0, 0.5);
+}
+.dark{
+  color: white;
+  background-color: black;
+  transition: all 1s ease-in-out;
 }
 .navbar{
     width: 100vw;
-    position: fixed;
-    top: 0;
+    
 }
 .right-menu {
     text-align: right;
@@ -29,10 +35,6 @@
     justify-content: space-between;
     padding: 20px 10px 10px 20px;
    
-  }
-  .right-menu a:hover{
-    font-size: 20px;
-    transition: font-size 0.3s ease-in-out;
   }
   .right-menu a {
     color: #fff;
@@ -66,6 +68,7 @@
    height: 2rem;
    border-radius: 10px;
    padding-left: 10px;
+   background-color: rgba(255, 255, 255, 0.701);
   }
   .search-icon {
     position: absolute;
@@ -73,6 +76,7 @@
     top: 25px;
     cursor: pointer;
     transition: color 0.3s ease;
+    color: white;
   }
   
   .search-icon:hover {
@@ -81,4 +85,5 @@
   .profole-icon{
     padding-right: 40px;
     padding-left: 10px;
+    color: white;
   }

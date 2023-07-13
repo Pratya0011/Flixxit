@@ -1,0 +1,47 @@
+.banner{
+    height: 60vh;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size:cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem;
+    transition: 1s ease-out;
+    overflow: hidden;
+}
+.banner h1{
+    color: white;
+    transition: all 0.5s; 
+}
+.banner-button{
+    display: flex;
+    padding: 20px 0px 60px 0px;
+}
+.banner-button button{
+    height: 2.5rem;
+    width: 8rem;
+    color: white;
+    background-color: #e50914;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.banner-button button i{
+    padding-right: 10px;
+}
+.banner-button .plus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    margin: 0 0 0 15px;
+    padding: 0 0 5px 0;
+    height: 2.5rem;
+    width: 3rem;
+    background-color: rgba(0, 0, 0, 0.731);
+    border-radius: 8px;
+    cursor: pointer;
+}
