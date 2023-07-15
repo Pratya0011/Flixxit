@@ -1,0 +1,27 @@
+.moviebar-component {
+  margin-top: 75px;
+  color: white;
+}
+
+.movie-menu ul li {
+  display: inline-block;
+  justify-content: space-between;
+  padding: 0px 10px 10px 30px;
+  list-style: none;
+}
+
+.movie-menu .a {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+}
+.movie-menu a{
+    color: white;
+}
+.movie-menu a.active {
+  color: #e50914;
+}
+.movie-menu a.inactive {
+  color: #fff;
+}
+

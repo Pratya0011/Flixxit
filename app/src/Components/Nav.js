@@ -46,16 +46,7 @@ function Nav() {
             <h2>Flᴉxxᴉt</h2>
           </div>
           <ul className="links">
-            {role === "admin" ? (
-              <NavLink
-                className={({ isActive }) => (isActive ? "active" : "inactive")}
-                to="/Dashboard"
-              >
-                <li>Dashboard</li>
-              </NavLink>
-            ) : (
-              <></>
-            )}
+
             <NavLink
               className={({ isActive }) => (isActive ? "active" : "inactive")}
               to="/"
@@ -74,6 +65,16 @@ function Nav() {
             >
               <li>Tv Shows</li>
             </NavLink>
+            {role === "admin" ? (
+              <NavLink
+                className={({ isActive }) => (isActive ? "active" : "inactive")}
+                to="/Dashboard"
+              >
+                <li>Dashboard</li>
+              </NavLink>
+            ) : (
+              <></>
+            )}
           </ul>
 
           <div className="search-container">

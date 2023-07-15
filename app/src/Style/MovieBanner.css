@@ -1,4 +1,4 @@
-.banner{
+.moviebanner{
     height: 60vh;
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -9,16 +9,17 @@
     padding: 0 1.5rem;
     transition: 1s ease-out;
     overflow: hidden;
+    margin-top: 15px;
 }
-.banner h1{
+.moviebanner h1{
     color: white;
     transition: all 0.5s; 
 }
-.banner-button{
+.moviebanner-button{
     display: flex;
     padding: 20px 0px 60px 0px;
 }
-.banner-button button{
+.moviebanner-button button{
     height: 2.5rem;
     width: 8rem;
     color: white;
@@ -28,10 +29,10 @@
     font-size: 15px;
     cursor: pointer;
 }
-.banner-button button i{
+.moviebanner-button button i{
     padding-right: 10px;
 }
-.banner-button .plus{
+.moviebanner-button .plus{
     display: flex;
     justify-content: center;
     align-items: center;

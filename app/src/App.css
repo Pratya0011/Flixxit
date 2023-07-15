@@ -13,12 +13,7 @@ h1{
   color: #fff;
 }
 /* footer */
-.footer{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
+
 /* landing component */
 .landing-container{
   display: flex;
@@ -29,7 +24,7 @@ h1{
   background-size: cover;
   box-shadow: inset 80px 80px 250px #000000, inset -80px -80px 250px #000000;
 }
-.heading{
+.showcase .heading{
   font-weight: 700;
 	font-size: 4.2rem;
 	line-height: 1.1;

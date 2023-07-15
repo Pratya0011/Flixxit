@@ -20,10 +20,12 @@ export const topRatedTv = async (req, res) => {
 };
 export const popularTv = async (req, res) => {
   try {
-    const result = await content
+    const data = await content
       .find({ media_type: "tv" })
       .sort({ popularity: -1 })
-      .limit(10);
+      .limit(12);
+
+      const result = data.filter(data=> data.name!="Buddha"&& data.name!="Taarak Mehta Ka Ooltah Chashmah")
     res.send({
       status: 200,
       result,
