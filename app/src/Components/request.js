@@ -12,7 +12,7 @@ export const movieRequest = {
     crimeMovies: `http://localhost:8080/user/crimeMovies`,
     dramaMovies: `http://localhost:8080/user/dramaMovies`,
     actionMovies: `http://localhost:8080/user/actionMovies`,
-    adventureMovies: `http://localhost:8080/user/comedyMovies`,
+    adventureMovies: `http://localhost:8080/user/adventureMovies`,
     horrorMovies: `http://localhost:8080/user/horrorMovies`,
     comedyMovies: `http://localhost:8080/user/comedyMovies`,
     romanceMovies: `http://localhost:8080/user/romanceMovies`,

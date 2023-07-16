@@ -1,16 +1,18 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import '../Style/Movienav.css'
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "../Style/Movienav.css";
 
 function Tvnav() {
   return (
-    <div className= "moviebar-component" id="moviebar-component">
+    <div className="moviebar-component" id="moviebar-component">
       <div className="moviebar">
         <div className="movie-menu">
           <ul className="links">
             <NavLink
-              className={({ isActive }) => (isActive ? "activate" : "inactivate")}
-              to="/Tv"
+              className={({ isActive }) =>
+                isActive ? "activate" : "inactivate"
+              }
+              to="/Shows"
             >
               <li>All Shows</li>
             </NavLink>
@@ -54,7 +56,7 @@ function Tvnav() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Tvnav
+export default Tvnav;

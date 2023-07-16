@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Nav from "./Nav";
 import Movienav from "./Movienav";
 import MovieBanner from "./MovieBanner";
@@ -6,14 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   fetchTopRated,
   fetchPopular,
-  fetchAction,
-  fetchAdventure,
-  fetchComedy,
   fetchCrime,
   fetchDocumentary,
   fetchDrama,
-  fetchHorror,
-  fetchRomance,
   fetchThriller,
 } from "../features/MovieSlice";
 import "../Style/Home.css";
@@ -21,13 +16,8 @@ import "../Style/Home.css";
 function Movies() {
   const toprated = useSelector((state) => state.movie.topratedmovies);
   const popular = useSelector((state) => state.movie.popularmovies);
-  const action = useSelector((state) => state.movie.action);
-  const adventure = useSelector((state) => state.movie.adventure);
   const thriller = useSelector((state) => state.movie.thriller);
   const crime = useSelector((state) => state.movie.crime);
-  const comedy = useSelector((state) => state.movie.comedy);
-  const horror = useSelector((state) => state.movie.horror);
-  const romance = useSelector((state) => state.movie.romance);
   const documentary = useSelector((state) => state.movie.documentary);
   const drama = useSelector((state) => state.movie.drama);
   const dispatch = useDispatch();
@@ -42,13 +32,8 @@ function Movies() {
   useEffect(() => {
     dispatch(fetchTopRated());
     dispatch(fetchPopular());
-    dispatch(fetchAction());
-    dispatch(fetchAdventure());
-    dispatch(fetchComedy());
     dispatch(fetchCrime());
     dispatch(fetchDocumentary());
-    dispatch(fetchHorror());
-    dispatch(fetchRomance());
     dispatch(fetchThriller());
     dispatch(fetchDrama());
   }, [dispatch]);

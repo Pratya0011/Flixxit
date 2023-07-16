@@ -122,7 +122,6 @@ export const movieSlice = createSlice({
           [fetchDrama.fulfilled]: (state, action) => {
             state.loading = false;
             state.drama = action.payload;
-            console.log(state.drama)
           },
           [fetchDrama.rejected]: (state) => {
             state.loading = true;

@@ -100,9 +100,10 @@ export const dramaMovies = async (req, res) => {
 
 export const documentaryMovies = async (req, res) => {
   try {
-    const result = await content.find({
+    const data = await content.find({
       $and: [{ media_type: "movie" }, { genre_ids: 99 }],
     });
+    const result = data.filter((data)=> data.poster_path !== null)
     res.send({
       status: 200,
       result,

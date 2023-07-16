@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {  useEffect, useRef } from "react";
 import Nav from "./Nav";
 import TvBanner from "./TvBanner";
 import Tvnav from "./Tvnav";
@@ -6,22 +6,16 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   fetchTopRated,
   fetchPopular,
-  fetchActionadventure,
-  fetchComedy,
-  fetchCrime,
-  fetchDocumentary,
-  fetchDrama,
-  fetchMystery,
+  fetchCrimeTv,
+  fetchDocumentaryTv,
+  fetchDramaTv,
 } from "../features/TvSlice";
 import "../Style/Home.css";
 
 function Shows() {
   const toprated = useSelector((state) => state.tv.topratedtv);
   const popular = useSelector((state) => state.tv.populartv);
-  const action = useSelector((state) => state.tv.actionadventure);
   const crime = useSelector((state) => state.tv.crime);
-  const comedy = useSelector((state) => state.tv.comedy);
-  const mystery = useSelector((state) => state.tv.mystery);
   const documentary = useSelector((state) => state.tv.documentary);
   const drama = useSelector((state) => state.tv.drama);
   const dispatch = useDispatch();
@@ -35,12 +29,9 @@ function Shows() {
   useEffect(() => {
     dispatch(fetchTopRated());
     dispatch(fetchPopular());
-    dispatch(fetchActionadventure());
-    dispatch(fetchComedy());
-    dispatch(fetchCrime());
-    dispatch(fetchDocumentary());
-    dispatch(fetchDrama());
-    dispatch(fetchMystery())
+    dispatch(fetchCrimeTv());
+    dispatch(fetchDocumentaryTv());
+    dispatch(fetchDramaTv());
   }, [dispatch]);
 
   const scrollLefttoprated = (e) => {

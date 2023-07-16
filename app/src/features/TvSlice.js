@@ -11,12 +11,12 @@ export const fetchTopRated = createAsyncThunk("topRated", async () => {
     return res.data;
   });
    // Crime Tv
-   export const fetchCrime = createAsyncThunk("crime", async () => {
+   export const fetchCrimeTv = createAsyncThunk("crime", async () => {
     const res = await axios.get(tvRequest.crimeTv);
     return res.data;
   });
   // Drama Tv
-  export const fetchDrama = createAsyncThunk("drama", async () => {
+  export const fetchDramaTv = createAsyncThunk("drama", async () => {
     const res = await axios.get(tvRequest.dramaTv);
     return res.data;
   });
@@ -26,7 +26,7 @@ export const fetchTopRated = createAsyncThunk("topRated", async () => {
     return res.data;
   });
   // Comedy TV shows
-  export const fetchComedy = createAsyncThunk("comedy", async () => {
+  export const fetchComedyTv = createAsyncThunk("comedy", async () => {
     const res = await axios.get(tvRequest.comedyTv);
     return res.data;
   });
@@ -36,7 +36,7 @@ export const fetchTopRated = createAsyncThunk("topRated", async () => {
     return res.data;
   });
   // Documentaries
-  export const fetchDocumentary = createAsyncThunk("documentaries", async () => {
+  export const fetchDocumentaryTv = createAsyncThunk("documentaries", async () => {
     const res = await axios.get(tvRequest.documentaryTv);
     return res.data;
   });
@@ -79,24 +79,24 @@ const tvSlice = createSlice({
           [fetchPopular.rejected]: (state) => {
             state.loading = true;
           },
-          [fetchCrime.pending]: (state) => {
+          [fetchCrimeTv.pending]: (state) => {
             state.loading = true;
           },
-          [fetchCrime.fulfilled]: (state, action) => {
+          [fetchCrimeTv.fulfilled]: (state, action) => {
             state.loading = false;
             state.crime = action.payload;
           },
-          [fetchCrime.rejected]: (state) => {
+          [fetchCrimeTv.rejected]: (state) => {
             state.loading = true;
           },
-          [fetchComedy.pending]: (state) => {
+          [fetchComedyTv.pending]: (state) => {
             state.loading = true;
           },
-          [fetchComedy.fulfilled]: (state, action) => {
+          [fetchComedyTv.fulfilled]: (state, action) => {
             state.loading = false;
             state.comedy = action.payload;
           },
-          [fetchComedy.rejected]: (state) => {
+          [fetchComedyTv.rejected]: (state) => {
             state.loading = true;
           },
           [fetchMystery.pending]: (state) => {
@@ -109,24 +109,24 @@ const tvSlice = createSlice({
           [fetchMystery.rejected]: (state) => {
             state.loading = true;
           },
-          [fetchDrama.pending]: (state) => {
+          [fetchDramaTv.pending]: (state) => {
             state.loading = true;
           },
-          [fetchDrama.fulfilled]: (state, action) => {
+          [fetchDramaTv.fulfilled]: (state, action) => {
             state.loading = false;
             state.drama = action.payload;
           },
-          [fetchDrama.rejected]: (state) => {
+          [fetchDramaTv.rejected]: (state) => {
             state.loading = true;
           },
-          [fetchDocumentary.pending]: (state) => {
+          [fetchDocumentaryTv.pending]: (state) => {
             state.loading = true;
           },
-          [fetchDocumentary.fulfilled]: (state, action) => {
+          [fetchDocumentaryTv.fulfilled]: (state, action) => {
             state.loading = false;
             state.documentary = action.payload;
           },
-          [fetchDocumentary.rejected]: (state) => {
+          [fetchDocumentaryTv.rejected]: (state) => {
             state.loading = true;
           },
           [fetchActionadventure.pending]: (state) => {
