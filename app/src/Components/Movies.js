@@ -20,6 +20,7 @@ function Movies() {
   const crime = useSelector((state) => state.movie.crime);
   const documentary = useSelector((state) => state.movie.documentary);
   const drama = useSelector((state) => state.movie.drama);
+  const loading = useSelector((state)=>state.movie.loading)
   const dispatch = useDispatch();
   const img_base_url = "https://image.tmdb.org/t/p/original";
   const topratedSectionRef = useRef(null);
@@ -93,7 +94,9 @@ function Movies() {
       <Movienav />
       <MovieBanner />
       <div className="heading">Top Rated</div>
-      {toprated && toprated.result && (
+      {loading?(<div className="spinner-div">
+        <div className="spinner"></div></div>
+      ):(toprated && toprated.result && (
         <div className="section-container">
           <div className="scroll-arrow left-arrow" onClick={scrollLefttoprated}>
             <span className="arrow-icon">
@@ -125,9 +128,11 @@ function Movies() {
             </span>
           </div>
         </div>
-      )}
+      ))}
       <div className="heading">Popular</div>
-      {popular && popular.result && (
+      {loading?(<div className="spinner-div">
+        <div className="spinner"></div></div>
+      ):(popular && popular.result && (
         <div className="section-container">
           <div className="scroll-arrow left-arrow" onClick={scrollLeftPopular}>
             <span className="arrow-icon">
@@ -159,9 +164,11 @@ function Movies() {
             </span>
           </div>
         </div>
-      )}
+      ))}
       <div className="heading">Thriller</div>
-      {thriller && thriller.result && (
+      {loading?(<div className="spinner-div">
+        <div className="spinner"></div></div>
+      ):(thriller && thriller.result && (
         <div className="section-container">
           <div className="scroll-arrow left-arrow" onClick={scrollLeftthriller}>
             <span className="arrow-icon">
@@ -193,9 +200,11 @@ function Movies() {
             </span>
           </div>
         </div>
-      )}
+      ))}
       <div className="heading">Crime</div>
-      {crime && crime.result && (
+      {loading?(<div className="spinner-div">
+        <div className="spinner"></div></div>
+      ):(crime && crime.result && (
         <div className="section-container">
           <div className="scroll-arrow left-arrow" onClick={scrollLeftcrime}>
             <span className="arrow-icon">
@@ -224,9 +233,11 @@ function Movies() {
             </span>
           </div>
         </div>
-      )}
+      ))}
       <div className="heading">Drama</div>
-      {drama && drama.result && (
+      {loading?(<div className="spinner-div">
+        <div className="spinner"></div></div>
+      ):(drama && drama.result && (
         <div className="section-container">
           <div className="scroll-arrow left-arrow" onClick={scrollLeftdrama}>
             <span className="arrow-icon">
@@ -255,9 +266,11 @@ function Movies() {
             </span>
           </div>
         </div>
-      )}
+      ))}
       <div className="heading">Documentary</div>
-      {documentary && documentary.result && (
+      {loading?(<div className="spinner-div">
+        <div className="spinner"></div></div>
+      ):(documentary && documentary.result && (
         <div className="section-container">
           <div
             className="scroll-arrow left-arrow"
@@ -292,7 +305,7 @@ function Movies() {
             </span>
           </div>
         </div>
-      )}
+      ))}
     </div>
   );
 }

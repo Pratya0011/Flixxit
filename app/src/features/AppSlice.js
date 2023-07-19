@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
+
 const initialState = {
   id: localStorage.getItem("userId") || null,
   name: "",
-  genre:  localStorage.getItem('genre')||"" ,
-  type: localStorage.getItem('type')||""
+  watchlist:null,
+  loading:true
 };
 
 export const appSlice = createSlice({
@@ -17,12 +19,6 @@ export const appSlice = createSlice({
     setName: (state, action) => {
       state.name = action.payload;
     },
-    setGenre: (state,action)=>{
-      state.genre = action.payload;
-    },
-    setType: (state,action)=>{
-      state.type = action.payload
-    }
   },
 });
 export const { setId, setName, setGenre, setType } = appSlice.actions;

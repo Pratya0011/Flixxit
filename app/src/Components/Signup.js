@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { signup } from "./request";
+
 import '../App.css'
 
 function Signup() {
@@ -8,12 +9,14 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const [cpassword, setCpassword] = useState("")
+  const [type, setType] = useState('password')
+  const [error, setError] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:8080/user/signup", {
+    password === cpassword ?(axios
+      .post(signup.signUpUrl, {
         name: name,
         email: email,
         username: username,
@@ -29,9 +32,12 @@ function Signup() {
         }
       })
       .catch((error) => {
-        alert("Request failed");
-      });
+        error?alert("Request failed"):<></>;
+      })):setError('Password donot match')
   };
+  const toggleType=()=>{
+    type === 'password'?setType('text'):setType('password')
+  }
   return (
     <div className="signup-component">
       <div className="signup">
@@ -44,6 +50,7 @@ function Signup() {
           onChange={(e) => {
             setName(e.target.value);
           }}
+          required
         />
         <label>Email:</label>
         <input
@@ -53,6 +60,7 @@ function Signup() {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
+          required
         />
         <label>Usrname:</label>
         <input
@@ -62,19 +70,36 @@ function Signup() {
           onChange={(e) => {
             setUsername(e.target.value);
           }}
+          required
         />
+        <div className="view-toggle">
         <label>Password:</label>
         <input
-          type="password"
+          type={type}
           placeholder="password"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
           }}
+          required
         />
+        <div className="eye" onClick={toggleType}><i className="fa fa-eye" aria-hidden="true"></i></div>
+        </div>
+        <label>C.Password:</label>
+        <input
+          type="text"
+          placeholder="password"
+          value={cpassword}
+          onChange={(e) => {
+            setCpassword(e.target.value);
+          }}
+          required
+        />
+        
         <button type="submit">Submit</button>
       </form>
       </div>
+      <p>{error}</p>
     </div>
   );
 }

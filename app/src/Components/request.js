@@ -1,3 +1,8 @@
+export const signup = {
+    signUpUrl : 'http://localhost:8080/user/signup',
+    loginUrl  :'http://localhost:8080/user/login',
+}
+
 export const homeRequest = {
     topRatedFlixxit: `http://localhost:8080/user/toprated`,
     popularFlixxit:`http://localhost:8080/user/popular`,
@@ -28,4 +33,10 @@ export const tvRequest = {
     mysteryTv: `http://localhost:8080/user/mysteryTv`,
     actionadventureTv: `http://localhost:8080/user/action&advntureTv`,
     documentaryTv: `http://localhost:8080/user/documentaryTv`
+}
+
+export const Watchlist={
+    getWatchlist : `http://localhost:8080/user/getWatchlist`,
+    addWatchlist : `http://localhost:8080/user/addWatchlist/`,
+    deleteWatchlist : `http://localhost:8080/user/deleteWatchlist/`
 }

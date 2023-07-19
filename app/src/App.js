@@ -59,28 +59,28 @@ function App() {
   };
   return (
     <div className="App">
-      <div className="spinner"></div>
+      
       <Router>
         <Routes>
           <Route exact path="/" element={state ? <Home /> : <Landing />} />
-          <Route path="/Movies" element={<Movies />}></Route>
-          <Route path="/Movies/Thriller" element={<Thriller />}></Route>
-          <Route path="/Movies/Crime" element={<Crime />}></Route>
-          <Route path="/Movies/Drama" element={<Drama />}></Route>
-          <Route path="/Movies/Action" element={<Action />}></Route>
-          <Route path="/Movies/Adventure" element={<Adventure />}></Route>
-          <Route path="/Movies/Comedy" element={<Comedy />}></Route>
-          <Route path="/Movies/Horror" element={<Horror />}></Route>
-          <Route path="/Movies/Romance" element={<Romance />}></Route>
-          <Route path="/Movies/Documentary" element={<Documentary />}></Route>
-          <Route path="/Shows" element={<Shows />}></Route>
-          <Route path="/Tv/Crime" element={<CrimeTv/>}></Route>
-          <Route path="/Tv/Drama" element={<DramaTv/>}></Route>
-          <Route path="/Tv/Actionadventure" element={<ActionadventuteTv/>}></Route>
-          <Route path="/Tv/Comedy" element={<ComedyTv/>}></Route>
-          <Route path="/Tv/Mystery" element={<MysteryTv/>}></Route>
-          <Route path="/Tv/Documentary" element={<DocumentaryTv/>}></Route>
-          <Route path="/Dashboard" element={<Dashboard />}></Route>
+          <Route path="/Movies" element={state ? <Movies /> : <Landing />}></Route>
+          <Route path="/Movies/Thriller" element={state ? <Thriller /> : <Landing />}></Route>
+          <Route path="/Movies/Crime" element={state ? <Crime /> : <Landing />}></Route>
+          <Route path="/Movies/Drama" element={state ? <Drama /> : <Landing />}></Route>
+          <Route path="/Movies/Action" element={state ? <Action /> : <Landing />}></Route>
+          <Route path="/Movies/Adventure" element={state ? <Adventure /> : <Landing />}></Route>
+          <Route path="/Movies/Comedy" element={state ? <Comedy /> : <Landing />}></Route>
+          <Route path="/Movies/Horror" element={state ? <Horror /> : <Landing />}></Route>
+          <Route path="/Movies/Romance" element={state ? <Romance /> : <Landing />}></Route>
+          <Route path="/Movies/Documentary" element={state ? <Documentary /> : <Landing />}></Route>
+          <Route path="/Shows" element={state ? <Shows /> : <Landing />}></Route>
+          <Route path="/Tv/Crime" element={state ? <CrimeTv /> : <Landing />}></Route>
+          <Route path="/Tv/Drama" element={state ? <DramaTv /> : <Landing />}></Route>
+          <Route path="/Tv/Actionadventure" element={state ? <ActionadventuteTv /> : <Landing />}></Route>
+          <Route path="/Tv/Comedy" element={state ? <ComedyTv /> : <Landing />}></Route>
+          <Route path="/Tv/Mystery" element={state ? <MysteryTv /> : <Landing />}></Route>
+          <Route path="/Tv/Documentary" element={state ? <DocumentaryTv /> : <Landing />}></Route>
+          <Route path="/Dashboard" element={state ? <Dashboard /> : <Landing />}></Route>
         </Routes>
       </Router>
       <Footer />

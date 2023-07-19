@@ -9,6 +9,7 @@ import '../../Style/Content.css'
 function Documentary() {
   const dispatch = useDispatch();
   const movie = useSelector((state) => state.movie.documentary);
+  const loading = useSelector((state)=>state.movie.loading)
   const img_base_url = "https://image.tmdb.org/t/p/original";
   useEffect(() => {
     dispatch(fetchDocumentary());
@@ -17,7 +18,7 @@ function Documentary() {
     <div>
       <Nav />
       <Movienav />
-      <>{template("documentary", movie.result, "movie", img_base_url)}</>
+      <>{template("documentary", movie.result, "movie", img_base_url,loading)}</>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 // import '../Style/Content.css'
-export const template = (genre, content, mediaType, img_base_url) => {
+
+export const template = (genre, content, mediaType, img_base_url,loading) => {
   let modifiedStr = "";
   if (genre.length === 0) {
     return genre;
@@ -9,13 +10,16 @@ export const template = (genre, content, mediaType, img_base_url) => {
     const modifiedFirstLetter = firstLetter.toUpperCase();
     modifiedStr = modifiedFirstLetter + remainingLetters;
   }
+ 
   return (
     <div>
       <div className="genre-heading">
         {modifiedStr} {mediaType === "movie" ? "Movies" : "Shows"}
       </div>
       <div className="coloum">
-        {content && content.length > 0 ? (
+        {loading?(<div className="spinner-div">
+        <div className="spinner"></div></div>
+      ):(content && content.length > 0 ? (
           content.map((data, index) => (
             <div key={index} className="coloum-container"  style={{ animationDelay: `${index * 0.1}s` }}>
               <div className="coloum-div">
@@ -43,7 +47,7 @@ export const template = (genre, content, mediaType, img_base_url) => {
           ))
         ) : (
           <p>No item available</p>
-        )}
+        ))}
       </div>
     </div>
   );

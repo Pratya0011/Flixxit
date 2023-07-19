@@ -9,6 +9,7 @@ import '../../Style/Content.css'
 function Horror() {
   const dispatch = useDispatch();
   const movie = useSelector((state) => state.movie.horror);
+  const loading = useSelector((state)=>state.movie.loading)
   const img_base_url = "https://image.tmdb.org/t/p/original";
   useEffect(() => {
     dispatch(fetchHorror());
@@ -17,7 +18,7 @@ function Horror() {
     <div>
       <Nav />
       <Movienav />
-      <>{template("horror", movie.result, "movie", img_base_url)}</>
+      <>{template("horror", movie.result, "movie", img_base_url,loading)}</>
     </div>
   );
 }
