@@ -13,14 +13,13 @@ import axios from "axios";
 import { Watchlist } from "./request";
 
 function Home() {
-  const[display,setDisplay]=useState()
-  const [watchlist,setWatchlist]=useState([])
+  const [watchlist, setWatchlist] = useState([]);
   const toprated = useSelector((state) => state.home.toprated);
   const popular = useSelector((state) => state.home.popular);
   const topten = useSelector((state) => state.home.topten);
   const documentary = useSelector((state) => state.home.documentary);
   const loading = useSelector((state) => state.home.loading);
-  
+
   const dispatch = useDispatch();
   const img_base_url = "https://image.tmdb.org/t/p/original";
   const sectionRef = useRef(null);
@@ -33,7 +32,7 @@ function Home() {
     dispatch(fetchPopular());
     dispatch(fetchTopten());
     dispatch(fetchDocumentary());
-    getwatchlist()
+    getwatchlist();
   }, [dispatch]);
 
   const scrollLeftDocumentary = (e) => {
@@ -72,14 +71,45 @@ function Home() {
     topratedSectionRef.current.scrollLeft += 200; // Adjust the scroll distance as needed
     topratedSectionRef.current.style.scrollBehavior = "smooth";
   };
-  const getwatchlist=()=>{
-    const id = localStorage.getItem("userId")
-    axios.get(`${Watchlist.getWatchlist}/${id}`).then((res)=>{
-      setWatchlist(res.data.contentResult)
-    }).catch(err=>{
-      console.log(err)
-    })
-    }
+  const getwatchlist = () => {
+    const id = localStorage.getItem("userId");
+    axios
+      .get(`${Watchlist.getWatchlist}/${id}`)
+      .then((res) => {
+        setWatchlist(res.data.contentResult);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const toggleWatchlist = (contentid) => {
+    console.log(contentid);
+    const id = localStorage.getItem("userId");
+    const queryParam = new URLSearchParams({ contentId: contentid });
+    axios
+      .patch(`${Watchlist.addWatchlist}/${id}`, null, { params: queryParam })
+      .then((res) => {
+        if (res.data.status === 200) {
+          setWatchlist(res.data.contentResult);
+        } else if (res.data.status === 409) {
+          axios
+            .patch(`${Watchlist.deleteWatchlist}/${id}`, null, {
+              params: queryParam,
+            })
+            .then((res) => {
+              setWatchlist(res.data.contentResult);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          alert("Something went wrong");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div>
       <Nav />
@@ -114,16 +144,35 @@ function Home() {
                     }}
                   >
                     <div className="row-content">
-                    <div className="row-item">
-                    <p className="title">
-                      {(item.name || item.title || item.original_name).slice(
-                        0,
-                        10
-                      ) + "..."}
-                    </p>
-                    <p className="date">{item.release_date.slice(0, 4)}</p>
-                    </div>
-                    {watchlist.some(data=>data._id === item._id)?(<div className="plus" >✓</div>):(<div className="plus" >+</div>)}
+                      <div className="row-item">
+                        <p className="title">
+                          {(
+                            item.name ||
+                            item.title ||
+                            item.original_name
+                          ).slice(0, 10) + "..."}
+                        </p>
+                        <p className="date">{item.release_date.slice(0, 4)}</p>
+                      </div>
+                      {watchlist.some((data) => data._id === item._id) ? (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          ✓
+                        </div>
+                      ) : (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          +
+                        </div>
+                      )}
                     </div>
                   </div>
                   <p>{item.name || item.title || item.original_name}</p>
@@ -171,16 +220,35 @@ function Home() {
                     }}
                   >
                     <div className="row-content">
-                    <div className="row-item">
-                    <p className="title">
-                      {(item.name || item.title || item.original_name).slice(
-                        0,
-                        10
-                      ) + "..."}
-                    </p>
-                    <p className="date">{item.release_date.slice(0, 4)}</p>
-                    </div>
-                    <div className="plus" >+</div>
+                      <div className="row-item">
+                        <p className="title">
+                          {(
+                            item.name ||
+                            item.title ||
+                            item.original_name
+                          ).slice(0, 10) + "..."}
+                        </p>
+                        <p className="date">{item.release_date.slice(0, 4)}</p>
+                      </div>
+                      {watchlist.some((data) => data._id === item._id) ? (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          ✓
+                        </div>
+                      ) : (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          +
+                        </div>
+                      )}
                     </div>
                   </div>
                   <p>{item.name || item.title || item.original_name}</p>
@@ -225,16 +293,35 @@ function Home() {
                     }}
                   >
                     <div className="row-content">
-                    <div className="row-item">
-                    <p className="title">
-                      {(item.name || item.title || item.original_name).slice(
-                        0,
-                        10
-                      ) + "..."}
-                    </p>
-                    <p className="date">{item.release_date.slice(0, 4)}</p>
-                    </div>
-                    <div className="plus" >+</div>
+                      <div className="row-item">
+                        <p className="title">
+                          {(
+                            item.name ||
+                            item.title ||
+                            item.original_name
+                          ).slice(0, 10) + "..."}
+                        </p>
+                        <p className="date">{item.release_date.slice(0, 4)}</p>
+                      </div>
+                      {watchlist.some((data) => data._id === item._id) ? (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          ✓
+                        </div>
+                      ) : (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          +
+                        </div>
+                      )}
                     </div>
                   </div>
                   <p>{item.name || item.title || item.original_name}</p>
@@ -283,16 +370,35 @@ function Home() {
                     }}
                   >
                     <div className="row-content">
-                    <div className="row-item">
-                    <p className="title">
-                      {(item.name || item.title || item.original_name).slice(
-                        0,
-                        10
-                      ) + "..."}
-                    </p>
-                    <p className="date">{item.release_date.slice(0, 4)}</p>
-                    </div>
-                    <div className="plus" >+</div>
+                      <div className="row-item">
+                        <p className="title">
+                          {(
+                            item.name ||
+                            item.title ||
+                            item.original_name
+                          ).slice(0, 10) + "..."}
+                        </p>
+                        <p className="date">{item.release_date.slice(0, 4)}</p>
+                      </div>
+                      {watchlist.some((data) => data._id === item._id) ? (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          ✓
+                        </div>
+                      ) : (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          +
+                        </div>
+                      )}
                     </div>
                   </div>
                   <p>{item.name || item.title || item.original_name}</p>

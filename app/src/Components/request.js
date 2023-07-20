@@ -37,6 +37,6 @@ export const tvRequest = {
 
 export const Watchlist={
     getWatchlist : `http://localhost:8080/user/getWatchlist`,
-    addWatchlist : `http://localhost:8080/user/addWatchlist/`,
-    deleteWatchlist : `http://localhost:8080/user/deleteWatchlist/`
+    addWatchlist : `http://localhost:8080/user/addWatchlist`,
+    deleteWatchlist : `http://localhost:8080/user/deleteWatchlist`
 }

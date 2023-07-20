@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, {useState, useEffect, useRef } from "react";
 import Nav from "./Nav";
 import Movienav from "./Movienav";
 import MovieBanner from "./MovieBanner";
@@ -12,8 +12,11 @@ import {
   fetchThriller,
 } from "../features/MovieSlice";
 import "../Style/Home.css";
+import axios from "axios";
+import { Watchlist } from "./request";
 
 function Movies() {
+  const [watchlist,setWatchlist]=useState([])
   const toprated = useSelector((state) => state.movie.topratedmovies);
   const popular = useSelector((state) => state.movie.popularmovies);
   const thriller = useSelector((state) => state.movie.thriller);
@@ -21,6 +24,7 @@ function Movies() {
   const documentary = useSelector((state) => state.movie.documentary);
   const drama = useSelector((state) => state.movie.drama);
   const loading = useSelector((state)=>state.movie.loading)
+
   const dispatch = useDispatch();
   const img_base_url = "https://image.tmdb.org/t/p/original";
   const topratedSectionRef = useRef(null);
@@ -37,6 +41,7 @@ function Movies() {
     dispatch(fetchDocumentary());
     dispatch(fetchThriller());
     dispatch(fetchDrama());
+    getwatchlist();
   }, [dispatch]);
 
   const scrollLefttoprated = (e) => {
@@ -88,6 +93,36 @@ function Movies() {
     documentarySectionRef.current.scrollLeft += 200; // Adjust the scroll distance as needed
     documentarySectionRef.current.style.scrollBehavior = "smooth";
   };
+
+  const getwatchlist=()=>{
+    const id = localStorage.getItem("userId")
+    axios.get(`${Watchlist.getWatchlist}/${id}`).then((res)=>{
+      setWatchlist(res.data.contentResult)
+    }).catch(err=>{
+      console.log(err)
+    })
+    }
+    const toggleWatchlist=(contentid)=>{
+      console.log(contentid)
+      const id = localStorage.getItem("userId")
+      const queryParam = new URLSearchParams({ contentId: contentid });
+      axios.patch(`${Watchlist.addWatchlist}/${id}`,null, { params: queryParam }).then((res)=>{
+        if(res.data.status===200){
+          setWatchlist(res.data.contentResult)
+        }else if(res.data.status===409){
+          axios.patch(`${Watchlist.deleteWatchlist}/${id}`,null, { params: queryParam }).then((res)=>{
+            setWatchlist(res.data.contentResult)
+          }).catch(err=>{
+            console.log(err)
+          })
+        }else{
+          alert('Something went wrong')
+        }
+      }).catch(err=>{
+        console.log(err)
+      })
+    
+    }
   return (
     <div>
       <Nav />
@@ -114,7 +149,39 @@ function Movies() {
                       ? `url(${img_base_url}${item.poster_path})`
                       : "",
                   }}
-                ></div>
+                >
+                  <div className="row-content">
+                      <div className="row-item">
+                        <p className="title">
+                          {(
+                            item.name ||
+                            item.title ||
+                            item.original_name
+                          ).slice(0, 10) + "..."}
+                        </p>
+                        <p className="date">{item.release_date.slice(0, 4)}</p>
+                      </div>
+                      {watchlist.some((data) => data._id === item._id) ? (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          ✓
+                        </div>
+                      ) : (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          +
+                        </div>
+                      )}
+                    </div>
+                </div>
                 <p>{item.name || item.title || item.original_name}</p>
               </div>
             ))}
@@ -150,7 +217,39 @@ function Movies() {
                       ? `url(${img_base_url}${item.poster_path})`
                       : "",
                   }}
-                ></div>
+                >
+                  <div className="row-content">
+                      <div className="row-item">
+                        <p className="title">
+                          {(
+                            item.name ||
+                            item.title ||
+                            item.original_name
+                          ).slice(0, 10) + "..."}
+                        </p>
+                        <p className="date">{item.release_date.slice(0, 4)}</p>
+                      </div>
+                      {watchlist.some((data) => data._id === item._id) ? (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          ✓
+                        </div>
+                      ) : (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          +
+                        </div>
+                      )}
+                    </div>
+                </div>
                 <p>{item.name || item.title || item.original_name}</p>
               </div>
             ))}
@@ -186,7 +285,39 @@ function Movies() {
                       ? `url(${img_base_url}${item.poster_path})`
                       : "",
                   }}
-                ></div>
+                >
+                  <div className="row-content">
+                      <div className="row-item">
+                        <p className="title">
+                          {(
+                            item.name ||
+                            item.title ||
+                            item.original_name
+                          ).slice(0, 10) + "..."}
+                        </p>
+                        <p className="date">{item.release_date.slice(0, 4)}</p>
+                      </div>
+                      {watchlist.some((data) => data._id === item._id) ? (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          ✓
+                        </div>
+                      ) : (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          +
+                        </div>
+                      )}
+                    </div>
+                </div>
                 <p>{item.name || item.title || item.original_name}</p>
               </div>
             ))}
@@ -222,7 +353,39 @@ function Movies() {
                       ? `url(${img_base_url}${item.poster_path})`
                       : "",
                   }}
-                ></div>
+                >
+                  <div className="row-content">
+                      <div className="row-item">
+                        <p className="title">
+                          {(
+                            item.name ||
+                            item.title ||
+                            item.original_name
+                          ).slice(0, 10) + "..."}
+                        </p>
+                        <p className="date">{item.release_date.slice(0, 4)}</p>
+                      </div>
+                      {watchlist.some((data) => data._id === item._id) ? (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          ✓
+                        </div>
+                      ) : (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          +
+                        </div>
+                      )}
+                    </div>
+                </div>
                 <p>{item.name || item.title || item.original_name}</p>
               </div>
             ))}
@@ -255,7 +418,39 @@ function Movies() {
                       ? `url(${img_base_url}${item.poster_path})`
                       : "",
                   }}
-                ></div>
+                >
+                  <div className="row-content">
+                      <div className="row-item">
+                        <p className="title">
+                          {(
+                            item.name ||
+                            item.title ||
+                            item.original_name
+                          ).slice(0, 10) + "..."}
+                        </p>
+                        <p className="date">{item.release_date.slice(0, 4)}</p>
+                      </div>
+                      {watchlist.some((data) => data._id === item._id) ? (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          ✓
+                        </div>
+                      ) : (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          +
+                        </div>
+                      )}
+                    </div>
+                </div>
                 <p>{item.name || item.title || item.original_name}</p>
               </div>
             ))}
@@ -291,7 +486,39 @@ function Movies() {
                       ? `url(${img_base_url}${item.poster_path})`
                       : "",
                   }}
-                ></div>
+                >
+                  <div className="row-content">
+                      <div className="row-item">
+                        <p className="title">
+                          {(
+                            item.name ||
+                            item.title ||
+                            item.original_name
+                          ).slice(0, 10) + "..."}
+                        </p>
+                        <p className="date">{item.release_date.slice(0, 4)}</p>
+                      </div>
+                      {watchlist.some((data) => data._id === item._id) ? (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          ✓
+                        </div>
+                      ) : (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          +
+                        </div>
+                      )}
+                    </div>
+                </div>
                 <p>{item.name || item.title || item.original_name}</p>
               </div>
             ))}

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../Style/Nav.css";
 
 function Nav() {
   const [search, setSearch] = useState("");
   const [role, setRole] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
   const id = useSelector((state) => state.app.id);
+  const navigate = useNavigate()
 
   useEffect(() => {
     getUser();
@@ -31,22 +33,21 @@ function Nav() {
       .get(`http://localhost:8080/admin/getUser/${id}`)
       .then((res) => {
         setRole(res.data.user.role);
+        setSubscribed(res.data.user.subscriptionStatus);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  
-  
+
   return (
-    <div className= "navbar-component" id="navbar-component">
+    <div className="navbar-component" id="navbar-component">
       <div className="navbar">
         <div className="right-menu">
           <div id="logo">
             <h2>Flᴉxxᴉt</h2>
           </div>
           <ul className="links">
-
             <NavLink
               className={({ isActive }) => (isActive ? "active" : "inactive")}
               to="/"
@@ -88,6 +89,13 @@ function Nav() {
               onClick={() => setSearch(search === "active" ? "" : "active")}
             ></i>
           </div>
+          {!subscribed ? (
+            <div className="subscribe-div">
+              <button onClick={() => navigate("/subscribe")}>SUBSCRIBE</button>
+            </div>
+          ) : (
+            <></>
+          )}
           <div className="profole-icon">
             <i className="fa fa-user" aria-hidden="true"></i>
           </div>

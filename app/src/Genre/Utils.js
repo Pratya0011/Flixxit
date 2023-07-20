@@ -1,6 +1,7 @@
 // import '../Style/Content.css'
 
-export const template = (genre, content, mediaType, img_base_url,loading) => {
+
+export const template = (genre, content, mediaType, img_base_url,loading,watchlist,toggleWatchlist) => {
   let modifiedStr = "";
   if (genre.length === 0) {
     return genre;
@@ -10,7 +11,7 @@ export const template = (genre, content, mediaType, img_base_url,loading) => {
     const modifiedFirstLetter = firstLetter.toUpperCase();
     modifiedStr = modifiedFirstLetter + remainingLetters;
   }
- 
+  
   return (
     <div>
       <div className="genre-heading">
@@ -28,6 +29,37 @@ export const template = (genre, content, mediaType, img_base_url,loading) => {
                   style={{ height: "30vh", width: "12vw" }}
                   alt={data.name || data.title}
                 />
+                <div className="row-content">
+                      <div className="row-item">
+                        <p className="title">
+                          {(
+                            data.name ||
+                            data.title ||
+                            data.original_name
+                          ).slice(0, 10) + "..."}
+                        </p>
+                        <p className="date">{data.release_date.slice(0, 4)}</p>
+                      </div>
+                      {watchlist.some((value) => data._id === value._id) ? (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(data._id);
+                          }}
+                        >
+                          ✓
+                        </div>
+                      ) : (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(data._id);
+                          }}
+                        >
+                          +
+                        </div>
+                      )}
+                    </div>
               </div>
               {mediaType === "movie" ? (
                 <p>

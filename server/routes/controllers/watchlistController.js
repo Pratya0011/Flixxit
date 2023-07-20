@@ -11,15 +11,29 @@ export const addWatchlist = async (req, res) => {
         error: "Bad Request",
       });
     } else {
-      const user = await User.findByIdAndUpdate(
-        id,
-        { $push: { "watchlist.contentId": contentId } },
-        { new: true }
-      );
-      res.send({
-        status: 200,
-        user,
-      });
+      const user = await User.findById(id)
+      if(user.watchlist.contentId.includes(contentId)){
+        res.send({
+          status: 409,
+          message:'content already exist'
+        })
+      }else{
+        const user = await User.findByIdAndUpdate(
+          id,
+          { $push: { "watchlist.contentId": contentId } },
+          { new: true }
+        );
+        const contentPromise = user.watchlist.contentId.map(async (data) => {
+          const list = await content.findById(data);
+          return list;
+        });
+        const contentResult = await Promise.all(contentPromise);
+        res.send({
+          status: 200,
+          contentResult,
+        });
+      }
+      
     }
   } catch (err) {
     res.send({
@@ -73,9 +87,14 @@ export const deleteWatchlist = async(req,res)=>{
       const user = await User.findById(id)
         const removeatchlist = user.watchlist.contentId.filter(data=>data!=contentId)
         const updatedWatchlist = await User.findByIdAndUpdate(id,{"watchlist.contentId": removeatchlist },{new:true})
+        const contentPromise = updatedWatchlist.watchlist.contentId.map(async (data) => {
+          const list = await content.findById(data);
+          return list;
+        });
+        const contentResult = await Promise.all(contentPromise);
       res.send({
         status: 200,
-        updatedWatchlist,
+        contentResult,
       });
     }
   }catch(err){
