@@ -111,7 +111,7 @@ function Home() {
       });
   };
   return (
-    <div>
+    <div className="component">
       <Nav />
       <Hoding />
       <div className="heading">Top Rated</div>

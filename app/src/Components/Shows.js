@@ -121,7 +121,7 @@ function Shows() {
       });
   };
   return (
-    <div>
+    <div className="component">
       <Nav />
       <Tvnav />
       <TvBanner />

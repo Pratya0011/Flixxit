@@ -124,7 +124,7 @@ function Movies() {
     
     }
   return (
-    <div>
+    <div className="component">
       <Nav />
       <Movienav />
       <MovieBanner />

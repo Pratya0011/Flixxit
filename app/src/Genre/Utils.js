@@ -13,7 +13,7 @@ export const template = (genre, content, mediaType, img_base_url,loading,watchli
   }
   
   return (
-    <div>
+    <div className='util-content'>
       <div className="genre-heading">
         {modifiedStr} {mediaType === "movie" ? "Movies" : "Shows"}
       </div>
