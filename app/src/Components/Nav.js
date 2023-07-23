@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { NavLink,useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../Style/Nav.css";
+import { fetchSearch, setSeachName } from "../features/AppSlice";
 
 function Nav() {
   const [search, setSearch] = useState("");
   const [role, setRole] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [value, setValue] = useState('')
   const id = useSelector((state) => state.app.id);
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -83,6 +86,17 @@ function Nav() {
               type="text"
               className={`search-input ${search}`}
               placeholder="Search"
+              value={value}
+              onChange={(e) => {
+                setValue(e.target.value)
+              }}
+              onKeyDown={(e)=>{
+                if(e.key === "Enter"){
+                  dispatch(fetchSearch(value))
+                  dispatch(setSeachName(value))
+                navigate('/search')
+                }
+              }}
             />
             <i
               className="fas fa-search search-icon"

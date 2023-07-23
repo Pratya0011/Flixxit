@@ -1,7 +1,6 @@
 import { model, Schema } from "mongoose";
 
-const content = new Schema({
-    subscription: {
+const plan = new Schema({
         planName: {
             type:String,
             default: 'Gold'
@@ -15,8 +14,7 @@ const content = new Schema({
             default: 'Monthly'
         },
     }
-}
 )
 
-const Content = model('content', content)
-export default Content;
+const Plan = model('plan', plan)
+export default Plan;

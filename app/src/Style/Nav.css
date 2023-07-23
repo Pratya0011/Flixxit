@@ -66,7 +66,8 @@
   height: 2rem;
   border-radius: 10px;
   padding-left: 10px;
-  background-color: rgba(255, 255, 255, 0.701);
+  background-color: rgb(224, 222, 222);
+  border: 1px solid #e50914;
 }
 .search-icon {
   position: absolute;

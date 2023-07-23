@@ -24,6 +24,7 @@ import ComedyTv from "./Genre/TvGenre/ComedyTv";
 import MysteryTv from "./Genre/TvGenre/MysteryTv";
 import DocumentaryTv from "./Genre/TvGenre/DocumentaryTv";
 import Subscribe from "./Components/Subscribe";
+import Search from "./Components/Search";
 
 function App() {
   const [state, setState] = useState(false);
@@ -82,7 +83,8 @@ function App() {
           <Route path="/Tv/Mystery" element={state ? <MysteryTv /> : <Landing />}></Route>
           <Route path="/Tv/Documentary" element={state ? <DocumentaryTv /> : <Landing />}></Route>
           <Route path="/Dashboard" element={state ? <Dashboard /> : <Landing />}></Route>
-          <Route path='/subscribe' element={<Subscribe/>}></Route>
+          <Route path='/subscribe' element={state ? <Subscribe /> : <Landing />}></Route>
+          <Route path="/search" element={state ? <Search/> : <Landing />}></Route>
         </Routes>
       </Router>
       <Footer />

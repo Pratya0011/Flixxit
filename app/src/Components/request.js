@@ -40,3 +40,11 @@ export const Watchlist={
     addWatchlist : `http://localhost:8080/user/addWatchlist`,
     deleteWatchlist : `http://localhost:8080/user/deleteWatchlist`
 }
+
+export const searchBar = {
+    getSearch: `http://localhost:8080/user/search`
+}
+
+export const subscribitionPlan = {
+    getAllSubsPlans: "http://localhost:8080/user/getPlan"
+} 

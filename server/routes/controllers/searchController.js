@@ -2,10 +2,10 @@ import content from "../../model/contentList.js";
 
 export const searchContent = async (req, res) => {
   try {
-    let { name } = req.body;
+    let { name } = req.query;
     name==='Taare Zameen Par'?name='Like Stars on Earth':name
     const regex = new RegExp(name, "i");
-    const result = await content.findOne({
+    const result = await content.find({
       $or: [{ name: { $regex: regex } }, { title: { $regex: regex } }],
     });
     if (!result) {
@@ -16,7 +16,7 @@ export const searchContent = async (req, res) => {
     } else {
       res.send({
         statue: 200,
-        result,
+        result:result
       });
     }
   } catch (err) {

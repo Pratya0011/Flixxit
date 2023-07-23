@@ -416,7 +416,6 @@ function Home() {
           </div>
         )
       )}
-      <p>{console.log(watchlist)}</p>
     </div>
   );
 }

@@ -10,8 +10,8 @@ function Footer() {
       <div>
       <div><i className="fa-brands fa-facebook-f"></i></div>
       <div><i className="fa-brands fa-github"></i></div>
-      <div><i class="fa-brands fa-instagram"></i></div>
-      <div><i class="fa-brands fa-linkedin"></i></div>
+      <div><i className="fa-brands fa-instagram"></i></div>
+      <div><i className="fa-brands fa-linkedin"></i></div>
       </div>
       </div>
       <div>

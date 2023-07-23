@@ -10,6 +10,7 @@ import searchRouter from "./routes/searchRoute.js"
 import movieRouter from "./routes/movieRoutes.js"
 import tvRouter from "./routes/tvRoutes.js"
 import watchlistRouter from "./routes/watchlistRoutes.js"
+import subscribePlan from './routes/subscribeRoute.js'
 
 import { config } from "dotenv";
 config()
@@ -30,6 +31,7 @@ app.use('/user',searchRouter)
 app.use('/user',movieRouter)
 app.use('/user',tvRouter)
 app.use('/user',watchlistRouter)
+app.use('/user',subscribePlan)
 
 connection.then(()=>app.listen(process.env.PORT, ()=>{
     console.log('server listening on port 8080')
