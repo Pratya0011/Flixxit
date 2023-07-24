@@ -1,0 +1,81 @@
+.subscription-div {
+  min-height: 90vh;
+}
+.subscription-div #logo {
+  padding: 10px;
+  padding-left: 25px;
+  color: #e50914;
+  font-size: 1.1rem;
+}
+.subscription-div .back {
+  background: rgb(58, 58, 58) !important ;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 10px;
+  margin-left: 25px;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 10px;
+  color: white;
+  position: fixed;
+  top: 60px !important;
+  cursor: pointer;
+}
+.subscription-div .plan-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+}
+.subscription-div .plan-div p,
+.plan-heading {
+  margin: 10px 0 20px 0;
+}
+.plan-div p {
+  font-weight: 400;
+  font-size: 16px;
+}
+.plan-div .plan-heading {
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+}
+.plan-div .plan-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+  background: linear-gradient(to bottom, #e50914, transparent);
+  border: 1px solid #e50914;
+  background-color: rgb(69, 2, 69);
+  height: 35vh;
+  width: 15vw;
+  border-radius: 15px;
+}
+.plan-item .item-1 {
+  font-size: 25px;
+  font-weight: 700;
+  color: rgb(253, 231, 103);
+}
+.plan-item .item-2 {
+  text-align: center;
+}
+.plan-item .item-4 {
+  font-size: 25px;
+  font-weight: 700;
+}
+.plan-div .plan-button{
+    margin: 50px 0 0 0;
+}
+.plan-button button{
+    background-color: #d20820;
+    border-radius: 10px;
+    padding: 14px 65px 14px 66px;
+    box-sizing: border-box;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
