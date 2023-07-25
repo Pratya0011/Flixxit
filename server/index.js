@@ -11,12 +11,22 @@ import movieRouter from "./routes/movieRoutes.js"
 import tvRouter from "./routes/tvRoutes.js"
 import watchlistRouter from "./routes/watchlistRoutes.js"
 import subscribePlan from './routes/subscribeRoute.js'
+import paymentRouter from './routes/paymntRoute.js'
+
 
 import { config } from "dotenv";
 config()
 const app = express()
 app.use(cors({origin:"http://localhost:3000"}))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+// const instance = new Razorpay({
+//     key_id: process.env.RAZORPAY_API_KEY,
+//     key_secret: process.env.RAZORPAY_API_SECRET,
+//   });
 
 app.get("/", (req, res) => {
     res.send({
@@ -32,6 +42,7 @@ app.use('/user',movieRouter)
 app.use('/user',tvRouter)
 app.use('/user',watchlistRouter)
 app.use('/user',subscribePlan)
+app.use('/user',paymentRouter)
 
 connection.then(()=>app.listen(process.env.PORT, ()=>{
     console.log('server listening on port 8080')

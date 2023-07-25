@@ -2,13 +2,21 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { subscribitionPlan } from "./request";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import logo from '../flixxit.png'
 import "../Style/Subscription.css";
+
 
 function Subscribe() {
   const [plan, setPlan] = useState([]);
   const [error, setError] = useState("");
+  const [key,setKey]=useState('')
   const navigate = useNavigate()
+  const name = useSelector((state)=>state.app.name)
+  const email = useSelector((state)=>state.app.email)
+
   useEffect(() => {
+    console.log(name,email)
     axios
       .get(subscribitionPlan.getAllSubsPlans)
       .then((res) => {
@@ -22,6 +30,42 @@ function Subscribe() {
         console.log(err.message);
       });
   }, []);
+
+  const checkout = (amount,username,useremail)=>{
+    axios.get(subscribitionPlan.getkey).then(res=>{
+      setKey(res.data.key)
+    })
+
+    axios.post(subscribitionPlan.checkOut,{amount}).then((res)=>{
+      const id = localStorage.getItem("userId")
+      console.log(name,email)
+      const options = {
+        key, // Enter the Key ID generated from the Dashboard
+        amount: res.data.order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        currency: "INR",
+        name: "Flixxit",
+        description: "Gold Subscription",
+        image: logo,
+        order_id: res.data.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        callback_url: `${subscribitionPlan.paymentVerification}?userId=${id}`,
+        prefill: {
+            name: username,
+            email: useremail,
+            contact: "9000090000"
+        },
+        
+        theme: {
+            color: "#e50914"
+        }
+    };
+    var razor = new window.Razorpay(options);
+        razor.open();
+    }).catch(err=>{
+      console.log(err)
+    })
+    
+    
+  }
   return (
     <div className="subscription-div">
       <div id="logo">
@@ -50,7 +94,7 @@ function Subscribe() {
               </div>
             ))}
           </div>
-          <div className="plan-button"><button>Subscribe for Monthly</button></div>
+          <div className="plan-button"><button onClick={()=>checkout(100,name,email)}>Subscribe for Monthly</button></div>
         </div>
       )}
     </div>

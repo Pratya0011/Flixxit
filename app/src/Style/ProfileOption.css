@@ -1,0 +1,40 @@
+
+.profile-options {
+    /* Add styles for your profile options box */
+    position: fixed;
+    top: 60px;
+    right: -200px; /* Initially hidden from the side */
+    width: 200px;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transition: right 0.3s ease; 
+    opacity: 0.9;
+    border-radius: 10% 0 0 10%;
+  }
+  
+  .profile-options.active {
+    right: 0; /* Slide the box from the side to visible position */
+    box-shadow: -50px -50px 50px black;
+  }
+  
+  .profile-options ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: white;
+  }
+  
+  .profile-options li {
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  .profile-options li:hover{
+    border-bottom: 1px solid #999;
+  }
+  

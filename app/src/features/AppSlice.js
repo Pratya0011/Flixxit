@@ -2,18 +2,19 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { searchBar } from "../Components/request";
 
-export const fetchSearch = createAsyncThunk("search",async(value)=>{
-  const res = await axios.get(`${searchBar.getSearch}?name=${value}`)
-  return res.data.result
-})
+export const fetchSearch = createAsyncThunk("search", async (value) => {
+  const res = await axios.get(`${searchBar.getSearch}?name=${value}`);
+  return res.data.result;
+});
 
 const initialState = {
   id: localStorage.getItem("userId") || null,
-  name: "",
-  search:[],
-  searchName:'',
-  watchlist:null,
-  loading:true
+  name: localStorage.getItem("name") || null,
+  email: localStorage.getItem("email") || null,
+  search: [],
+  searchName: "",
+  watchlist: null,
+  loading: true,
 };
 
 export const appSlice = createSlice({
@@ -26,22 +27,26 @@ export const appSlice = createSlice({
     setName: (state, action) => {
       state.name = action.payload;
     },
+    setEmail: (state, action) => {
+      state.email = action.payload;
+    },
     setSeachName: (state, action) => {
-      state.searchName = action.payload
-    }
+      state.searchName = action.payload;
+    },
   },
-  extraReducers:{
-    [fetchSearch.pending]: (state)=>{
-      state.loading=true
+  extraReducers: {
+    [fetchSearch.pending]: (state) => {
+      state.loading = true;
     },
-    [fetchSearch.fulfilled]: (state,action)=>{
-      state.search= action.payload
-      state.loading=false
+    [fetchSearch.fulfilled]: (state, action) => {
+      state.search = action.payload;
+      state.loading = false;
     },
-    [fetchSearch.rejected]: (state)=>{
-      state.loading=true
-    }
-  }
+    [fetchSearch.rejected]: (state) => {
+      state.loading = true;
+    },
+  },
 });
-export const { setId, setName, setGenre, setType, setSeachName } = appSlice.actions;
+export const { setId, setName, setEmail, setGenre, setType, setSeachName } =
+  appSlice.actions;
 export default appSlice.reducer;

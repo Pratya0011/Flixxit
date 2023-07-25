@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   fetchDocumentary,
   fetchPopular,
+  fetchRecomended,
   fetchTopRated,
   fetchTopten,
 } from "../features/HomeSlice";
@@ -18,6 +19,7 @@ function Home() {
   const popular = useSelector((state) => state.home.popular);
   const topten = useSelector((state) => state.home.topten);
   const documentary = useSelector((state) => state.home.documentary);
+  const recomended = useSelector((state)=>state.home.recomended)
   const loading = useSelector((state) => state.home.loading);
 
   const dispatch = useDispatch();
@@ -26,12 +28,14 @@ function Home() {
   const documentarySectionRef = useRef(null);
   const popularSectionRef = useRef(null);
   const topratedSectionRef = useRef(null);
+  const recomendedSectionRef = useRef(null)
 
   useEffect(() => {
     dispatch(fetchTopRated());
     dispatch(fetchPopular());
     dispatch(fetchTopten());
     dispatch(fetchDocumentary());
+    dispatch(fetchRecomended(localStorage.getItem('genre')||' '))
     getwatchlist();
   }, [dispatch]);
 
@@ -71,6 +75,14 @@ function Home() {
     topratedSectionRef.current.scrollLeft += 200; // Adjust the scroll distance as needed
     topratedSectionRef.current.style.scrollBehavior = "smooth";
   };
+  const scrollLeftrecomended = (e) => {
+    recomendedSectionRef.current.scrollLeft -= 200; // Adjust the scroll distance as needed
+    recomendedSectionRef.current.style.scrollBehavior = "smooth";
+  };
+  const scrollRightrecomended = (e) => {
+    recomendedSectionRef.current.scrollLeft += 200; // Adjust the scroll distance as needed
+    recomendedSectionRef.current.style.scrollBehavior = "smooth";
+  };
   const getwatchlist = () => {
     const id = localStorage.getItem("userId");
     axios
@@ -83,7 +95,6 @@ function Home() {
       });
   };
   const toggleWatchlist = (contentid) => {
-    console.log(contentid);
     const id = localStorage.getItem("userId");
     const queryParam = new URLSearchParams({ contentId: contentid });
     axios
@@ -114,6 +125,85 @@ function Home() {
     <div className="component">
       <Nav />
       <Hoding />
+      {recomended.result && recomended.result.length>0? (
+        <div>
+      <div className="heading">Recomended for you</div>
+      {loading ? (
+        <div className="spinner-div">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        recomended &&
+        recomended.result && (
+          <div className="section-container">
+            <div
+              className="scroll-arrow left-arrow"
+              onClick={scrollLeftrecomended}
+            >
+              <span className="arrow-icon">
+                <i className="fa fa-angle-left"></i>
+              </span>
+            </div>
+
+            <div className="row" ref={recomendedSectionRef}>
+              {recomended.result.map((item, index) => (
+                <div key={index}>
+                  <div
+                    className="row-div"
+                    style={{
+                      backgroundImage: item
+                        ? `url(${img_base_url}${item.poster_path})`
+                        : "",
+                    }}
+                  >
+                    <div className="row-content">
+                      <div className="row-item">
+                        <p className="title">
+                          {(
+                            item.name ||
+                            item.title ||
+                            item.original_name
+                          ).slice(0, 10) + "..."}
+                        </p>
+                        <p className="date">{item.release_date.slice(0, 4)}</p>
+                      </div>
+                      {watchlist.some((data) => data._id === item._id) ? (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          ✓
+                        </div>
+                      ) : (
+                        <div
+                          className="plus"
+                          onClick={() => {
+                            toggleWatchlist(item._id);
+                          }}
+                        >
+                          +
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <p>{item.name || item.title || item.original_name}</p>
+                </div>
+              ))}
+            </div>
+            <div
+              className="scroll-arrow right-arrow"
+              onClick={scrollRightrecomended}
+            >
+              <span className="arrow-icon">
+                <i className="fa fa-angle-right"></i>
+              </span>
+            </div>
+          </div>
+        )
+      )}
+      </div>):(<></>)}
       <div className="heading">Top Rated</div>
       {loading ? (
         <div className="spinner-div">

@@ -65,6 +65,7 @@ export const login = async (req, res) => {
             res.send({
               status: 200,
               name: user.name,
+              email:user.email,
               id: user._id,
               message: "Login succesfull",
               accessToken: accessToken,

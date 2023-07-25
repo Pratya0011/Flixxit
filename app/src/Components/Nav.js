@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import ProfileOptions from "./ProfileOptions";
 import { useSelector,useDispatch } from "react-redux";
 import { NavLink,useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../Style/Nav.css";
 import { fetchSearch, setSeachName } from "../features/AppSlice";
+import { subscribitionPlan } from "./request";
 
 function Nav() {
   const [search, setSearch] = useState("");
   const [role, setRole] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [value, setValue] = useState('')
+  const [showProfileOptions, setShowProfileOptions] = useState(false);
   const id = useSelector((state) => state.app.id);
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const profileIconRef = useRef(null);
 
   useEffect(() => {
     getUser();
@@ -26,20 +30,46 @@ function Nav() {
 
     window.addEventListener("scroll", handleScroll);
 
+    const handleOutsideClick = (event) => {
+      if (
+        profileIconRef.current &&
+        !profileIconRef.current.contains(event.target)
+      ) {
+        setShowProfileOptions(false);
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("click", handleOutsideClick);
     };
-  });
+  },[showProfileOptions]);
+
+  const toggleProfileOptions = () => {
+    setShowProfileOptions(!showProfileOptions);
+  };
 
   const getUser = () => {
     axios
       .get(`http://localhost:8080/admin/getUser/${id}`)
       .then((res) => {
         setRole(res.data.user.role);
-        setSubscribed(res.data.user.subscriptionStatus);
+       let currentDate = new Date()
+       if(currentDate < new Date(res.data.user.payment.expiredDate)){
+        setSubscribed(res.data.user.subsciption.subscriptionStatus)
+       }else{
+        axios.patch(`${subscribitionPlan.updatePaymentStatus}/${id}`).then((res)=>{
+          setSubscribed(res.data.user.subsciption.subscriptionStatus)
+        }).catch(err=>{
+          console.log("Error in patch request:", err);
+        })
+       }
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Error in get request:", err);
       });
   };
 
@@ -110,11 +140,12 @@ function Nav() {
           ) : (
             <></>
           )}
-          <div className="profole-icon">
+          <div className="profole-icon" onClick={toggleProfileOptions} ref={profileIconRef}>
             <i className="fa fa-user" aria-hidden="true"></i>
           </div>
         </div>
       </div>
+      <ProfileOptions showProfileOptions={showProfileOptions}  />
     </div>
   );
 }

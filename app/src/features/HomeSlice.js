@@ -18,12 +18,17 @@ export const fetchDocumentary = createAsyncThunk("documentary", async () => {
   const res = await axios.get(homeRequest.documentaryFlixxit);
   return res.data;
 });
+export const fetchRecomended = createAsyncThunk("recomended", async (genre) => {
+  const res = await axios.get(`${homeRequest.recomendedFlixxit}?genre=${genre}`);
+  return res.data;
+});
 
 const initialState = {
   toprated: [],
   popular: [],
   topten: [],
   documentary: [],
+  recomended: [],
   loading: false,
 };
 
@@ -70,6 +75,17 @@ export const homeSlice = createSlice({
       state.documentary = action.payload;
     },
     [fetchDocumentary.rejected]: (state, action) => {
+      state.loading = true;
+    },
+    [fetchRecomended.pending]: (state) => {
+      state.loading = true;
+    },
+    [fetchRecomended.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.recomended = action.payload;
+      console.log(state.recomended)
+    },
+    [fetchRecomended.rejected]: (state, action) => {
       state.loading = true;
     },
   },

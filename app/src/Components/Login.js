@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {useDispatch} from 'react-redux'
 import '../App.css'
-import { setId,setName } from "../features/AppSlice";
+import { setEmail, setId,setName } from "../features/AppSlice";
 import { signup } from "./request";
 
 
@@ -15,7 +15,7 @@ function Login() {
   const [error, setError] = useState("");
   const [type, setType] = useState('password')
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+
   
   const onSubmitHandler=(e)=>{
     e.preventDefault()
@@ -24,11 +24,11 @@ function Login() {
         password
     }).then(res=>{
       if(res.data.status === 200){
-        dispatch(setId(res.data.id))
-        dispatch(setName(res.data.name))
         localStorage.setItem('accessToken',res.data.accessToken)
         localStorage.setItem('refreshToken',res.data.refreshToken)
         localStorage.setItem('userId',res.data.id)
+        localStorage.setItem('name',res.data.name)
+        localStorage.setItem('email',res.data.email)
         window.location.reload()
         navigate('/')
       }else if(res.data.status === 403){

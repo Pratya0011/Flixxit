@@ -1,5 +1,30 @@
 import content from "../../model/contentList.js";
 
+export const recomendedVideo = async (req,res)=>{
+  const {genre} = req.query
+  try{
+     if(genre){
+      const arr = await content.find({genre_ids:genre}).limit(10)
+      const result = arr.sort((a, b) => b.rating_count - a.rating_count);
+      res.send({
+        status: 200,
+        result,
+        results: result.length,
+      });
+    }else{
+      res.send({
+        status:200,
+        result:[]
+      })
+    }
+  }catch(err){
+    res.send({
+      status: 500,
+      message: "Internal server error",
+    });
+  }
+}
+
 export const topRatedFlixxit = async (req, res) => {
   try {
     const movies = await content

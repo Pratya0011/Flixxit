@@ -7,7 +7,8 @@ export const homeRequest = {
     topRatedFlixxit: `http://localhost:8080/user/toprated`,
     popularFlixxit:`http://localhost:8080/user/popular`,
     toptenFlixxit:`http://localhost:8080/user/topten`,
-    documentaryFlixxit:`http://localhost:8080/user/documentary`
+    documentaryFlixxit:`http://localhost:8080/user/documentary`,
+    recomendedFlixxit:`http://localhost:8080/user/recomended`
 }
 
 export const movieRequest = {
@@ -46,5 +47,9 @@ export const searchBar = {
 }
 
 export const subscribitionPlan = {
-    getAllSubsPlans: "http://localhost:8080/user/getPlan"
+    getAllSubsPlans: "http://localhost:8080/user/getPlan",
+    checkOut:"http://localhost:8080/user/checkout",
+    paymentVerification:"http://localhost:8080/user/paymentverification",
+    getkey:"http://localhost:8080/user/getKey",
+    updatePaymentStatus:"http://localhost:8080/user/updatePaymentStatus"
 } 

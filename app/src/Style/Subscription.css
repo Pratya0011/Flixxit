@@ -79,3 +79,23 @@
     font-size: 16px;
     cursor: pointer;
 }
+.paymentSuccess{
+  min-height: 90vh;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.paymentSuccess .payment-heading{
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+  padding: 10px;
+}
+.subscription-div .redirect{
+  text-align: center;
+  color: white;
+  font-weight: 400;
+  font-size: 16px;
+}
