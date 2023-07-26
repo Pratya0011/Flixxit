@@ -68,7 +68,7 @@ export const paymentVerification = async (req, res) => {
         { new: true }
       );
       res.redirect(
-        `http://localhost:3000/paymentsuccess?reference=${razorpay_payment_id}`
+        `https://flixxit-2i45.onrender.com/paymentsuccess?reference=${razorpay_payment_id}`
       );
     }
   } catch (err) {
