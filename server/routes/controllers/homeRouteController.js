@@ -126,3 +126,26 @@ export const documentaryFlixxit = async (req, res) => {
     });
   }
 };
+
+export const getTitleFlixxit = async (req,res) =>{
+  const {contentId} = req.query
+  try{
+    if(!contentId){
+      res.send({
+        statue:409,
+        message:'error fetching content'
+      })
+    }else{
+      const result = await content.findById(contentId)
+      res.send({
+        status:200,
+        result:[result]
+      })
+    }
+  } catch(err){
+    res.send({
+      status: 500,
+      message: "Internal Server Error",
+    });
+  }
+}

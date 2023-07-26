@@ -26,6 +26,7 @@ import DocumentaryTv from "./Genre/TvGenre/DocumentaryTv";
 import Subscribe from "./Components/Subscribe";
 import Search from "./Components/Search";
 import PaymentSuccess from "./Components/PaymentSuccess";
+import TitleView from "./Components/TitleView";
 
 function App() {
   const [state, setState] = useState(false);
@@ -87,6 +88,7 @@ function App() {
           <Route path='/subscribe' element={state ? <Subscribe /> : <Landing />}></Route>
           <Route path="/search" element={state ? <Search/> : <Landing />}></Route>
           <Route path="/paymentsuccess" element={state ? <PaymentSuccess/> : <Landing />}></Route>
+          <Route path="/title" element={state ? <TitleView/> : <Landing />}></Route>
         </Routes>
       </Router>
       <Footer />

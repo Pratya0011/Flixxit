@@ -28,9 +28,9 @@
   height: 100%;
   display: flex;
   align-items: flex-end;
-  opacity: 0; /* Add opacity property to hide initially */
+  opacity: 0; 
   transition: opacity 0.3s ease-in-out;
-  justify-content: space-around;
+  justify-content: space-evenly;
   box-shadow: inset 0px -40px  30px black;
   padding-bottom: 10px;
 }
@@ -61,7 +61,6 @@
 }
 .row-div:hover {
   z-index: 1;
-  transform: scaleY(1.2);
   transform: scaleY(1.2);
   border-radius: 10px;
   transition: 0.3s ease-in-out;
@@ -147,7 +146,9 @@
   border-top-color: #e50914;
   animation: spinner 1.5s linear infinite;
 }
-
+.row p{
+  width: 12vw;
+}
 @keyframes spinner {
   to {
     transform: rotate(360deg);

@@ -46,17 +46,14 @@ const getwatchlist = () => {
 const toggleWatchlist = (contentid) => {
   console.log(contentid);
   const id = localStorage.getItem("userId");
-  const queryParam = new URLSearchParams({ contentId: contentid });
   axios
-    .patch(`${Watchlist.addWatchlist}/${id}`, null, { params: queryParam })
+    .patch(`${Watchlist.addWatchlist}/${id}?contentId=${contentid}`)
     .then((res) => {
       if (res.data.status === 200) {
         setWatchlist(res.data.contentResult);
       } else if (res.data.status === 409) {
         axios
-          .patch(`${Watchlist.deleteWatchlist}/${id}`, null, {
-            params: queryParam,
-          })
+          .patch(`${Watchlist.deleteWatchlist}/${id}?contentId=${contentid}`)
           .then((res) => {
             setWatchlist(res.data.contentResult);
           })
@@ -84,7 +81,7 @@ const currentBanner = data[currentIndex];
     <h1>{currentBanner.title === 'Like Stars on Earth'?'Taare Zameen Par':currentBanner.title||currentBanner.name||currentBanner.original_name}</h1>
     <div className='moviebanner-button'>
       <div><button> <i className="fa fa-play"></i> Play</button></div>
-      {watchlist.some((data) => data._id === currentBanner._id) ? (
+      {watchlist && watchlist.some((data) => data._id === currentBanner._id) ? (
                         <div
                           className="plus"
                           onClick={() => {

@@ -19,7 +19,27 @@ function Nav() {
   const profileIconRef = useRef(null);
 
   useEffect(() => {
-    getUser();
+    const getUser = () => {
+      axios
+        .get(`http://localhost:8080/admin/getUser/${id}`)
+        .then((res) => {
+          setRole(res.data.user.role);
+         let currentDate = new Date()
+         if(currentDate < new Date(res.data.user.payment.expiredDate)){
+          setSubscribed(res.data.user.subsciption.subscriptionStatus)
+         }else{
+          axios.patch(`${subscribitionPlan.updatePaymentStatus}/${id}`).then((res)=>{
+            setSubscribed(res.data.user.subsciption.subscriptionStatus)
+          }).catch(err=>{
+            console.log("Error in patch request:", err);
+          })
+         }
+        })
+        .catch((err) => {
+          console.log("Error in get request:", err);
+        });
+    };
+    getUser()
     const handleScroll = () => {
       if (window.scrollY > 160) {
         document.getElementById("navbar-component").classList.add("dark");
@@ -46,32 +66,13 @@ function Nav() {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("click", handleOutsideClick);
     };
-  },[showProfileOptions]);
+  },[id]);
 
   const toggleProfileOptions = () => {
     setShowProfileOptions(!showProfileOptions);
   };
 
-  const getUser = () => {
-    axios
-      .get(`http://localhost:8080/admin/getUser/${id}`)
-      .then((res) => {
-        setRole(res.data.user.role);
-       let currentDate = new Date()
-       if(currentDate < new Date(res.data.user.payment.expiredDate)){
-        setSubscribed(res.data.user.subsciption.subscriptionStatus)
-       }else{
-        axios.patch(`${subscribitionPlan.updatePaymentStatus}/${id}`).then((res)=>{
-          setSubscribed(res.data.user.subsciption.subscriptionStatus)
-        }).catch(err=>{
-          console.log("Error in patch request:", err);
-        })
-       }
-      })
-      .catch((err) => {
-        console.log("Error in get request:", err);
-      });
-  };
+
 
   return (
     <div className="navbar-component" id="navbar-component">

@@ -46,10 +46,17 @@ const contentSchema = new Schema({
   vote_count: {
     type: Number,
   },
+  media_url:{
+    type:String,
+  },
   media_type:{
     type: String,
   },
-  rating_count:{
+  rating_likes:{
+    type: Number,
+    default:0
+  },
+  rating_likes:{
     type: Number,
     default:0
   },
@@ -62,7 +69,12 @@ const contentSchema = new Schema({
     default:0
   },
   comments:{
-    type: Array
+    name:{
+      type: String
+    },
+    comments:{
+      type: String
+    }
   }
 });
 

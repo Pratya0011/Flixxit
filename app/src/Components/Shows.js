@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Nav from "./Nav";
 import TvBanner from "./TvBanner";
 import Tvnav from "./Tvnav";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchTopRated,
@@ -13,6 +14,7 @@ import {
 import "../Style/Home.css";
 import axios from "axios";
 import { Watchlist } from "./request";
+import { clickHandler } from "./Utils";
 
 function Shows() {
   const [watchlist, setWatchlist] = useState([]);
@@ -22,9 +24,11 @@ function Shows() {
   const documentary = useSelector((state) => state.tv.documentary);
   const drama = useSelector((state) => state.tv.drama);
   const loading = useSelector((state)=>state.tv.loading)
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const img_base_url = "https://image.tmdb.org/t/p/original";
+  const navigate = useNavigate()
+
   const topratedSectionRef = useRef(null);
   const popularSectionRef = useRef(null);
   const crimeSectionRef = useRef(null);
@@ -138,7 +142,7 @@ function Shows() {
 
           <div className="row" ref={topratedSectionRef}>
             {toprated.result.map((item, index) => (
-              <div key={index}>
+              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                 <div
                   className="row-div"
                   style={{
@@ -158,7 +162,7 @@ function Shows() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {
@@ -206,7 +210,7 @@ function Shows() {
 
           <div className="row" ref={popularSectionRef}>
             {popular.result.map((item, index) => (
-              <div key={index}>
+              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                 <div
                   className="row-div"
                   style={{
@@ -226,7 +230,7 @@ function Shows() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {
@@ -274,7 +278,7 @@ function Shows() {
 
           <div className="row" ref={crimeSectionRef}>
             {crime.result.slice(0,10).map((item, index) => (
-              <div key={index}>
+              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                 <div
                   className="row-div"
                   style={{
@@ -294,7 +298,7 @@ function Shows() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {
@@ -339,7 +343,7 @@ function Shows() {
 
           <div className="row" ref={dramaSectionRef}>
             {drama.result.slice(0,10).map((item, index) => (
-              <div key={index}>
+              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                 <div
                   className="row-div"
                   style={{
@@ -359,7 +363,7 @@ function Shows() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {
@@ -407,7 +411,7 @@ function Shows() {
 
           <div className="row" ref={documentarySectionRef}>
             {documentary.result.slice(0, 10).map((item, index) => (
-              <div key={index}>
+              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                 <div
                   className="row-div"
                   style={{
@@ -427,7 +431,7 @@ function Shows() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {

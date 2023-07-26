@@ -4,7 +4,7 @@ import User from "../../model/userModel.js";
 export const addWatchlist = async (req, res) => {
   try {
     const { id } = req.params;
-    const contentId = req.query.contentId;
+    const {contentId} = req.query
     if (!id || !contentId) {
       res.send({
         status: 422,

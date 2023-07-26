@@ -84,7 +84,7 @@ const currentBanner = data[currentIndex];
     <h1>{currentBanner.title === 'Like Stars on Earth'?'Taare Zameen Par':currentBanner.title||currentBanner.name||currentBanner.original_name}</h1>
     <div className='moviebanner-button'>
       <div><button> <i className="fa fa-play"></i> Play</button></div>
-      {watchlist.some((data) => data._id === currentBanner._id) ? (
+      {watchlist && watchlist.some((data) => data._id === currentBanner._id) ? (
                         <div
                           className="plus"
                           onClick={() => {

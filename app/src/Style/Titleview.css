@@ -1,0 +1,59 @@
+.titleview-component{
+    min-height: 90vh;
+}
+.titleview-component .title-banner{
+    height: 75vh;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size:cover;
+    background-image: linear-gradient(0deg,#000 1%,transparent 35%),linear-gradient(90deg,#181818 25%,transparent 50%);
+    box-shadow: inset 25rem 0px 150px #212121, inset 0px -30px  30px #212121;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 1.5rem;
+    color: white;
+}
+.title-banner h1{
+    font-size: 48px;
+    text-shadow: 0 2px 2px #000
+}
+.title-banner .overview{
+    width: 30vw;
+    font-weight: 300;
+    padding: 15px 0 15px 0;
+    color: #f8f8f8;
+    font-size: 14px;
+    line-height: 1.43;
+}
+.title-banner .type{
+    padding: 5px;
+}
+.title-banner .type span{
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 400;
+}
+.title-banner .plus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    margin: 0 0 0 15px;
+    padding: 0 0 5px 0;
+    height: 2.5rem;
+    width: 3rem;
+    background-color: rgba(0, 0, 0, 0.731);
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #999;
+    background-color: #212121;
+    opacity: 0.5;
+}
+.title-banner .like{
+    color: #e50914;
+}
+.title-banner .recomended{
+    padding: 10px 0 15px 0;
+}

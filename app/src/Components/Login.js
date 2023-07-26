@@ -2,9 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {useDispatch} from 'react-redux'
 import '../App.css'
-import { setEmail, setId,setName } from "../features/AppSlice";
 import { signup } from "./request";
 
 

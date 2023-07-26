@@ -40,7 +40,7 @@ export const template = (genre, content, mediaType, img_base_url,loading,watchli
                         </p>
                         <p className="date">{data.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((value) => data._id === value._id) ? (
+                      {watchlist && watchlist.some((value) => data._id === value._id) ? (
                         <div
                           className="plus"
                           onClick={() => {

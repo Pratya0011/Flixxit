@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef } from "react";
 import Nav from "./Nav";
 import Movienav from "./Movienav";
 import MovieBanner from "./MovieBanner";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchTopRated,
@@ -14,6 +15,8 @@ import {
 import "../Style/Home.css";
 import axios from "axios";
 import { Watchlist } from "./request";
+import { clickHandler } from "./Utils";
+
 
 function Movies() {
   const [watchlist,setWatchlist]=useState([])
@@ -27,6 +30,8 @@ function Movies() {
 
   const dispatch = useDispatch();
   const img_base_url = "https://image.tmdb.org/t/p/original";
+  const navigate = useNavigate()
+
   const topratedSectionRef = useRef(null);
   const popularSectionRef = useRef(null);
   const thrillerSectionRef = useRef(null);
@@ -141,7 +146,7 @@ function Movies() {
 
           <div className="row" ref={topratedSectionRef}>
             {toprated.result.map((item, index) => (
-              <div key={index}>
+              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                 <div
                   className="row-div"
                   style={{
@@ -161,7 +166,7 @@ function Movies() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {
@@ -209,7 +214,7 @@ function Movies() {
 
           <div className="row" ref={popularSectionRef}>
             {popular.result.map((item, index) => (
-              <div key={index}>
+              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                 <div
                   className="row-div"
                   style={{
@@ -229,7 +234,7 @@ function Movies() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {
@@ -277,7 +282,7 @@ function Movies() {
 
           <div className="row" ref={thrillerSectionRef}>
             {thriller.result.slice(0, 10).map((item, index) => (
-              <div key={index}>
+              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                 <div
                   className="row-div"
                   style={{
@@ -297,7 +302,7 @@ function Movies() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {
@@ -345,7 +350,7 @@ function Movies() {
 
           <div className="row" ref={crimeSectionRef}>
             {crime.result.slice(9, 19).map((item, index) => (
-              <div key={index}>
+              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                 <div
                   className="row-div"
                   style={{
@@ -365,7 +370,7 @@ function Movies() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {
@@ -410,7 +415,7 @@ function Movies() {
 
           <div className="row" ref={dramaSectionRef}>
             {drama.result.slice(11, 21).map((item, index) => (
-              <div key={index}>
+              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                 <div
                   className="row-div"
                   style={{
@@ -430,7 +435,7 @@ function Movies() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {
@@ -478,7 +483,7 @@ function Movies() {
 
           <div className="row" ref={documentarySectionRef}>
             {documentary.result.slice(0, 10).map((item, index) => (
-              <div key={index}>
+              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                 <div
                   className="row-div"
                   style={{
@@ -498,7 +503,7 @@ function Movies() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {

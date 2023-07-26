@@ -8,7 +8,8 @@ export const homeRequest = {
     popularFlixxit:`http://localhost:8080/user/popular`,
     toptenFlixxit:`http://localhost:8080/user/topten`,
     documentaryFlixxit:`http://localhost:8080/user/documentary`,
-    recomendedFlixxit:`http://localhost:8080/user/recomended`
+    recomendedFlixxit:`http://localhost:8080/user/recomended`,
+    getTitle:`http://localhost:8080/user/getTitle`
 }
 
 export const movieRequest = {

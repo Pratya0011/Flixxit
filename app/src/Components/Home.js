@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Nav from "./Nav";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   fetchDocumentary,
   fetchPopular,
@@ -12,6 +13,7 @@ import Hoding from "./Hoding.js";
 import "../Style/Home.css";
 import axios from "axios";
 import { Watchlist } from "./request";
+import { clickHandler } from "./Utils";
 
 function Home() {
   const [watchlist, setWatchlist] = useState([]);
@@ -24,6 +26,8 @@ function Home() {
 
   const dispatch = useDispatch();
   const img_base_url = "https://image.tmdb.org/t/p/original";
+  const navigate = useNavigate()
+   
   const sectionRef = useRef(null);
   const documentarySectionRef = useRef(null);
   const popularSectionRef = useRef(null);
@@ -147,7 +151,7 @@ function Home() {
 
             <div className="row" ref={recomendedSectionRef}>
               {recomended.result.map((item, index) => (
-                <div key={index}>
+                <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                   <div
                     className="row-div"
                     style={{
@@ -167,7 +171,7 @@ function Home() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {
@@ -224,7 +228,7 @@ function Home() {
 
             <div className="row" ref={topratedSectionRef}>
               {toprated.result.map((item, index) => (
-                <div key={index}>
+                <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                   <div
                     className="row-div"
                     style={{
@@ -244,7 +248,7 @@ function Home() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {
@@ -300,7 +304,7 @@ function Home() {
 
             <div className="row" ref={popularSectionRef}>
               {popular.result.map((item, index) => (
-                <div key={index}>
+                <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                   <div
                     className="row-div"
                     style={{
@@ -320,7 +324,7 @@ function Home() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {
@@ -373,7 +377,7 @@ function Home() {
 
             <div className="row" ref={sectionRef}>
               {topten.result.map((item, index) => (
-                <div key={index}>
+                <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                   <div
                     className="row-div"
                     style={{
@@ -393,7 +397,7 @@ function Home() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {
@@ -450,7 +454,7 @@ function Home() {
 
             <div className="row" ref={documentarySectionRef}>
               {documentary.result.map((item, index) => (
-                <div key={index}>
+                <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
                   <div
                     className="row-div"
                     style={{
@@ -470,7 +474,7 @@ function Home() {
                         </p>
                         <p className="date">{item.release_date.slice(0, 4)}</p>
                       </div>
-                      {watchlist.some((data) => data._id === item._id) ? (
+                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div
                           className="plus"
                           onClick={() => {
