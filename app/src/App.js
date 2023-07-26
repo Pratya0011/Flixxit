@@ -46,7 +46,7 @@ function App() {
       setState(false);
     } else {
       axios
-        .post("http://localhost:8080/user/authenticate", {}, { headers })
+        .post("https://flixxit-server-9v89.onrender.com/authenticate", {}, { headers })
         .then((res) => {
           if (res.data.status === 200) {
             setState(true);
