@@ -21,7 +21,7 @@ function Nav() {
   useEffect(() => {
     const getUser = () => {
       axios
-        .get(`http://localhost:8080/admin/getUser/${id}`)
+        .get(`https://flixxit-server-9v89.onrender.com/admin/getUser/${id}`)
         .then((res) => {
           setRole(res.data.user.role);
          let currentDate = new Date()
