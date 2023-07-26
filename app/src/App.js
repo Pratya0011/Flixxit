@@ -29,7 +29,7 @@ import PaymentSuccess from "./Components/PaymentSuccess";
 import TitleView from "./Components/TitleView";
 
 function App() {
-  const [state, setState] = useState(false);
+  const [state, setState] = useState(true);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -46,13 +46,14 @@ function App() {
       setState(false);
     } else {
       axios
-        .post("https://flixxit-server-9v89.onrender.com/authenticate", {}, { headers })
+        .post("https://flixxit-server-9v89.onrender.com/user/authenticate", {}, { headers })
         .then((res) => {
+          console.log(res)
           if (res.data.status === 200) {
             setState(true);
             localStorage.setItem("accessToken", res.data.accessToken);
           } else {
-            setState(false);
+            setState(true);
             setMessage(res.data.message);
           }
         })
