@@ -44,13 +44,13 @@ export const Watchlist={
 }
 
 export const searchBar = {
-    getSearch: `http://localhost:8080/user/search`
+    getSearch: `https://flixxit-server-9v89.onrender.com/user/search`
 }
 
 export const subscribitionPlan = {
-    getAllSubsPlans: "http://localhost:8080/user/getPlan",
-    checkOut:"http://localhost:8080/user/checkout",
-    paymentVerification:"http://localhost:8080/user/paymentverification",
-    getkey:"http://localhost:8080/user/getKey",
-    updatePaymentStatus:"http://localhost:8080/user/updatePaymentStatus"
+    getAllSubsPlans: "https://flixxit-server-9v89.onrender.com/user/getPlan",
+    checkOut:"https://flixxit-server-9v89.onrender.com/user/checkout",
+    paymentVerification:"https://flixxit-server-9v89.onrender.com/user/paymentverification",
+    getkey:"https://flixxit-server-9v89.onrender.com/user/getKey",
+    updatePaymentStatus:"https://flixxit-server-9v89.onrender.com/user/updatePaymentStatus"
 } 
