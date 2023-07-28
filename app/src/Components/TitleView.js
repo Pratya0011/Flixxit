@@ -98,6 +98,8 @@ function TitleView() {
       })
       .then((res) => {
         console.log(`Your review has been submitted successfully!`);
+        rerender ? setRerender(false) : setRerender(true);
+
       })
       .catch((err) => {
         throw err;
@@ -350,7 +352,6 @@ function TitleView() {
                   if (review) {
                     postComment();
                     setReview("");
-                    rerender ? setRerender(false) : setRerender(true);
                   } else {
                     alert("Please enter some text");
                   }
