@@ -1,30 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React,{ useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Nav from "./Nav";
+import Nav from './Nav'
 import "../Style/Search.css";
 import { clickHandler } from "./Utils";
+import { Watchlist } from "./request";
+import axios from 'axios';
 
-function Search() {
-  const selector = useSelector((state) => state.app.search);
-  const searchName = useSelector((state) => state.app.searchName);
-  const loading = useSelector((state) => state.app.loading);
+function WatchlistComponent() {
+  const [loading, setLoading] = useState(true)
   const img_base_url = "https://image.tmdb.org/t/p/original";
   const navigate = useNavigate();
+  const [watchlist,setWatchlist]=useState([])
+
+  useEffect(()=>{
+    const getwatchlist=()=>{
+      const id = localStorage.getItem("userId")
+      axios.get(`${Watchlist.getWatchlist}/${id}`).then((res)=>{
+        setWatchlist(res.data.contentResult)
+        setLoading(false)
+      }).catch(err=>{
+        console.log(err)
+        setLoading(true)
+      })
+      }
+      getwatchlist()
+  },[])
   return (
     <div className="search-component">
-      <Nav />
+      <Nav/>
       <div className="search-div">
-        <div className="search-heading">
-          Showing results for <span>"{searchName}"</span>
-        </div>
-        <div className="coloum">
-          {loading ? (
+      <div className="coloum">
+      {loading ? (
             <div className="spinner-div">
               <div className="spinner"></div>
             </div>
-          ) : selector.length > 0 ? (
-            selector.map((item, index) => (
+          ) : watchlist && watchlist.length > 0 ? (
+            watchlist.map((item, index) => (
               <div
                 key={index}
                 className="coloum-container"
@@ -65,10 +77,10 @@ function Search() {
           ) : (
             <div>No content found</div>
           )}
-        </div>
-      </div>
+          </div>
+          </div>
     </div>
-  );
+  )
 }
 
-export default Search;
+export default WatchlistComponent

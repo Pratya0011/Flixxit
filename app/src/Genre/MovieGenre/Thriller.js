@@ -7,6 +7,8 @@ import { fetchThriller } from "../../features/MovieSlice";
 import "../../Style/Content.css";
 import axios from "axios";
 import { Watchlist } from "../../Components/request";
+import { clickHandler } from "../../Components/Utils";
+import { useNavigate } from "react-router-dom";
 
 function Thriller() {
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ function Thriller() {
   const movie = useSelector((state) => state.movie.thriller);
   const loading = useSelector((state) => state.movie.loading);
   const img_base_url = "https://image.tmdb.org/t/p/original";
+  const navigate = useNavigate()
   useEffect(() => {
     dispatch(fetchThriller());
     getwatchlist()
@@ -69,7 +72,9 @@ function Thriller() {
           img_base_url,
           loading,
           watchlist,
-          toggleWatchlist
+          toggleWatchlist,
+          clickHandler,
+          navigate
         )}
       </>
     </div>

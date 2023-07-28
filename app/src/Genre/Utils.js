@@ -1,7 +1,7 @@
 // import '../Style/Content.css'
 
 
-export const template = (genre, content, mediaType, img_base_url,loading,watchlist,toggleWatchlist) => {
+export const template = (genre, content, mediaType, img_base_url,loading,watchlist,toggleWatchlist,clickHandler,navigate) => {
   let modifiedStr = "";
   if (genre.length === 0) {
     return genre;
@@ -31,7 +31,7 @@ export const template = (genre, content, mediaType, img_base_url,loading,watchli
                 />
                 <div className="row-content">
                       <div className="row-item">
-                        <p className="title">
+                        <p className="title" onClick={()=>{clickHandler(data._id, navigate)}}>
                           {(
                             data.name ||
                             data.title ||
@@ -62,14 +62,14 @@ export const template = (genre, content, mediaType, img_base_url,loading,watchli
                     </div>
               </div>
               {mediaType === "movie" ? (
-                <p>
+                <p onClick={()=>{clickHandler(data._id, navigate)}}>
                   {data.name || data.title === "Like Stars on Earth"
                     ? "Taare Zameen Par"
                     : data.title.length > 20
                     ? data.title.substring(0, 19) + "...":data.title}
                 </p>
               ) : (
-                <p>
+                <p onClick={()=>{clickHandler(data._id, navigate)}}>
                   {data.name.length > 20
                     ? data.name.substring(0, 19) + "..."
                     : data.name || data.title}

@@ -29,6 +29,8 @@ import PaymentSuccess from "./Components/PaymentSuccess";
 import TitleView from "./Components/TitleView";
 import Watch from "./Components/Watch";
 import WatchPlaylist from "./Components/WatchPlaylist"
+import Watchlist from "./Components/WatchlistComponent";
+import WatchlistComponent from "./Components/WatchlistComponent";
 
 function App() {
   const [state, setState] = useState(true);
@@ -55,13 +57,14 @@ function App() {
             setState(true);
             localStorage.setItem("accessToken", res.data.accessToken);
           } else {
-            setState(true);
+            setState(false);
             setMessage(res.data.message);
           }
         })
         .catch((err) => {
           console.log(err);
         });
+      setState(true)
     }
   };
   return (
@@ -94,6 +97,7 @@ function App() {
           <Route path="/title" element={state ? <TitleView/> : <Landing />}></Route>
           <Route path="/watch" element={state ? <Watch/> : <Landing />}></Route>
           <Route path="/watchplaylist" element={state ? <WatchPlaylist/> : <Landing />}></Route>
+          <Route path="/watchlistcomponent" element={state ? <WatchlistComponent/> : <Landing />}></Route>
         </Routes>
       </Router>
       <Footer />

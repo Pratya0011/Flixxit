@@ -8,7 +8,7 @@ function ProfileOptions({ showProfileOptions }) {
         <div className={`profile-options ${showProfileOptions ? "active" : ""}`}>
       <ul>
         <li>Profile</li>
-        <li>Watchlist</li>
+        <li onClick={()=>{navigate('/watchlistcomponent')}}>Watchlist</li>
         <li>History</li>
         <li onClick={(e)=>{
             localStorage.clear()

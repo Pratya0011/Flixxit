@@ -7,6 +7,8 @@ import "../../Style/Content.css";
 import Tvnav from "../../Components/Tvnav";
 import axios from "axios";
 import { Watchlist } from "../../Components/request";
+import { clickHandler } from "../../Components/Utils";
+import { useNavigate } from "react-router-dom";
 
 function MysteryTv() {
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ function MysteryTv() {
   const tv = useSelector((state) => state.tv.mystery);
   const loading = useSelector((state) => state.tv.loading);
   const img_base_url = "https://image.tmdb.org/t/p/original";
+  const navigate = useNavigate()
   useEffect(() => {
     dispatch(fetchMystery());
     getwatchlist();
@@ -69,7 +72,9 @@ function MysteryTv() {
           img_base_url,
           loading,
           watchlist,
-          toggleWatchlist
+          toggleWatchlist,
+          clickHandler,
+          navigate
         )}
       </>
     </div>

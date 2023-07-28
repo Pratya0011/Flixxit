@@ -3,12 +3,16 @@ import axios from "axios";
 import { homeRequest } from "./request";
 import "../Style/Hoding.css";
 import { Watchlist } from "./request";
+import { useNavigate } from "react-router-dom";
+import { getuser } from "./request";
+
 
 function Hoding() {
   const [data, setData] = useState("");
   const [watchlist, setWatchlist] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const img_base_url = "https://image.tmdb.org/t/p/original";
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
@@ -72,6 +76,30 @@ function Hoding() {
       });
   };
   const currentBanner = data[currentIndex];
+
+  const playvideo = (contentid)=>{
+    const id = localStorage.getItem("userId");
+    watchlist && watchlist.some((data) => data._id === contentid)?(
+      axios.get(`${getuser.getUserById}/${id}`).then((res)=>{
+        if(res.data.user.subsciption.subscriptionStatus){
+          localStorage.setItem('watchlistId', contentid)
+          navigate('/watchplaylist')
+        }else{
+          navigate('/subscribe')
+        }
+      })
+    ):(
+      axios.get(`${getuser.getUserById}/${id}`).then((res)=>{
+        if(res.data.user.subsciption.subscriptionStatus){
+          localStorage.setItem('contentId', contentid)
+          navigate('/watch')
+        }else{
+          navigate('/subscribe')
+        }
+      })
+    )
+    
+  }
   return (
     <div
       className="banner"
@@ -92,7 +120,7 @@ function Hoding() {
           </h1>
           <div className="banner-button">
             <div>
-              <button>
+              <button onClick={()=>{playvideo(currentBanner._id)}}>
                 {" "}
                 <i className="fa fa-play"></i> Play
               </button>

@@ -146,7 +146,7 @@ function Movies() {
 
           <div className="row" ref={topratedSectionRef}>
             {toprated.result.map((item, index) => (
-              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
+              <div key={index} >
                 <div
                   className="row-div"
                   style={{
@@ -157,7 +157,7 @@ function Movies() {
                 >
                   <div className="row-content">
                       <div className="row-item">
-                        <p className="title">
+                        <p className="title" onClick={()=>{clickHandler(item._id, navigate)}}>
                           {(
                             item.name ||
                             item.title ||
@@ -187,7 +187,7 @@ function Movies() {
                       )}
                     </div>
                 </div>
-                <p>{item.name || item.title || item.original_name}</p>
+                <p onClick={()=>{clickHandler(item._id, navigate)}}>{item.name || item.title || item.original_name}</p>
               </div>
             ))}
           </div>
@@ -214,7 +214,7 @@ function Movies() {
 
           <div className="row" ref={popularSectionRef}>
             {popular.result.map((item, index) => (
-              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
+              <div key={index} >
                 <div
                   className="row-div"
                   style={{
@@ -225,7 +225,7 @@ function Movies() {
                 >
                   <div className="row-content">
                       <div className="row-item">
-                        <p className="title">
+                        <p className="title" onClick={()=>{clickHandler(item._id, navigate)}}>
                           {(
                             item.name ||
                             item.title ||
@@ -255,7 +255,7 @@ function Movies() {
                       )}
                     </div>
                 </div>
-                <p>{item.name || item.title || item.original_name}</p>
+                <p onClick={()=>{clickHandler(item._id, navigate)}}>{item.name || item.title || item.original_name}</p>
               </div>
             ))}
           </div>
@@ -282,7 +282,7 @@ function Movies() {
 
           <div className="row" ref={thrillerSectionRef}>
             {thriller.result.slice(0, 10).map((item, index) => (
-              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
+              <div key={index} >
                 <div
                   className="row-div"
                   style={{
@@ -293,7 +293,7 @@ function Movies() {
                 >
                   <div className="row-content">
                       <div className="row-item">
-                        <p className="title">
+                        <p className="title" onClick={()=>{clickHandler(item._id, navigate)}}>
                           {(
                             item.name ||
                             item.title ||
@@ -323,7 +323,7 @@ function Movies() {
                       )}
                     </div>
                 </div>
-                <p>{item.name || item.title || item.original_name}</p>
+                <p onClick={()=>{clickHandler(item._id, navigate)}}>{item.name || item.title || item.original_name}</p>
               </div>
             ))}
           </div>
@@ -350,7 +350,7 @@ function Movies() {
 
           <div className="row" ref={crimeSectionRef}>
             {crime.result.slice(9, 19).map((item, index) => (
-              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
+              <div key={index} >
                 <div
                   className="row-div"
                   style={{
@@ -361,7 +361,7 @@ function Movies() {
                 >
                   <div className="row-content">
                       <div className="row-item">
-                        <p className="title">
+                        <p className="title" onClick={()=>{clickHandler(item._id, navigate)}}>
                           {(
                             item.name ||
                             item.title ||
@@ -391,7 +391,7 @@ function Movies() {
                       )}
                     </div>
                 </div>
-                <p>{item.name || item.title || item.original_name}</p>
+                <p onClick={()=>{clickHandler(item._id, navigate)}}>{item.name || item.title || item.original_name}</p>
               </div>
             ))}
           </div>
@@ -415,7 +415,7 @@ function Movies() {
 
           <div className="row" ref={dramaSectionRef}>
             {drama.result.slice(11, 21).map((item, index) => (
-              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
+              <div key={index} >
                 <div
                   className="row-div"
                   style={{
@@ -426,7 +426,7 @@ function Movies() {
                 >
                   <div className="row-content">
                       <div className="row-item">
-                        <p className="title">
+                        <p className="title" onClick={()=>{clickHandler(item._id, navigate)}}>
                           {(
                             item.name ||
                             item.title ||
@@ -456,7 +456,7 @@ function Movies() {
                       )}
                     </div>
                 </div>
-                <p>{item.name || item.title || item.original_name}</p>
+                <p onClick={()=>{clickHandler(item._id, navigate)}}>{item.name || item.title || item.original_name}</p>
               </div>
             ))}
           </div>
@@ -483,7 +483,7 @@ function Movies() {
 
           <div className="row" ref={documentarySectionRef}>
             {documentary.result.slice(0, 10).map((item, index) => (
-              <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
+              <div key={index} >
                 <div
                   className="row-div"
                   style={{
@@ -494,7 +494,7 @@ function Movies() {
                 >
                   <div className="row-content">
                       <div className="row-item">
-                        <p className="title">
+                        <p className="title" onClick={()=>{clickHandler(item._id, navigate)}}>
                           {(
                             item.name ||
                             item.title ||
@@ -524,7 +524,7 @@ function Movies() {
                       )}
                     </div>
                 </div>
-                <p>{item.name || item.title || item.original_name}</p>
+                <p onClick={()=>{clickHandler(item._id, navigate)}}>{item.name || item.title || item.original_name}</p>
               </div>
             ))}
           </div>

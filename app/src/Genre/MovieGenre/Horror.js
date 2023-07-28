@@ -1,22 +1,25 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Nav from "../../Components/Nav";
 import Movienav from "../../Components/Movienav";
 import { template } from "../Utils";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchHorror } from "../../features/MovieSlice";
-import '../../Style/Content.css'
+import "../../Style/Content.css";
 import axios from "axios";
 import { Watchlist } from "../../Components/request";
+import { clickHandler } from "../../Components/Utils";
+import { useNavigate } from "react-router-dom";
 
 function Horror() {
   const dispatch = useDispatch();
   const movie = useSelector((state) => state.movie.horror);
   const [watchlist, setWatchlist] = useState([]);
-  const loading = useSelector((state)=>state.movie.loading)
+  const loading = useSelector((state) => state.movie.loading);
   const img_base_url = "https://image.tmdb.org/t/p/original";
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchHorror());
-    getwatchlist()
+    getwatchlist();
   }, [dispatch]);
   const getwatchlist = () => {
     const id = localStorage.getItem("userId");
@@ -61,8 +64,19 @@ function Horror() {
     <div>
       <Nav />
       <Movienav />
-      <>{template("horror", movie.result, "movie", img_base_url,loading,watchlist,
-          toggleWatchlist)}</>
+      <>
+        {template(
+          "horror",
+          movie.result,
+          "movie",
+          img_base_url,
+          loading,
+          watchlist,
+          toggleWatchlist,
+          clickHandler,
+          navigate
+        )}
+      </>
     </div>
   );
 }

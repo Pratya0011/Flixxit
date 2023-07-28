@@ -7,6 +7,8 @@ import { fetchDocumentary } from "../../features/MovieSlice";
 import "../../Style/Content.css";
 import axios from "axios";
 import { Watchlist } from "../../Components/request";
+import { clickHandler } from "../../Components/Utils";
+import { useNavigate } from "react-router-dom";
 
 function Documentary() {
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ function Documentary() {
   const movie = useSelector((state) => state.movie.documentary);
   const loading = useSelector((state) => state.movie.loading);
   const img_base_url = "https://image.tmdb.org/t/p/original";
+  const navigate = useNavigate()
   useEffect(() => {
     dispatch(fetchDocumentary());
     getwatchlist();
@@ -69,7 +72,9 @@ function Documentary() {
           img_base_url,
           loading,
           watchlist,
-          toggleWatchlist
+          toggleWatchlist,
+          clickHandler,
+          navigate
         )}
       </>
     </div>

@@ -18,12 +18,12 @@ function WatchPlaylist() {
   const [data, setData] = useState([]);
   const [duration, setDuration] = useState(0.0);
   const [curentId, setCurentId] = useState(localStorage.getItem("watchlistId"))
-
+  const [watchlist, setWatchlist] = useState([]);
   
 
   const recomended = useSelector((state) => state.home.recomended);
   const isloading = useSelector((state) => state.home.loading);
-  const [watchlist, setWatchlist] = useState([]);
+  
 
   const recomendedSectionRef = useRef(null);
 
@@ -127,6 +127,8 @@ function WatchPlaylist() {
       setCurentId(watchlist[index+1])
       localStorage.setItem("watchlistId", watchlist[index+1])
       setShowSkipButton(false)
+      setLoading(true)
+      setDuration(0)
     }else{
       console.log('complete')
       localStorage.setItem("watchlistId", watchlist[watchlist.length-1])
