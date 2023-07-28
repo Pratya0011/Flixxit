@@ -18,7 +18,7 @@ import videoRouter from './routes/videoRoutes.js'
 import { config } from "dotenv";
 config()
 const app = express()
-app.use(cors({ origin: "http://localhost:3000"  }));
+app.use(cors({ origin: "https://flixxit-2i45.onrender.com"  }));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
