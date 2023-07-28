@@ -53,7 +53,7 @@ app.post("/admin/signup",async (req, res) => {
           role:'admin',
         });
         await user.save();
-        return res.redirect("http://localhost:3000/");
+        return res.redirect("https://flixxit-2i45.onrender.com/");
       } catch {
         req.send("error");
       }
