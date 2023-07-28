@@ -1,24 +1,6 @@
 import User from "../../model/userModel.js";
 import bcrypt from "bcrypt";
 
-export const adminSignup = async (req, res) => {
-    const { name, email, username, password, role } = req.body;
-    try {
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(password, salt);
-      const user = new User({
-        name,
-        email,
-        username,
-        password: hashedPassword,
-        role,
-      });
-      await user.save();
-      res.send(user);
-    } catch {
-      req.send("error");
-    }
-  };
   export const getUser = async (req,res)=>{
     const id = req.params.id
     try{

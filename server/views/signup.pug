@@ -1,0 +1,18 @@
+html
+  head
+    style
+         include ./Style.css
+         
+    title Flixxit Admin Signup
+  body
+    .container
+      h1#signin-title=title
+      #signin-panel
+        h3=instructions
+        form(method="post" action="/admin/signup")
+          input(type="text" name="name" placeholder="Name" required)
+          input(type="email" name="email" placeholder="E-Mail Address" required)
+          input(type="text" name="username" placeholder="Username" required)
+          input(type="password" name="password" placeholder="Password" required)
+          input(type="password" name="cpassword" placeholder="cPassword" required)
+          button(type="submit") Sign Now

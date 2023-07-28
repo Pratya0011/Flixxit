@@ -13,6 +13,8 @@ import watchlistRouter from "./routes/watchlistRoutes.js"
 import subscribePlan from './routes/subscribeRoute.js'
 import paymentRouter from './routes/paymntRoute.js'
 import videoRouter from './routes/videoRoutes.js'
+import User from "./model/userModel.js";
+import bcrypt from 'bcrypt'
 
 
 import { config } from "dotenv";
@@ -24,15 +26,39 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-// const instance = new Razorpay({
-//     key_id: process.env.RAZORPAY_API_KEY,
-//     key_secret: process.env.RAZORPAY_API_SECRET,
-//   });
+app.set("view engine", "pug")
 
 app.get("/", (req, res) => {
     res.send({
         message1:'Movies,TV Shows and more...'
     });
+  });
+  app.get("/admin", (req, res) =>
+  res.render("signup", {
+    title: "Signup",
+    instructions: "Flixxit Admin Signup",
+  })
+);
+app.post("/admin/signup",async (req, res) => {
+    const { name, email, username, password, cpassword } = req.body;
+    if (password === cpassword) {
+    try {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+        const user = new User({
+          name,
+          email,
+          username,
+          password: hashedPassword,
+          role:'admin',
+        });
+        await user.save();
+        return res.redirect("http://localhost:3000/");
+      } catch {
+        req.send("error");
+      }
+    }
+    return res.redirect("/admin");
   });
 app.use('/admin', adminRouter)
 app.use('/user', userRouter)
