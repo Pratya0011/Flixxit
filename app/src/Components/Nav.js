@@ -6,6 +6,7 @@ import axios from "axios";
 import "../Style/Nav.css";
 import { fetchSearch, setSeachName } from "../features/AppSlice";
 import { subscribitionPlan } from "./request";
+import { getuser } from "./request";
 
 function Nav() {
   const [search, setSearch] = useState("");
@@ -21,7 +22,7 @@ function Nav() {
   useEffect(() => {
     const getUser = () => {
       axios
-        .get(`https://flixxit-server-9v89.onrender.com/admin/getUser/${id}`)
+        .get(`${getuser.getUserById}/${id}`)
         .then((res) => {
           setRole(res.data.user.role);
          let currentDate = new Date()

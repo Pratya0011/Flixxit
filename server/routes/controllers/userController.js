@@ -2,6 +2,7 @@ import User from "../../model/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { config } from "dotenv";
+import content from "../../model/contentList.js";
 
 config();
 
@@ -159,3 +160,59 @@ export const updateName = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+export const getComments = async (req,res)=>{
+  const {contentId} = req.params
+  try{
+    if(!contentId){
+      res.send({
+        status: 409,
+        comments : []
+      })
+    }else{
+      const data = await content.findById(contentId)
+      if(!data.comments.length){
+        res.send({
+          status:200,
+          commentCount:0,
+          message:"No Comments Found!"
+        })
+      }else{
+        res.send({
+          status:200,
+          commentCount:data.comments.length,
+          comments:[data.comments]
+        })
+      }
+    }
+  }catch(err){
+    res.send(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+  }
+
+  export const postComment = async (req,res)=>{
+    const {contentId} = req.params;
+    const {name, comment} = req.body
+    try{
+      if(!contentId || !name || !comment){
+        console.log('mnb')
+      }else{
+        const data = await content.findByIdAndUpdate(contentId,{
+          $push:{comments:{name:name,comment:comment}}
+        },
+        {new:true})
+        if (!data) {
+          res.status(404).json({ message: "Content not found." });
+       }
+       res.send({
+         status:200,
+         data
+       })
+      }
+      
+    }catch(err){
+      res.send(err);
+    res.status(500).json({ message: "Internal server error" });
+    }
+  }

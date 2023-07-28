@@ -68,14 +68,16 @@ const contentSchema = new Schema({
     type: Number,
     default:0
   },
-  comments:{
+  comments:[
+    {
     name:{
       type: String
     },
-    comments:{
+    comment:{
       type: String
     }
   }
+]
 });
 
 const content = model('content',contentSchema)

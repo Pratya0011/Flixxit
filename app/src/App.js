@@ -27,6 +27,8 @@ import Subscribe from "./Components/Subscribe";
 import Search from "./Components/Search";
 import PaymentSuccess from "./Components/PaymentSuccess";
 import TitleView from "./Components/TitleView";
+import Watch from "./Components/Watch";
+import WatchPlaylist from "./Components/WatchPlaylist"
 
 function App() {
   const [state, setState] = useState(true);
@@ -90,6 +92,8 @@ function App() {
           <Route path="/search" element={state ? <Search/> : <Landing />}></Route>
           <Route path="/paymentsuccess" element={state ? <PaymentSuccess/> : <Landing />}></Route>
           <Route path="/title" element={state ? <TitleView/> : <Landing />}></Route>
+          <Route path="/watch" element={state ? <Watch/> : <Landing />}></Route>
+          <Route path="/watchplaylist" element={state ? <WatchPlaylist/> : <Landing />}></Route>
         </Routes>
       </Router>
       <Footer />

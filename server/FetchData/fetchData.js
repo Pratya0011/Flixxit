@@ -39,6 +39,7 @@ export const movieList = async () => {
       movie.media_url = url[Math.floor(Math.random() * url.length)];
       return movie;
     });
+    console.log('success')
     return movieList;
   } catch (err) {
     console.log(err);
@@ -79,6 +80,7 @@ export const tvList = async () => {
     const tvList = allTvShows.map((tv) => {
       tv.media_type = "tv";
       tv.media_url = url[Math.floor(Math.random() * url.length)];
+      console.log('success')
       return tv;
     });
     return tvList;

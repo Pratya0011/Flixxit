@@ -1,0 +1,91 @@
+.player-div{
+  position: relative;
+    height: 75vh;
+    margin-top: 75px;
+    padding: 10px 10px 10px 10px;
+}
+ .spinner-container {
+    display: flex;
+    height: 75vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+   .spinner {
+    position: relative;
+    width: 60px;
+    height: 60px;
+  }
+  
+   .spinner:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    margin-top: -30px;
+    margin-left: -30px;
+    border-radius: 50%;
+    border: 5px solid #9999994f;
+    border-top-color: #e50914;
+    animation: spinner 1.5s linear infinite;
+  }
+
+  .titles{
+    margin: 10rem 3rem 5rem 3rem;
+  }
+  .titles h1{
+    font-size: 48px;
+    text-shadow: 0 2px 2px #000
+}
+.titles .overview{
+  width: 50vw;
+  font-weight: 300;
+  padding: 15px 0 15px 0;
+  color: #f8f8f8;
+  font-size: 14px;
+  line-height: 1.43;
+}
+.titles .type{
+  padding: 5px;
+}
+.titles .type span{
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 400;
+}
+.skipIntro{
+  position: absolute;
+  top: 80%;
+  right: 60px; /* Adjust the right value as needed */
+  transform: translateY(-50%);
+  height: 2rem;
+  width: 5.5rem;
+  z-index: 1;
+  border: none;
+}
+.skipIntro button{
+  height: 100%;
+  width: 100%;
+  border: 1px solid #e50914;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+.quality{
+  width: 100%;
+  display: flex;
+  justify-content: right;
+ padding: 0 2rem 0 2rem;
+}
+.quality button{
+  margin: 0 5px 0 5px;
+  width: 5.5rem;
+  height: 1.5rem;
+  border: 1px solid #999;
+  color: white;
+  cursor: pointer;
+  background: transparent;
+}

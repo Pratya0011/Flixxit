@@ -151,7 +151,7 @@ function Home() {
 
             <div className="row" ref={recomendedSectionRef}>
               {recomended.result.map((item, index) => (
-                <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
+                <div key={index}>
                   <div
                     className="row-div"
                     style={{
@@ -161,7 +161,7 @@ function Home() {
                     }}
                   >
                     <div className="row-content">
-                      <div className="row-item">
+                      <div className="row-item" onClick={()=>{clickHandler(item._id, navigate)}}>
                         <p className="title">
                           {(
                             item.name ||
@@ -192,7 +192,7 @@ function Home() {
                       )}
                     </div>
                   </div>
-                  <p>{item.name || item.title || item.original_name}</p>
+                  <p onClick={()=>{clickHandler(item._id, navigate)}}>{item.name || item.title || item.original_name}</p>
                 </div>
               ))}
             </div>
@@ -228,7 +228,7 @@ function Home() {
 
             <div className="row" ref={topratedSectionRef}>
               {toprated.result.map((item, index) => (
-                <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
+                <div key={index} >
                   <div
                     className="row-div"
                     style={{
@@ -238,7 +238,7 @@ function Home() {
                     }}
                   >
                     <div className="row-content">
-                      <div className="row-item">
+                      <div className="row-item" onClick={()=>{clickHandler(item._id, navigate)}}>
                         <p className="title">
                           {(
                             item.name ||
@@ -269,7 +269,7 @@ function Home() {
                       )}
                     </div>
                   </div>
-                  <p>{item.name || item.title || item.original_name}</p>
+                  <p onClick={()=>{clickHandler(item._id, navigate)}}>{item.name || item.title || item.original_name}</p>
                 </div>
               ))}
             </div>
@@ -304,7 +304,7 @@ function Home() {
 
             <div className="row" ref={popularSectionRef}>
               {popular.result.map((item, index) => (
-                <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
+                <div key={index} >
                   <div
                     className="row-div"
                     style={{
@@ -314,7 +314,7 @@ function Home() {
                     }}
                   >
                     <div className="row-content">
-                      <div className="row-item">
+                      <div className="row-item" onClick={()=>{clickHandler(item._id, navigate)}}>
                         <p className="title">
                           {(
                             item.name ||
@@ -377,7 +377,7 @@ function Home() {
 
             <div className="row" ref={sectionRef}>
               {topten.result.map((item, index) => (
-                <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
+                <div key={index} >
                   <div
                     className="row-div"
                     style={{
@@ -387,7 +387,7 @@ function Home() {
                     }}
                   >
                     <div className="row-content">
-                      <div className="row-item">
+                      <div className="row-item" onClick={()=>{clickHandler(item._id, navigate)}}>
                         <p className="title">
                           {(
                             item.name ||
@@ -454,7 +454,7 @@ function Home() {
 
             <div className="row" ref={documentarySectionRef}>
               {documentary.result.map((item, index) => (
-                <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
+                <div key={index} >
                   <div
                     className="row-div"
                     style={{
@@ -464,7 +464,7 @@ function Home() {
                     }}
                   >
                     <div className="row-content">
-                      <div className="row-item">
+                      <div className="row-item" onClick={()=>{clickHandler(item._id, navigate)}}>
                         <p className="title">
                           {(
                             item.name ||

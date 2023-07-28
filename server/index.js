@@ -12,12 +12,13 @@ import tvRouter from "./routes/tvRoutes.js"
 import watchlistRouter from "./routes/watchlistRoutes.js"
 import subscribePlan from './routes/subscribeRoute.js'
 import paymentRouter from './routes/paymntRoute.js'
+import videoRouter from './routes/videoRoutes.js'
 
 
 import { config } from "dotenv";
 config()
 const app = express()
-app.use(cors({ origin: "https://flixxit-2i45.onrender.com"  }));
+app.use(cors({ origin: "http://localhost:3000"  }));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -43,6 +44,7 @@ app.use('/user',tvRouter)
 app.use('/user',watchlistRouter)
 app.use('/user',subscribePlan)
 app.use('/user',paymentRouter)
+app.use('/user', videoRouter)
 
 connection.then(()=>app.listen(process.env.PORT, ()=>{
     console.log('server listening on port 8080')

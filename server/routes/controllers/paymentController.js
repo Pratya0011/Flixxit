@@ -70,6 +70,7 @@ export const paymentVerification = async (req, res) => {
       res.redirect(
         `https://flixxit-2i45.onrender.com/`
       );
+      // res.redirect(`http://localhost:3000/`)
     }
   } catch (err) {
     console.log("Error in checkout", err);

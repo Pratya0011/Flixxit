@@ -5,6 +5,7 @@
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
+  flex-wrap: nowrap;
 }
 
 .row:hover {
@@ -36,6 +37,8 @@
 }
 .row-item{
   color: white;
+  width: 60%;
+  cursor: pointer;
 }
 .row-item .title{
   font-size: 15px;
@@ -148,6 +151,7 @@
 }
 .row p{
   width: 12vw;
+  cursor: pointer;
 }
 @keyframes spinner {
   to {

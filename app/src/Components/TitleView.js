@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { homeRequest, Watchlist } from "./request";
+import { homeRequest, Watchlist, commentsRequest, getuser  } from "./request";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Nav from "./Nav";
 import "../Style/Titleview.css";
-import "../Style/Home.css"
+import "../Style/Home.css";
 import { fetchRecomended } from "../features/HomeSlice";
 import { clickHandler } from "./Utils";
 
@@ -14,35 +14,49 @@ function TitleView() {
   const [watchlist, setWatchlist] = useState([]);
   const [like, setLike] = useState("");
   const [dislike, setDislike] = useState("");
-  const recomended = useSelector((state)=>state.home.recomended)
+  const [review, setReview] = useState("");
+  const [comments,setComments] = useState([]);
+  const [commentCount,setCommentCount] = useState(0)
+
+
+  const recomended = useSelector((state) => state.home.recomended);
   const loading = useSelector((state) => state.home.loading);
 
-  const recomendedSectionRef = useRef(null)
+  const recomendedSectionRef = useRef(null);
 
   const dispatch = useDispatch();
   const img_base_url = "https://image.tmdb.org/t/p/original";
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     const getData = () => {
-        const contentId = localStorage.getItem("contentId");
-        axios
-          .get(`${homeRequest.getTitle}?contentId=${contentId}`)
-          .then((res) => {
-            if (res.data.status === 200) {
-              setData(res.data.result);
-              dispatch(fetchRecomended(res.data.result[0].genre_ids[Math.floor(Math.random()*res.data.result[0].genre_ids.length)]))
-            } else {
-              setData([]);
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      };
+      const contentId = localStorage.getItem("contentId");
+      axios
+        .get(`${homeRequest.getTitle}?contentId=${contentId}`)
+        .then((res) => {
+          if (res.data.status === 200) {
+            setData(res.data.result);
+            dispatch(
+              fetchRecomended(
+                res.data.result[0].genre_ids[
+                  Math.floor(
+                    Math.random() * res.data.result[0].genre_ids.length
+                  )
+                ]
+              )
+            );
+          } else {
+            setData([]);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
     getData();
     getwatchlist();
+    getComments()
   }, [dispatch]);
-  
+
   const getwatchlist = () => {
     const id = localStorage.getItem("userId");
     axios
@@ -54,6 +68,27 @@ function TitleView() {
         console.log(err);
       });
   };
+  const getComments = () => {
+    const contentid = localStorage.getItem("contentId");
+    axios
+      .get(`${commentsRequest.getComments}/${contentid}`)
+      .then((res) => {
+        setComments(res.data.comments);
+        setCommentCount(res.data.commentCount)
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
+  const postComment = () =>{
+    const contentid = localStorage.getItem("contentId");
+    const name = localStorage.getItem('name')
+    axios.post(`${commentsRequest.postComments}/${contentid}`,{name:name,comment:review}).then((res)=>{
+      console.log(`Your review has been submitted successfully!`)
+    }).catch(err=>{
+      throw err
+    })
+  }
   const toggleWatchlist = (contentid) => {
     const id = localStorage.getItem("userId");
     const queryParam = new URLSearchParams({ contentId: contentid });
@@ -81,6 +116,31 @@ function TitleView() {
         console.log(err);
       });
   };
+
+  const playvideo = (contentid)=>{
+    const id = localStorage.getItem("userId");
+    watchlist && watchlist.some((data) => data._id === contentid)?(
+      axios.get(`${getuser.getUserById}/${id}`).then((res)=>{
+        if(res.data.user.subsciption.subscriptionStatus){
+          localStorage.setItem('watchlistId', contentid)
+          navigate('/watchplaylist')
+        }else{
+          navigate('/subscribe')
+        }
+      })
+    ):(
+      axios.get(`${getuser.getUserById}/${id}`).then((res)=>{
+        if(res.data.user.subsciption.subscriptionStatus){
+          localStorage.setItem('contentId', contentid)
+          navigate('/watch')
+        }else{
+          navigate('/subscribe')
+        }
+      })
+    )
+    
+  }
+   
 
   const scrollLeftrecomended = (e) => {
     recomendedSectionRef.current.scrollLeft -= 200; // Adjust the scroll distance as needed
@@ -116,7 +176,7 @@ function TitleView() {
               <div className="overview">{data[0].overview}</div>
               <div className="banner-button">
                 <div>
-                  <button>
+                  <button onClick={()=>{playvideo(data[0]._id)}}>
                     {" "}
                     <i className="fa fa-play"></i> Play
                   </button>
@@ -141,11 +201,21 @@ function TitleView() {
                     +
                   </div>
                 )}
-                <div className={`plus ${like}`} onClick={()=>{like==='like'?setLike(''):setLike('like')}}>
+                <div
+                  className={`plus ${like}`}
+                  onClick={() => {
+                    like === "like" ? setLike("") : setLike("like");
+                  }}
+                >
                   <i className="fa fa-thumbs-up" aria-hidden="true"></i>
                 </div>
-                <div className={`plus ${dislike}`} onClick={()=>{dislike==='like'?setDislike(''):setDislike('like')}}>
-                <i className="fa-solid fa-thumbs-down"></i>
+                <div
+                  className={`plus ${dislike}`}
+                  onClick={() => {
+                    dislike === "like" ? setDislike("") : setDislike("like");
+                  }}
+                >
+                  <i className="fa-solid fa-thumbs-down"></i>
                 </div>
               </div>
             </>
@@ -154,85 +224,134 @@ function TitleView() {
       ) : (
         <div>No data available</div>
       )}
-      {recomended.result && recomended.result.length>0? (
+      {recomended.result && recomended.result.length > 0 ? (
         <div className="recomended">
-      <div className="heading">Recomended for you</div>
-      {loading ? (
-        <div className="spinner-div">
-          <div className="spinner"></div>
+          <div className="heading">Recomended for you</div>
+          {loading ? (
+            <div className="spinner-div">
+              <div className="spinner"></div>
+            </div>
+          ) : (
+            recomended &&
+            recomended.result && (
+              <div className="section-container">
+                <div
+                  className="scroll-arrow left-arrow"
+                  onClick={scrollLeftrecomended}
+                >
+                  <span className="arrow-icon">
+                    <i className="fa fa-angle-left"></i>
+                  </span>
+                </div>
+
+                <div className="row" ref={recomendedSectionRef}>
+                  {recomended.result.map((item, index) => (
+                    <div
+                      key={index}
+                      onClick={() => {
+                        clickHandler(item._id, navigate);
+                      }}
+                    >
+                      <div
+                        className="row-div"
+                        style={{
+                          backgroundImage: item
+                            ? `url(${img_base_url}${item.poster_path})`
+                            : "",
+                        }}
+                      >
+                        <div className="row-content">
+                          <div className="row-item">
+                            <p className="title">
+                              {(
+                                item.name ||
+                                item.title ||
+                                item.original_name
+                              ).slice(0, 10) + "..."}
+                            </p>
+                            <p className="date">
+                              {item.release_date.slice(0, 4)}
+                            </p>
+                          </div>
+                          {watchlist &&
+                          watchlist.some((data) => data._id === item._id) ? (
+                            <div
+                              className="plus"
+                              onClick={() => {
+                                toggleWatchlist(item._id);
+                              }}
+                            >
+                              ✓
+                            </div>
+                          ) : (
+                            <div
+                              className="plus"
+                              onClick={() => {
+                                toggleWatchlist(item._id);
+                              }}
+                            >
+                              +
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <p>{item.name || item.title || item.original_name}</p>
+                    </div>
+                  ))}
+                </div>
+                <div
+                  className="scroll-arrow right-arrow"
+                  onClick={scrollRightrecomended}
+                >
+                  <span className="arrow-icon">
+                    <i className="fa fa-angle-right"></i>
+                  </span>
+                </div>
+              </div>
+            )
+          )}
         </div>
       ) : (
-        recomended &&
-        recomended.result && (
-          <div className="section-container">
-            <div
-              className="scroll-arrow left-arrow"
-              onClick={scrollLeftrecomended}
-            >
-              <span className="arrow-icon">
-                <i className="fa fa-angle-left"></i>
-              </span>
-            </div>
-
-            <div className="row" ref={recomendedSectionRef}>
-              {recomended.result.map((item, index) => (
-                <div key={index} onClick={()=>{clickHandler(item._id, navigate)}}>
-                  <div
-                    className="row-div"
-                    style={{
-                      backgroundImage: item
-                        ? `url(${img_base_url}${item.poster_path})`
-                        : "",
-                    }}
-                  >
-                    <div className="row-content">
-                      <div className="row-item">
-                        <p className="title">
-                          {(
-                            item.name ||
-                            item.title ||
-                            item.original_name
-                          ).slice(0, 10) + "..."}
-                        </p>
-                        <p className="date">{item.release_date.slice(0, 4)}</p>
-                      </div>
-                      {watchlist && watchlist.some((data) => data._id === item._id) ? (
-                        <div
-                          className="plus"
-                          onClick={() => {
-                            toggleWatchlist(item._id);
-                          }}
-                        >
-                          ✓
-                        </div>
-                      ) : (
-                        <div
-                          className="plus"
-                          onClick={() => {
-                            toggleWatchlist(item._id);
-                          }}
-                        >
-                          +
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <p>{item.name || item.title || item.original_name}</p>
+        <></>
+      )}
+      <div>
+        <div className="review-div">
+          <div className="heading">Reviews</div>
+          <div className="commentcount">Comments({commentCount})</div>
+          <div className="textarea">
+            <textarea
+              placeholder="Add your review"
+              value={review}
+              onChange={(e) => {
+                setReview(e.target.value);
+              }}
+              onKeyDown={(e)=>{
+                if(e.key === 'Enter'){
+                  if(review){
+                    postComment()
+                    setReview('')
+                  }
+                  window.location.reload()
+                }
+              }}
+            />
+          </div>
+          <div className="comment-wrapper">
+            {comments && comments.length>0 && comments[0].length>0?(
+            <div >
+              {comments[0].map((item,index)=>(
+                <div key={index} className="comment-div">
+                  <div className="name">{item.name}</div>
+                  <div className="comment">{item.comment}</div>
                 </div>
               ))}
             </div>
-            <div
-              className="scroll-arrow right-arrow"
-              onClick={scrollRightrecomended}
-            >
-              <span className="arrow-icon">
-                <i className="fa fa-angle-right"></i>
-              </span>
-            </div>
+            ):(<div>
+              No reviews yet! Be the first to add a comment...
+            </div>)}
           </div>
-        )
-      )}
-      </div>):(<></>)}
+        </div>
+      </div>
     </div>
   );
 }
