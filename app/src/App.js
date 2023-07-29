@@ -57,8 +57,9 @@ function App() {
           if (res.data.status === 200) {
             console.log(res.data.message)
             localStorage.setItem("accessToken", res.data.accessToken);
-          } else {
             setState(true);
+          } else {
+            setState(false);
             setMessage(res.data.message);
             console.log(res.data.message)
           }
