@@ -48,23 +48,25 @@ function App() {
     };
     if (!accessToken && !refreshToken) {
       setState(false);
+      console.log('invalid')
     } else {
-      // axios
-      //   .post("https://flixxit-server-9v89.onrender.com/user/authenticate", {}, { headers })
-      //   .then((res) => {
-      //     console.log(res)
-      //     if (res.data.status === 200) {
-      //       setState(true);
-      //       localStorage.setItem("accessToken", res.data.accessToken);
-      //     } else {
-      //       setState(false);
-      //       setMessage(res.data.message);
-      //     }
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
-      setState(true)
+      axios
+        .post("https://flixxit-server-9v89.onrender.com/user/authenticate", {}, { headers })
+        .then((res) => {
+          console.log(res)
+          if (res.data.status === 200) {
+            console.log(res.data.message)
+            localStorage.setItem("accessToken", res.data.accessToken);
+          } else {
+            setState(true);
+            setMessage(res.data.message);
+            console.log(res.data.message)
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      
     }
   };
   return (

@@ -42,7 +42,7 @@ export const paymentVerification = async (req, res) => {
 
     if (generated_signature == razorpay_signature) {
       const paidDate = new Date();
-      const expirationPeriodInDays = 30;
+      const expirationPeriodInDays = 1;
       const expirationDate = new Date(
         paidDate.getTime() + expirationPeriodInDays * 24 * 60 * 60 * 1000
       );
