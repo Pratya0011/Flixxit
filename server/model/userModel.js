@@ -20,8 +20,12 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
-  subsciption:{
-    subsciptionType: {
+  amount:{
+    type: Number,
+    default:0
+  },
+  subscription:{
+    subscriptionType: {
         type:String,
         default: 'nonSubscribed'
     },

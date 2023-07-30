@@ -42,9 +42,9 @@ export const paymentVerification = async (req, res) => {
 
     if (generated_signature == razorpay_signature) {
       const paidDate = new Date();
-      const expirationPeriodInDays = 1;
+      const expirationPeriodInDays = 30;
       const expirationDate = new Date(
-        paidDate.getTime() + expirationPeriodInDays * 24 * 60 * 60 * 1000
+        paidDate.getTime() + expirationPeriodInDays *20 *60* 60 * 1000
       );
 
       const user = await User.findByIdAndUpdate(
@@ -59,11 +59,12 @@ export const paymentVerification = async (req, res) => {
               planName: "Gold",
               status: "success",
             },
-            subsciption: {
-              subsciptionType: "Subscribed",
+            subscription: {
+              subscriptionType: "Subscribed",
               subscriptionStatus: true,
             },
           },
+          $inc: { amount: 100 },
         },
         { new: true }
       );
@@ -99,8 +100,8 @@ export const updatePaymentStatus = async (req, res) => {
             planName: "no-plan",
             status: "",
           },
-          subsciption: { 
-            subsciptionType: "non-Subscribed",
+          subscription: { 
+            subscriptionType: "non-Subscribed",
             subscriptionStatus: false,
           },
         },

@@ -13,6 +13,7 @@ import watchlistRouter from "./routes/watchlistRoutes.js"
 import subscribePlan from './routes/subscribeRoute.js'
 import paymentRouter from './routes/paymntRoute.js'
 import videoRouter from './routes/videoRoutes.js'
+import historyRouter from './routes/historyRoute.js'
 import User from "./model/userModel.js";
 import bcrypt from 'bcrypt'
 
@@ -71,6 +72,7 @@ app.use('/user',watchlistRouter)
 app.use('/user',subscribePlan)
 app.use('/user',paymentRouter)
 app.use('/user', videoRouter)
+app.use('/user',historyRouter)
 
 connection.then(()=>app.listen(process.env.PORT, ()=>{
     console.log('server listening on port 8080')
