@@ -27,10 +27,10 @@ function Nav() {
           setRole(res.data.user.role);
          let currentDate = new Date()
          if(currentDate < new Date(res.data.user.payment.expiredDate)){
-          setSubscribed(res.data.user.subsciption.subscriptionStatus)
+          setSubscribed(res.data.user.subscription.subscriptionStatus)
          }else{
           axios.patch(`${subscribitionPlan.updatePaymentStatus}/${id}`).then((res)=>{
-            setSubscribed(res.data.user.subsciption.subscriptionStatus)
+            setSubscribed(res.data.user.subscription.subscriptionStatus)
           }).catch(err=>{
             console.log("Error in patch request:", err);
           })
@@ -104,7 +104,7 @@ function Nav() {
             {role === "admin" ? (
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "inactive")}
-                to="/Dashboard"
+                to="/Dashboard/overview"
               >
                 <li>Dashboard</li>
               </NavLink>

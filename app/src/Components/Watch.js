@@ -3,9 +3,9 @@ import axios from "axios";
 import Nav from "./Nav";
 import ReactPlayer from "react-player";
 import '../Style/Watch.css'
-import { videoRoutes, homeRequest } from "./request";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { videoRoutes, homeRequest} from "./request";
+import {  useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
 import { fetchRecomended } from "../features/HomeSlice";
 
 
@@ -20,14 +20,14 @@ function Watch() {
   const [duration, setDuration] = useState(0.0)
   
 
-  const recomended = useSelector((state) => state.home.recomended);
-  const isloading = useSelector((state) => state.home.loading);
+  // const recomended = useSelector((state) => state.home.recomended);
+  // const isloading = useSelector((state) => state.home.loading);
 
-  const recomendedSectionRef = useRef(null);
+  // const recomendedSectionRef = useRef(null);
 
   const dispatch = useDispatch();
-  const img_base_url = "https://image.tmdb.org/t/p/original";
-  const navigate = useNavigate();
+  // const img_base_url = "https://image.tmdb.org/t/p/original";
+  // const navigate = useNavigate();
   useEffect(() => {
 
     const getData = () => {
@@ -54,7 +54,6 @@ function Watch() {
             console.log(err);
           });
       };
-
 
     const fetchVideo = async () => {
       try {

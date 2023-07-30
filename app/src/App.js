@@ -31,6 +31,9 @@ import Watch from "./Components/Watch";
 import WatchPlaylist from "./Components/WatchPlaylist"
 import Watchlist from "./Components/WatchlistComponent";
 import WatchlistComponent from "./Components/WatchlistComponent";
+import Profile from "./Components/Profile";
+import Overview from "./Components/Overview";
+import History from "./Components/History";
 
 function App() {
   const [state, setState] = useState(false);
@@ -51,15 +54,12 @@ function App() {
         axios
           .post("https://flixxit-server-9v89.onrender.com/user/authenticate", {}, { headers })
           .then((res) => {
-            console.log(res)
             if (res.data.status === 200) {
-              console.log(res.data.message)
               localStorage.setItem("accessToken", res.data.accessToken);
               setState(true);
             } else {
               setState(false);
               setMessage(res.data.message);
-              console.log(res.data.message)
             }
           })
           .catch((err) => {
@@ -94,7 +94,9 @@ function App() {
           <Route path="/Tv/Comedy" element={state ? <ComedyTv /> : <Landing />}></Route>
           <Route path="/Tv/Mystery" element={state ? <MysteryTv /> : <Landing />}></Route>
           <Route path="/Tv/Documentary" element={state ? <DocumentaryTv /> : <Landing />}></Route>
-          <Route path="/Dashboard" element={state ? <Dashboard /> : <Landing />}></Route>
+          <Route path="/Dashboard" element={state ? <Dashboard /> : <Landing />}>
+          <Route path="overview" element={<Overview/>}></Route>
+          </Route>
           <Route path='/subscribe' element={state ? <Subscribe /> : <Landing />}></Route>
           <Route path="/search" element={state ? <Search/> : <Landing />}></Route>
           <Route path="/paymentsuccess" element={state ? <PaymentSuccess/> : <Landing />}></Route>
@@ -102,6 +104,8 @@ function App() {
           <Route path="/watch" element={state ? <Watch/> : <Landing />}></Route>
           <Route path="/watchplaylist" element={state ? <WatchPlaylist/> : <Landing />}></Route>
           <Route path="/watchlistcomponent" element={state ? <WatchlistComponent/> : <Landing />}></Route>
+          <Route path="/profile" element={state ? <Profile/> : <Landing />}></Route>
+          <Route path="/history" element={state ? <History/> : <Landing />}></Route>
         </Routes>
       </Router>
       <Footer />

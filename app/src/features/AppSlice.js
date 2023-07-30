@@ -1,17 +1,23 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { searchBar } from "../Components/request";
+import { searchBar, getuser } from "../Components/request";
 
 export const fetchSearch = createAsyncThunk("search", async (value) => {
   const res = await axios.get(`${searchBar.getSearch}?name=${value}`);
   return res.data.result;
 });
 
+export const fetchUser = createAsyncThunk("user", async(id)=>{
+  const res = await axios.get(`${getuser.getUserById}/${id}`);
+  return res.data.user;
+})
+
 const initialState = {
   id: localStorage.getItem("userId") || null,
   name: localStorage.getItem("name") || null,
   email: localStorage.getItem("email") || null,
   search: [],
+  user:[],
   searchName: "",
   watchlist: null,
   loading: true,
@@ -43,6 +49,16 @@ export const appSlice = createSlice({
       state.loading = false;
     },
     [fetchSearch.rejected]: (state) => {
+      state.loading = true;
+    },
+    [fetchUser.pending]: (state) => {
+      state.loading = true;
+    },
+    [fetchUser.fulfilled]: (state, action) => {
+      state.user = action.payload;
+      state.loading = false;
+    },
+    [fetchUser.rejected]: (state) => {
       state.loading = true;
     },
   },

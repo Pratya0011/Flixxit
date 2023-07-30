@@ -57,6 +57,9 @@ export const subscribitionPlan = {
 
 export const getuser = {
     getUserById : "https://flixxit-server-9v89.onrender.com/admin/getUser",
+    getallUser : "https://flixxit-server-9v89.onrender.com/admin/getallusers",
+    getSubscribedUser: "https://flixxit-server-9v89.onrender.com/admin/getsubscribed",
+    getAmount : "https://flixxit-server-9v89.onrender.com/admin/getamount"
 }
 
 export const commentsRequest = {
@@ -66,4 +69,9 @@ export const commentsRequest = {
 
 export const videoRoutes = {
     fetchVideo : `https://flixxit-server-9v89.onrender.com/user/video`
+}
+
+export const historyRoutes = {
+    addHistory :`https://flixxit-server-9v89.onrender.com/user/addhistory`,
+    getHistory : `https://flixxit-server-9v89.onrender.com/user/gethistory`
 }

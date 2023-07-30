@@ -1,5 +1,4 @@
 import React,{ useEffect, useState } from 'react'
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Nav from './Nav'
 import "../Style/Search.css";
@@ -62,7 +61,7 @@ function WatchlistComponent() {
                         ) + "..."}
                       </p>
                     </div>
-                    <div className="date">{item.release_date.slice(0, 4)}</div>
+                    <div className="date"><i class="fa fa-trash" aria-hidden="true"></i></div>
                   </div>
                 </div>
                 <p

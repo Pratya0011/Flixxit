@@ -7,9 +7,9 @@ function ProfileOptions({ showProfileOptions }) {
   return (
         <div className={`profile-options ${showProfileOptions ? "active" : ""}`}>
       <ul>
-        <li>Profile</li>
+        <li onClick={()=>{navigate('/profile')}}>Profile</li>
         <li onClick={()=>{navigate('/watchlistcomponent')}}>Watchlist</li>
-        <li>History</li>
+        <li onClick={()=>{navigate('/history')}}>History</li>
         <li onClick={(e)=>{
             localStorage.clear()
             navigate('/')

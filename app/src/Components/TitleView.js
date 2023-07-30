@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { homeRequest, Watchlist, commentsRequest, getuser } from "./request";
+import { homeRequest, Watchlist, commentsRequest, getuser, historyRoutes } from "./request";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
@@ -137,22 +137,36 @@ function TitleView() {
     const id = localStorage.getItem("userId");
     watchlist && watchlist.some((data) => data._id === contentid)
       ? axios.get(`${getuser.getUserById}/${id}`).then((res) => {
-          if (res.data.user.subsciption.subscriptionStatus) {
+          if (res.data.user.subscription.subscriptionStatus) {
             localStorage.setItem("watchlistId", contentid);
+            addHistory(id,contentid)
             navigate("/watchplaylist");
           } else {
             navigate("/subscribe");
           }
         })
       : axios.get(`${getuser.getUserById}/${id}`).then((res) => {
-          if (res.data.user.subsciption.subscriptionStatus) {
+          if (res.data.user.subscription.subscriptionStatus) {
             localStorage.setItem("contentId", contentid);
+            addHistory(id,contentid)
             navigate("/watch");
           } else {
             navigate("/subscribe");
           }
         });
   };
+
+  const addHistory = (id, contentId)=>{
+    axios.patch(`${historyRoutes.addHistory}/${id}?contentId=${contentId}`).then((res)=>{
+      if(res.data.status === 200){
+        console.log('added to history')
+      }else{
+        console.log('not added')
+      }
+    }).catch(err=>{
+      throw err
+    })
+  }
 
   const scrollLeftrecomended = (e) => {
     recomendedSectionRef.current.scrollLeft -= 200; // Adjust the scroll distance as needed

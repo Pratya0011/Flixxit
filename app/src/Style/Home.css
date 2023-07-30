@@ -158,3 +158,15 @@
     transform: rotate(360deg);
   }
 }
+@media (max-width: 820px) {
+  .row-div {
+    height: 30vh;
+    width: 25vw;
+  }
+}
+@media (max-width: 480px){
+  .row-div {
+    height: 35vh;
+    width: 30vw;
+  }
+}

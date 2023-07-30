@@ -192,3 +192,82 @@ padding: 5px;
 
 
 
+@media (max-width: 768px) {
+  .landing-container {
+    min-height: 80vh;
+  }
+
+  .showcase .heading {
+    font-size: 2rem;
+  }
+
+  .toggle-form {
+    height: 4vh;
+    width: 50vw;
+  }
+  .view-toggle .eye{
+    right: 1rem;
+  }
+  .registerButton button {
+    width: 80%;
+    font-size: 20px;
+  }
+  .login-component{
+    width: 50vw;
+  }
+  .form-component{
+    width: 50vw;
+  }
+.login{
+  width: 50vw;
+}
+.signup-component{
+  width: 50vw;
+}
+.signup{
+  width: 50vw;
+}
+  .login form input,
+  .signup form input {
+    width: 100%;
+  }
+}
+
+/* Add media query for even smaller screens */
+@media (max-width: 480px) {
+  .landing-container {
+    min-height: 70vh;
+  }
+  .toggle-form {
+    height: 4vh;
+    width: 50vw;
+
+  }
+  .view-toggle .eye{
+    right: 1rem;
+  }
+  .showcase .heading {
+    font-size: 1.5rem;
+  }
+  .login-component{
+    width: 50vw;
+  }
+  .signup-component{
+    width: 50vw;
+  }
+  .form-component{
+    width: 50vw;
+  }
+  .signup{
+    width: 50vw;
+  }
+  .registerButton button {
+    width: 90%;
+    font-size: 18px;
+  }
+
+  .login form input,
+  .signup form input {
+    width: 90%;
+  }
+}
