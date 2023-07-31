@@ -1,6 +1,8 @@
 # Project Name
 
-Flixxit
+##Flixxit
+
+Live Link: https://flixxit-2i45.onrender.com
 
 ## Description
 
@@ -15,11 +17,11 @@ To run this project on your local machine, follow these steps:
 - Install dependencies: npm install
 - Start development mode: npm start
 - change the mongodb url in cd './server/db/index.js'
-- Create a .env file and add the following environment variables
-JWT_SECRET_KEY=<SECERTE_KEY>
-JWT_REFRESHSECRET=<JWT_REFRESHSECRET>
-RAZORPAY_API_KEY=<RAZORPAY_API_KEY> 
-RAZORPAY_API_SECRET=<RAZORPAY_API_SECRET>
+- Create a .env file and add the following environment variables:
+- JWT_SECRET_KEY: Used for JWT token generation and validation.
+- JWT_REFRESH_SECRET: Used for refreshing JWT tokens.
+- RAZORPAY_API_KEY: The API key for Razorpay payment integration.
+- RAZORPAY_API_SECRET: The API secret for Razorpay payment integration.
 
 - Then cd .. to comes back to root file and do cd app and then do npm install.
 - Start the development server: npm start
