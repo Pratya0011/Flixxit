@@ -50,7 +50,7 @@
     position: absolute;
     bottom: 0; /* Place the row-content at the bottom of the coloum-div */
     left: 0;
-    width: 20px;
+    width: 75%;
     height: 90%;
     display: flex;
     align-items: flex-end;
