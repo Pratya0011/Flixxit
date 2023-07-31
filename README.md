@@ -23,6 +23,9 @@ To run this project on your local machine, follow these steps:
 - RAZORPAY_API_KEY: The API key for Razorpay payment integration.
 - RAZORPAY_API_SECRET: The API secret for Razorpay payment integration.
 
+## Note
+Cloud server automatically supends on inactivity so it may take time to load
+
 - Then cd .. to comes back to root file and do cd app and then do npm install.
 - Start the development server: npm start
 
