@@ -33,3 +33,31 @@
     color: white;
     font-weight: 600;
 }
+@media (max-width: 820px) {
+    .footer-div .tag {
+      font-size: 3rem; /* Reduce the font size on smaller screens */
+    }
+  
+    .footer-div div {
+      font-size: 20px; /* Reduce the font size on smaller screens */
+    }
+  }
+  @media (max-width: 392px) {
+    .footer-div .tag {
+      font-size: 1rem; /* Further reduce the font size on smaller screens */
+    }
+  
+    .footer-div div {
+      font-size: 10px; /* Further reduce the font size on smaller screens */
+    }
+    .contact h3,p{
+        font-size: 10px;
+    }
+  }
+ 
+  
+  
+  
+  
+  
+  

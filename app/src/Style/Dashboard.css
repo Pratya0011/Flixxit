@@ -62,3 +62,51 @@
     padding: 10px;
     border-radius: 10px;
   }
+  .table-container {
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scrolling for smaller screens */
+  }
+  @media (max-width: 820px) {
+    .dashboard-div {
+      width: 90%; /* Adjust the width of dashboard div on even smaller screens */
+      margin: 20px auto; /* Center the dashboard div */
+    }
+    .account-section {
+      font-size: 16px; 
+      width: 100;/* Further reduce the font size of account sections */
+      margin: 0;
+      padding: 5px;
+    }
+  }
+    
+  @media (max-width: 392px) {
+    .dashboard-div {
+      width: 90%; /* Adjust the width of dashboard div on even smaller screens */
+      margin: 20px auto; /* Center the dashboard div */
+    }
+    
+    .account-section {
+      font-size: 11px; /* Further reduce the font size of account sections */
+    }
+    
+    .loggedinheading {
+      padding-left: 15px; /* Further adjust the padding of loggedinheading */
+    }
+    
+    .list ul li {
+      font-size: 16px; /* Further reduce the font size of list items */
+    }
+    .table-container {
+      font-size: 12px; /* Further reduce the font size for smaller screens */
+    }
+    .css-80pr5n-MuiPaper-root{
+    width: 60vw;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  

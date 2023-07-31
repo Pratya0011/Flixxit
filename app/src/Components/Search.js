@@ -33,7 +33,6 @@ function Search() {
                 <div className="coloum-div">
                   <img
                     src={img_base_url + item.poster_path}
-                    style={{ height: "30vh", width: "12vw" }}
                     alt={item.name || item.title}
                   />
                   <div className="row-content">

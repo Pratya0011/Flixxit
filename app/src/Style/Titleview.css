@@ -112,3 +112,98 @@ background-color: #f1f1f1;
     font-size: 16px;
   color: #555;
 }
+
+@media (max-width: 820px) {
+    .titleview-component .title-banner {
+      height: 50vh; /* Reduce the height of the title banner */
+      padding: 0 1rem; /* Adjust the padding of the title banner */
+    }
+    
+    .title-banner h1 {
+      font-size: 36px; /* Reduce the font size of the title */
+    }
+    
+    .title-banner .overview {
+      width: 60vw; /* Increase the width of the overview */
+      font-size: 12px; /* Reduce the font size of the overview */
+    }
+    .title-banner .overview .banner-button{
+        padding: 20px 0px 20px 0px;
+    }
+    
+    .title-banner .type span {
+      padding: 5px; /* Reduce the padding of the type span */
+      font-size: 12px; /* Reduce the font size of the type span */
+    }
+    
+    .titleview-component .review-div {
+      padding: 1rem; /* Adjust the padding of the review div */
+    }
+    
+    .titleview-component .heading {
+      font-size: 1.5rem; /* Reduce the font size of the heading */
+    }
+    
+    .textarea {
+      width: 40vw; /* Increase the width of the textarea */
+      height: 8vh; /* Reduce the height of the textarea */
+    }
+    
+    .comment-wrapper .comment-div {
+      padding: 10px; /* Adjust the padding of the comment div */
+    }
+    
+    .comment-div .name {
+      font-size: 16px; /* Reduce the font size of the name */
+    }
+    
+    .comment-div .comment {
+      font-size: 14px; /* Reduce the font size of the comment */
+    }
+  }
+
+  @media (max-width: 392px) {
+    .titleview-component .title-banner {
+      height: 40vh; /* Reduce the height of the title banner */
+      padding: 0.5rem; /* Adjust the padding of the title banner */
+    }
+    
+    .title-banner h1 {
+      font-size: 20px; /* Reduce the font size of the title */
+    }
+    
+    .title-banner .overview {
+      width: 100vw; /* Increase the width of the overview */
+      font-size: 10px; /* Reduce the font size of the overview */
+    }
+    
+    .title-banner .type span {
+      padding: 3px; /* Reduce the padding of the type span */
+      font-size: 10px; /* Reduce the font size of the type span */
+    }
+    
+    .titleview-component .review-div {
+      padding: 0.5rem; /* Adjust the padding of the review div */
+    }
+    
+    .titleview-component .heading {
+      font-size: 1.2rem; /* Reduce the font size of the heading */
+    }
+    
+    .textarea {
+      width: 60vw; /* Increase the width of the textarea */
+      height: 6vh; /* Reduce the height of the textarea */
+    }
+    
+    .comment-wrapper .comment-div {
+      padding: 8px; 
+    }
+    
+    .comment-div .name {
+      font-size: 14px; /* Reduce the font size of the name */
+    }
+    
+    .comment-div .comment {
+      font-size: 12px; /* Reduce the font size of the comment */
+    }
+  }

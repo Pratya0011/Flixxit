@@ -176,6 +176,17 @@ function TitleView() {
     recomendedSectionRef.current.scrollLeft += 200; // Adjust the scroll distance as needed
     recomendedSectionRef.current.style.scrollBehavior = "smooth";
   };
+  const Like=(id)=>{
+    
+      setLike("like")
+      setDislike("")
+  }
+  const Dislike=(id)=>{
+   
+      setLike("")
+      setDislike("like")
+    
+  }
   return (
     <div className="titleview-component">
       <Nav />
@@ -233,17 +244,13 @@ function TitleView() {
                 )}
                 <div
                   className={`plus ${like}`}
-                  onClick={() => {
-                    like === "like" ? setLike("") : setLike("like");
-                  }}
+                  onClick={() => {Like(data[0]._id)}}
                 >
                   <i className="fa fa-thumbs-up" aria-hidden="true"></i>
                 </div>
                 <div
                   className={`plus ${dislike}`}
-                  onClick={() => {
-                    dislike === "like" ? setDislike("") : setDislike("like");
-                  }}
+                  onClick={() => {Dislike(data[0]._id)}}
                 >
                   <i className="fa-solid fa-thumbs-down"></i>
                 </div>

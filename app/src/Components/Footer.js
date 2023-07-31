@@ -14,11 +14,11 @@ function Footer() {
       <div><i className="fa-brands fa-linkedin"></i></div>
       </div>
       </div>
-      <div>
+      <div className='contact'>
         <h3>About</h3>
         <p>Subscription based streaming platform</p>
       </div>
-      <div>
+      <div className='contact'>
       <h3>Contact</h3>
       <p>flixxit@gmail.com</p>
       <p>pratya0011@gmail.com</p>

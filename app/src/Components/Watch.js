@@ -86,7 +86,7 @@ function Watch() {
     setShowSkipButton(false); 
   };
   const qualityOptions = [
-    { value: "auto", label: "Auto Quality" },
+    { value: "auto", label: "Auto" },
     { value: "720", label: "720p" }, 
   ];
 

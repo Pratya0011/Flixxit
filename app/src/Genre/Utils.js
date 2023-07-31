@@ -26,7 +26,6 @@ export const template = (genre, content, mediaType, img_base_url,loading,watchli
               <div className="coloum-div">
                 <img
                   src={img_base_url + data.poster_path}
-                  style={{ height: "30vh", width: "12vw" }}
                   alt={data.name || data.title}
                 />
                 <div className="row-content">

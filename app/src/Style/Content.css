@@ -26,6 +26,8 @@
 }
 .coloum .coloum-div img {
   border-radius: 5px;
+  height: 30vh;
+  width: 12vw ;
 }
 .coloum .coloum-div:hover {
   z-index: 1;
@@ -44,7 +46,7 @@
   position: absolute;
   bottom: 0; /* Place the row-content at the bottom of the coloum-div */
   left: 0;
-  width: 100%;
+  width: 10vw;
   height: 100%;
   display: flex;
   align-items: flex-end;
@@ -54,6 +56,9 @@
   box-shadow: inset 0px -40px 30px black;
   padding-bottom: 10px;
   background-color: white;
+}
+.util-content.row-content{
+  width: 12vw;
 }
 .coloum.coloum-div.row-item {
   color: white;
@@ -89,5 +94,39 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+@media (max-width: 820px) {
+  .coloum.coloum-div:hover {
+    transform: none; /* Remove the scaleY transform on hover */
+    border-radius: 5px; /* Restore the original border-radius */
+  }
+  
+  .coloum .coloum-div img {
+    border-radius: 5px; /* Restore the original border-radius */
+    width: 162px;
+  }
+  
+  .coloum.coloum-div.row-content .plus {
+    height: 2rem; /* Reduce the height of the plus icon container */
+    width: 2rem; /* Reduce the width of the plus icon container */
+  }
+  .coloum.coloum-div.row-content{
+    width: 162px;
+  }
+}
+
+@media (max-width: 392px) {
+  .genre-heading {
+    font-size: 30px; /* Reduce the font size of genre-heading */
+    padding: 3rem 0 3rem 0; /* Reduce the padding of genre-heading */
+  }
+  
+  .coloum.coloum-div.row-item .title {
+    font-size: 13px; /* Reduce the font size of .title */
+  }
+  
+  .coloum.coloum-div.row-item .date {
+    font-size: 8px; /* Reduce the font size of .date */
   }
 }

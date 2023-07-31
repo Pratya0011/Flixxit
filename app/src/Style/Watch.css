@@ -89,3 +89,45 @@
   cursor: pointer;
   background: transparent;
 }
+
+@media (max-width: 820px) {
+  .titles {
+    margin: 5rem 2rem 3rem 2rem; /* Adjust the margins on smaller screens */
+  }
+
+  .titles h1 {
+    font-size: 32px; /* Reduce the font size on smaller screens */
+  }
+
+  .titles .overview {
+    width: 80vw; /* Adjust the width on smaller screens */
+    font-size: 12px; /* Reduce the font size on smaller screens */
+  }
+}
+@media (max-width: 392px) {
+  .titles {
+    margin: 3rem 1rem 2rem 1rem; /* Further reduce the margins on smaller screens */
+  }
+
+  .titles h1 {
+    font-size: 24px; /* Further reduce the font size on smaller screens */
+  }
+
+  .titles .overview {
+    width: 90vw; /* Further adjust the width on smaller screens */
+    font-size: 10px; /* Further reduce the font size on smaller screens */
+  }
+
+  .skipIntro {
+    right: 30px; /* Further adjust the right value on smaller screens */
+  }
+
+  .quality {
+    padding: 0 1rem 0 1rem; /* Further adjust the padding on smaller screens */
+  }
+
+  .quality button {
+    width: 4rem; /* Further reduce the button width on smaller screens */
+    height: 1.2rem; /* Further reduce the button height on smaller screens */
+  }
+}

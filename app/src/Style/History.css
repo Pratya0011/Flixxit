@@ -15,6 +15,10 @@
     justify-content: center;
     padding: 5rem;
 }
+.history-div img{
+    height: 25vh;
+     width: 10vw;
+}
 .history-content{
     display: flex;
     align-items: center;
@@ -39,3 +43,48 @@
     font-weight: 400;
     color: #999;
 }
+@media (max-width: 820px) {
+    .history-heading {
+      padding-left: 2rem; /* Reduce the padding on smaller screens */
+      font-size: 28px; /* Reduce the font size on smaller screens */
+    }
+  
+    .history-div {
+      padding: 2rem; /* Reduce the padding on smaller screens */
+    }
+  
+    .history-content {
+      padding: 8px; /* Reduce the padding on smaller screens */
+    }
+  
+    .history-title div {
+      padding-bottom: 5px; /* Reduce the bottom padding on smaller screens */
+    }
+    .history-div img{
+        height: 20vh;
+         width: 25vw;
+    }
+  }
+@media (max-width: 392px) {
+    .history-heading {
+      padding-left: 1rem; /* Further reduce the padding on smaller screens */
+      font-size: 24px; /* Further reduce the font size on smaller screens */
+    }
+  
+    .history-div {
+      padding: 1rem; /* Further reduce the padding on smaller screens */
+    }
+  
+    .history-content {
+      margin: 0.5rem; /* Reduce the margin on smaller screens */
+      padding: 5px; /* Further reduce the padding on smaller screens */
+    }
+  
+    .history-title div {
+      font-size: 14px; /* Further reduce the font size on smaller screens */
+    }
+    .history-div img{
+        height: 20vh;
+         width: 25vw;
+    }
+  }

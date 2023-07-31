@@ -24,4 +24,22 @@
 .movie-menu a.inactive {
   color: #fff;
 }
+@media (max-width: 820px) {
+  .moviebar-component {
+    margin-top: 120px;
+    color: white;
+  }
+}
+@media (max-width: 392px) {
+  .movie-menu ul li {
+    padding: 10px 15px; /* Adjust padding for better spacing on smaller screens */
+  }
 
+  .movie-menu {
+    text-align: center; /* Center the menu items */
+  }
+
+  .movie-menu ul li {
+    display: inline-block; /* Change back to inline-block for horizontal layout */
+  }
+}

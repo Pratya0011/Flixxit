@@ -192,13 +192,13 @@ padding: 5px;
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .landing-container {
     min-height: 80vh;
   }
 
   .showcase .heading {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   .toggle-form {
@@ -209,7 +209,7 @@ padding: 5px;
     right: 1rem;
   }
   .registerButton button {
-    width: 80%;
+    width: 100%;
     font-size: 20px;
   }
   .login-component{
@@ -227,6 +227,12 @@ padding: 5px;
 .signup{
   width: 50vw;
 }
+.signup .view-toggle .eye{
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  cursor: pointer;
+}
   .login form input,
   .signup form input {
     width: 100%;
@@ -234,13 +240,13 @@ padding: 5px;
 }
 
 /* Add media query for even smaller screens */
-@media (max-width: 480px) {
+@media (max-width:  392px) {
   .landing-container {
     min-height: 70vh;
   }
   .toggle-form {
     height: 4vh;
-    width: 50vw;
+    width: 100%;
 
   }
   .view-toggle .eye{
@@ -250,24 +256,32 @@ padding: 5px;
     font-size: 1.5rem;
   }
   .login-component{
-    width: 50vw;
+    width: 100%;
   }
   .signup-component{
-    width: 50vw;
+    width: 100%;
   }
   .form-component{
-    width: 50vw;
+    width: 90%;
   }
   .signup{
-    width: 50vw;
+    width: 100%;
+  }
+  .login{
+    width: 100%;
   }
   .registerButton button {
-    width: 90%;
+    width: 100%;
     font-size: 18px;
   }
-
+  .signup .view-toggle .eye{
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    cursor: pointer;
+  }
   .login form input,
   .signup form input {
-    width: 90%;
+    width: 100%;
   }
 }

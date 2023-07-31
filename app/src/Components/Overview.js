@@ -66,7 +66,9 @@ function Overview() {
     []
   )
   return (
-    <MaterialReactTable columns={columns} data={data} enablePagination={false}/>
+    <div className='table.container'>
+      <MaterialReactTable columns={columns} data={data} enablePagination={false}/>
+    </div>
   )
 }
 

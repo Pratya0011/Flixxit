@@ -42,7 +42,7 @@ function History() {
                     <div>
                     <img
                     src={img_base_url + item.poster_path}
-                    style={{ height: "25vh", width: "10vw" }}
+                   
                     alt={item.name || item.title}
                   />
                     </div>

@@ -45,3 +45,10 @@
     border-radius: 8px;
     cursor: pointer;
 }
+
+@media (max-width: 392px) {
+    .banner-button{
+        display: flex;
+        padding: 20px 0px 20px 0px;
+    }
+}

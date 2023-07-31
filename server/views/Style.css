@@ -69,3 +69,22 @@ button {
   position: relative;
   left: 10px;
 }
+
+@media (max-width: 820px) {
+  .container {
+    width: 90%; /* Reduce the width of the container on smaller screens */
+  }
+
+  input {
+    width: 100%; /* Make the input fields take up the full width of the container */
+  }
+}
+@media (max-width: 392px) {
+  input {
+    font-size: 1rem; /* Reduce the font size of the input fields on smaller screens */
+  }
+
+  button {
+    font-size: 0.9rem; /* Reduce the font size of the button on smaller screens */
+  }
+}
