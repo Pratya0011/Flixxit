@@ -103,7 +103,7 @@ function WatchPlaylist() {
   };
 
   const handleSkipIntro = () => {
-    videoRef.current.seekTo(35); 
+    videoRef.current.seekTo(10); 
     setShowSkipButton(false); 
   };
   const qualityOptions = [

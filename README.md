@@ -42,7 +42,7 @@ title
 - Profile Page : User can view their profile details like name email address subscription details , also they have option to set their fav genre
 - History: Go to history sction to see viewed contents
 - Watchlist: Go to watchlist section to view watchlist
--Watch video: r play the selected content on the platform with “Skip Intro” feature. 
+-Watch video: r play the selected content on the platform with “Skip Intro” feature of 10sec. 
 
 - Admin: For admin signup visit https://flixxit-server-9v89.onrender.com/admin 
 and create new account with role "Admin"
