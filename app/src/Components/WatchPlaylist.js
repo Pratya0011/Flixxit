@@ -4,8 +4,8 @@ import Nav from "./Nav";
 import ReactPlayer from "react-player";
 import '../Style/Watch.css'
 import { videoRoutes, homeRequest, Watchlist } from "./request";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {  useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
 import { fetchRecomended } from "../features/HomeSlice";
 
 function WatchPlaylist() {
@@ -21,15 +21,15 @@ function WatchPlaylist() {
   const [watchlist, setWatchlist] = useState([]);
   
 
-  const recomended = useSelector((state) => state.home.recomended);
-  const isloading = useSelector((state) => state.home.loading);
+  // const recomended = useSelector((state) => state.home.recomended);
+  // const isloading = useSelector((state) => state.home.loading);
   
 
-  const recomendedSectionRef = useRef(null);
+  // const recomendedSectionRef = useRef(null);
 
   const dispatch = useDispatch();
-  const img_base_url = "https://image.tmdb.org/t/p/original";
-  const navigate = useNavigate();
+  // const img_base_url = "https://image.tmdb.org/t/p/original";
+  // const navigate = useNavigate();
   useEffect(() => {
 
     const getData = () => {
@@ -117,7 +117,6 @@ function WatchPlaylist() {
   const handleQualityChange = (selectedQuality) => {
     setQuality(selectedQuality);
     const currentTime = videoRef.current.getCurrentTime();
-    console.log(currentTime)
     const skipTime = 35; 
     setShowSkipButton(currentTime < skipTime?true:false);
   };
@@ -130,7 +129,6 @@ function WatchPlaylist() {
       setLoading(true)
       setDuration(0)
     }else{
-      console.log('complete')
       localStorage.setItem("watchlistId", watchlist[watchlist.length-1])
       setShowSkipButton(false)
     }

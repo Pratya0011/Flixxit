@@ -24,6 +24,10 @@ const userSchema = new Schema({
     type: Number,
     default:0
   },
+  genre:{
+    type: String,
+    default: null
+  },
   subscription:{
     subscriptionType: {
         type:String,

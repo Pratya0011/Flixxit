@@ -29,7 +29,6 @@ import PaymentSuccess from "./Components/PaymentSuccess";
 import TitleView from "./Components/TitleView";
 import Watch from "./Components/Watch";
 import WatchPlaylist from "./Components/WatchPlaylist"
-import Watchlist from "./Components/WatchlistComponent";
 import WatchlistComponent from "./Components/WatchlistComponent";
 import Profile from "./Components/Profile";
 import Overview from "./Components/Overview";

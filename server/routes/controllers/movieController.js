@@ -201,3 +201,34 @@ export const romanceMovies = async (req, res) => {
     });
   }
 };
+
+export const likes = async (req,res)=>{
+const {contentId} = req.params
+try{
+  const result = await content.findByIdAndUpdate(contentId,{ $inc: { rating_likes: 1 } }, { new: true })
+  res.send({
+    status:200,
+    result
+  })
+}catch (err) {
+  res.send({
+    status: 500,
+    message: "Internal server error",
+  });
+}
+}
+export const dislikes = async (req,res)=>{
+  const {contentId} = req.params
+  try{
+    const result = await content.findByIdAndUpdate(contentId,{ $inc: { rating_dislikes: 1 } }, { new: true })
+    res.send({
+      status:200,
+      result
+    })
+  }catch (err) {
+    res.send({
+      status: 500,
+      message: "Internal server error",
+    });
+  }
+  }

@@ -55,3 +55,15 @@
     font-weight: 400;
     color: #d6d4d4;
 }
+#selectOption{
+    margin: 10px;
+    cursor: pointer;
+}
+#myForm button{
+    border: none;
+    width: 4rem;
+    height: 1.5rem;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}

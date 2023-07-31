@@ -96,7 +96,6 @@ function Watch() {
   const handleQualityChange = (selectedQuality) => {
     setQuality(selectedQuality);
     const currentTime = videoRef.current.getCurrentTime();
-    console.log(currentTime)
     const skipTime = 35; 
     setShowSkipButton(currentTime < skipTime?true:false);
   };

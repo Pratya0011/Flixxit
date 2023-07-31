@@ -101,13 +101,19 @@ export const forgotPassword = async (req, res) => {
     } else {
       const user = await User.findOne({ username: username });
       if (!user) {
-        res.send("no user found with the username", username);
+        res.send({
+          status: 403,
+          message:"no user found with the username"
+        });
       } else {
         const salt = await bcrypt.genSalt(10);
         const newHashedPassword = await bcrypt.hash(newPassword, salt);
         user.password = newHashedPassword;
         await user.save();
-        res.send(user);
+        res.send({
+          status:200,
+          user
+        });
       }
     }
   } catch (err) {
@@ -211,6 +217,21 @@ export const getComments = async (req,res)=>{
        })
       }
       
+    }catch(err){
+      res.send(err);
+    res.status(500).json({ message: "Internal server error" });
+    }
+  }
+
+  export const favGenre = async (req,res)=>{
+    const {id} = req.params
+    const {value} = req.query
+    try{
+      const user = await User.findByIdAndUpdate(id,{genre:value})
+      res.send({
+        status:200,
+        genre:user.genre
+      })
     }catch(err){
       res.send(err);
     res.status(500).json({ message: "Internal server error" });

@@ -108,7 +108,6 @@ function Movies() {
     })
     }
     const toggleWatchlist=(contentid)=>{
-      console.log(contentid)
       const id = localStorage.getItem("userId")
       const queryParam = new URLSearchParams({ contentId: contentid });
       axios.patch(`${Watchlist.addWatchlist}/${id}`,null, { params: queryParam }).then((res)=>{
@@ -501,7 +500,7 @@ function Movies() {
                             item.original_name
                           ).slice(0, 10) + "..."}
                         </p>
-                        <p className="date">{item.release_date.slice(0, 4)}</p>
+                        {item.release_date && <p className="date">{item.release_date.slice(0, 4)}</p>}
                       </div>
                       {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div

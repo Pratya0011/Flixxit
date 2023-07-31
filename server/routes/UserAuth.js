@@ -7,6 +7,7 @@ import {
   updateName,
   getComments,
   postComment,
+  favGenre,
 } from "./controllers/userController.js";
 import { authenticateToken } from "../utils/Utils.js";
 
@@ -21,5 +22,6 @@ router.patch("/updatePassword/:id", authenticateToken, updatePassword);
 router.patch("/updateName/:id", authenticateToken, updateName);
 router.get("/comments/:contentId",getComments)
 router.post("/addcomment/:contentId",postComment)
+router.patch("/genre/:id", favGenre)
 
 export default router;

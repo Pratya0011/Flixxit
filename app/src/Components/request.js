@@ -1,6 +1,7 @@
 export const signup = {
     signUpUrl : 'https://flixxit-server-9v89.onrender.com/user/signup',
     loginUrl  :'https://flixxit-server-9v89.onrender.com/user/login',
+    fogotPassword : `https://flixxit-server-9v89.onrender.com/user/forgotPassword`
 }
 
 export const homeRequest = {
@@ -59,7 +60,8 @@ export const getuser = {
     getUserById : "https://flixxit-server-9v89.onrender.com/admin/getUser",
     getallUser : "https://flixxit-server-9v89.onrender.com/admin/getallusers",
     getSubscribedUser: "https://flixxit-server-9v89.onrender.com/admin/getsubscribed",
-    getAmount : "https://flixxit-server-9v89.onrender.com/admin/getamount"
+    getAmount : "https://flixxit-server-9v89.onrender.com/admin/getamount",
+    favgenre : `https://flixxit-server-9v89.onrender.com/user/genre`
 }
 
 export const commentsRequest = {
@@ -74,4 +76,8 @@ export const videoRoutes = {
 export const historyRoutes = {
     addHistory :`https://flixxit-server-9v89.onrender.com/user/addhistory`,
     getHistory : `https://flixxit-server-9v89.onrender.com/user/gethistory`
+}
+export const likes = {
+    likes:`https://flixxit-server-9v89.onrender.com/user/likes`,
+    dislikes:`https://flixxit-server-9v89.onrender.com/user/dislikes`
 }

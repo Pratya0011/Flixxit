@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { homeRequest, Watchlist, commentsRequest, getuser, historyRoutes } from "./request";
+import { homeRequest, Watchlist, commentsRequest, getuser, historyRoutes, likes } from "./request";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
@@ -177,15 +177,27 @@ function TitleView() {
     recomendedSectionRef.current.style.scrollBehavior = "smooth";
   };
   const Like=(id)=>{
-    
+    axios.patch(`${likes.likes}/${id}`).then(res=>{
+      if(res.data.status === 200){
       setLike("like")
       setDislike("")
+      }else{
+        setLike("")
+      }
+    }).catch(err=>{
+      throw err
+    })
+      
   }
   const Dislike=(id)=>{
-   
+    axios.patch(`${likes.dislikes}/${id}`).then(res=>{
+      if(res.data.status === 200){
       setLike("")
       setDislike("like")
-    
+      }else{
+        setLike("")
+      }
+    })
   }
   return (
     <div className="titleview-component">

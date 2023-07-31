@@ -60,6 +60,10 @@ const contentSchema = new Schema({
     type: Number,
     default:0
   },
+  rating_dislikes:{
+    type: Number,
+    default:0
+  },
   rating_average:{
     type: Number,
     default:0

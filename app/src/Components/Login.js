@@ -11,7 +11,10 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [newPassword, setNewPassword] = useState("")
   const [type, setType] = useState('password')
+  const [forgot, setForgot] = useState(false)
+  const [login, setLogin] = useState(true)
   const navigate = useNavigate()
 
   
@@ -38,39 +41,114 @@ function Login() {
         setError("Request failed")
     })
   }
+  const onPasswordChange = (e)=>{
+    e.preventDefault()
+    if(password !== newPassword){
+      setError('Passord donot match')
+    }else{
+    axios.post(signup.fogotPassword,{
+        username,
+        newPassword
+    }).then((res)=>{
+      if(res.data.status === 200){
+        window.location.reload()
+        navigate('/')
+      }else if(res.data.status === 403){
+        setError(res.data.message)
+      }else{
+        setError(res.data.message)
+      }
+    }).catch(err=>{
+      setError("Request failed")
+  })
+}
+  }
   const toggleType=()=>{
     type === 'password'?setType('text'):setType('password')
   }
   return (
     <div className="login-component">
-      <div className="login">
-      <form onSubmit={onSubmitHandler}>
-        <label>Username</label>
-        <input
-          type="text"
-          placeholder="username"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-          required
-        />
-        <div className="view-toggle">
-        <label>Password</label>
-        <input
-          type={type}
-          placeholder="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          required
-        />
-        <div className="eye" onClick={toggleType}><i className="fa fa-eye" aria-hidden="true"></i></div>
+      {login && (
+        <div className="login">
+        <form onSubmit={onSubmitHandler}>
+          <label>Username</label>
+          <input
+            type="text"
+            placeholder="username"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            required
+          />
+          <div className="view-toggle">
+          <label>Password</label>
+          <input
+            type={type}
+            placeholder="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            required
+          />
+          <div className="eye" onClick={toggleType}><i className="fa fa-eye" aria-hidden="true"></i></div>
+          </div>
+          <button type="submit">Log In</button>
+        </form>
+        <div onClick={()=>{
+          setLogin(false)
+          setForgot(true)
+        }} className="passwordToggle">Forgot Password</div>
         </div>
-        <button type="submit">Log In</button>
-      </form>
-      </div>
+      )}
+      {forgot && (
+        <div className="login">
+        <form onSubmit={onPasswordChange}>
+          <label>Username</label>
+          <input
+            type="text"
+            placeholder="username"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            required
+          />
+          <div className="view-toggle">
+          <label>Password</label>
+          <input
+            type={type}
+            placeholder="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            required
+          />
+          <div className="eye" onClick={toggleType}><i className="fa fa-eye" aria-hidden="true"></i></div>
+          </div>
+          <div className="view-toggle">
+          <label>Re-Enter</label>
+          <input
+            type={type}
+            placeholder="confirm-password"
+            value={newPassword}
+            onChange={(e) => {
+              setNewPassword(e.target.value);
+            }}
+            required
+          />
+          <div className="eye" onClick={toggleType}><i className="fa fa-eye" aria-hidden="true"></i></div>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+        <div onClick={()=>{
+          setLogin(true)
+          setForgot(false)
+        }} className="passwordToggle">Login</div>
+        </div>
+      )}
       <p>{error}</p>
     </div>
   );

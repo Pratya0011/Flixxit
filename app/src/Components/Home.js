@@ -472,7 +472,7 @@ function Home() {
                             item.original_name
                           ).slice(0, 10) + "..."}
                         </p>
-                        <p className="date">{item.release_date.slice(0, 4)}</p>
+                        {item.release_date && <p className="date">{item.release_date.slice(0, 4)}</p>}
                       </div>
                       {watchlist && watchlist.some((data) => data._id === item._id) ? (
                         <div

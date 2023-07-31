@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Nav from "./Nav";
 import "../Style/Profile.css";
 import { fetchUser } from "../features/AppSlice";
+import { getuser } from "./request";
+import axios from "axios";
 
 function Profile() {
   const id = localStorage.getItem("userId");
   const user = useSelector((state) => state.app.user);
   const name = useSelector((state) => state.app.name);
   const email = useSelector((state) => state.app.email);
+
+  const [selectedOption, setSelectedOption] = useState('');
 
   const dispatch = useDispatch();
 
@@ -19,7 +23,27 @@ function Profile() {
     // Data is still loading or not available, show a loading indicator or return null
     return <div>Loading...</div>;
   }
-
+  const genre = {
+    Thriller : 53,
+    Crime : 80,
+    Drama : 18,
+    Action:28,
+    Comedy:35,
+    Mystery:9648,
+    Romance:10749,
+    Adventure: 12
+  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios.patch(`${getuser.favgenre}/${id}?value=${selectedOption}`).then(res=>{
+      localStorage.setItem('genre', res.data.genre)
+    }).catch(err=>{
+      throw err
+    })
+  };
+  const handleSelectChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
   return (
     <div className="profile-component">
       <Nav />
@@ -35,6 +59,24 @@ function Profile() {
             <div className="email">
               <div className="name">Email</div>
               <div className="data">{email}</div>
+            </div>
+            <div>
+              <div>Fav Genre:</div>
+              <div>
+              <form id="myForm" onSubmit={handleSubmit}>
+              <select id="selectOption" name="selectedOption" value={selectedOption} onChange={handleSelectChange}>
+                <option value={genre.Thriller}>Thriller</option>
+                <option value={genre.Crime}>Crime</option>
+                <option value={genre.Drama}>Drama</option>
+                <option value={genre.Action}>Action</option>
+                <option value={genre.Comedy}>Comedy</option>
+                <option value={genre.Mystery}>Mystery</option>
+                <option value={genre.Adventure}>Adventure</option>
+                <option value={genre.Romance}>Romance</option>
+              </select>
+             <button type="submit">Submit</button>
+              </form>
+              </div>
             </div>
             <div >
               <div className="name">Watchlist</div>

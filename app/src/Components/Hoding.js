@@ -48,7 +48,6 @@ function Hoding() {
       });
   };
   const toggleWatchlist = (contentid) => {
-    console.log(contentid);
     const id = localStorage.getItem("userId");
     const queryParam = new URLSearchParams({ contentId: contentid });
     axios

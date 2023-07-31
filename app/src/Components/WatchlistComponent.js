@@ -11,6 +11,7 @@ function WatchlistComponent() {
   const img_base_url = "https://image.tmdb.org/t/p/original";
   const navigate = useNavigate();
   const [watchlist,setWatchlist]=useState([])
+  const [newWatchlist, setNewWatchlist]= useState([])
 
   useEffect(()=>{
     const getwatchlist=()=>{
@@ -24,7 +25,16 @@ function WatchlistComponent() {
       })
       }
       getwatchlist()
-  },[])
+  },[newWatchlist])
+
+  const deleteWatchlist = (contentId)=>{
+    const id = localStorage.getItem("userId")
+    axios.patch(`${Watchlist.deleteWatchlist}/${id}?contentId=${contentId}`).then(res=>{
+      setNewWatchlist(res.data.contentResult)
+    }).catch(err=>{
+      throw err
+    })
+  }
   return (
     <div className="search-component">
       <Nav/>
@@ -60,7 +70,7 @@ function WatchlistComponent() {
                         ) + "..."}
                       </p>
                     </div>
-                    <div className="date"><i class="fa fa-trash" aria-hidden="true"></i></div>
+                    <div className="date" onClick={()=>{deleteWatchlist(item._id)}}><i class="fa fa-trash" aria-hidden="true"></i></div>
                   </div>
                 </div>
                 <p
