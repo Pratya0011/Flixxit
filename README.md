@@ -3,6 +3,7 @@
 ## Flixxit
 
 Live Link: https://flixxit-2i45.onrender.com
+Responsive for mobile and tab of size 390px 820px
 
 ## Description
 
