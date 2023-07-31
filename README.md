@@ -1,6 +1,6 @@
 # Project Name
 
-##Flixxit
+## Flixxit
 
 Live Link: https://flixxit-2i45.onrender.com
 
