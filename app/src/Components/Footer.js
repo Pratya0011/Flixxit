@@ -20,7 +20,6 @@ function Footer() {
       </div>
       <div className='contact'>
       <h3>Contact</h3>
-      <p>flixxit@gmail.com</p>
       <p>pratya0011@gmail.com</p>
       </div>
       </div>
