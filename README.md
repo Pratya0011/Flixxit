@@ -17,12 +17,19 @@ To run this project on your local machine, follow these steps:
 - Change directory: cd server
 - Install dependencies: npm install
 - Start development mode: npm start
-- change the mongodb url in cd './server/db/index.js'
 - Create a .env file and add the following environment variables:
 - JWT_SECRET_KEY: Used for JWT token generation and validation.
 - JWT_REFRESH_SECRET: Used for refreshing JWT tokens.
 - RAZORPAY_API_KEY: The API key for Razorpay payment integration.
 - RAZORPAY_API_SECRET: The API secret for Razorpay payment integration.
+
+## Payment
+- Test card details:
+ Mastercard	5267 3181 8797 5449	Random CVV	Any future date
+ Visa 4111 1111 1111 1111	Random CVV	Any future date
+
+- Test UPI ID:
+  success@razorpay
 
 ## Note
 Cloud server automatically supends on inactivity so it may take time to load
@@ -73,6 +80,8 @@ and create new account with role "Admin"
 - Font Awesome Icons: A comprehensive library of icons that can be easily integrated into the project to enhance the user interface.
 
 - Material-React-Table: A React component library for creating interactive and responsive data tables with Material Design styles.
+
+- Server-Side Rendering (SSR) using Pug templates for generating dynamic HTML on the server side for admin signup
 
 
 ## Screenshots
