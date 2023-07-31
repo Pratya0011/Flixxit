@@ -49,7 +49,7 @@ function Search() {
                         ) + "..."}
                       </p>
                     </div>
-                    <div className="date">{item.release_date.slice(0, 4)}</div>
+                    {item.release_date && <div className="date">{item.release_date.slice(0, 4)}</div>}
                   </div>
                 </div>
                 <p
