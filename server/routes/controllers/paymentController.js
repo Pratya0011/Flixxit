@@ -44,7 +44,7 @@ export const paymentVerification = async (req, res) => {
       const paidDate = new Date();
       const expirationPeriodInDays = 30;
       const expirationDate = new Date(
-        paidDate.getTime() + expirationPeriodInDays *20 *60* 60 * 1000
+        paidDate.getTime() + expirationPeriodInDays *24 *60* 60 * 1000
       );
 
       const user = await User.findByIdAndUpdate(
