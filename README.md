@@ -71,8 +71,9 @@ and create new account with role "Admin"
 
 ## Screenshots
 
+[![image](https://www.linkpicture.com/q/p2_1.jpeg)](https://www.linkpicture.com/view.php?img=LPic64c7b7b88b2e71702437055)
 [![image](https://www.linkpicture.com/q/p1.jpeg)](https://www.linkpicture.com/view.php?img=LPic64c7b78d047681571097019)
 
-[![image](https://www.linkpicture.com/q/p2_1.jpeg)](https://www.linkpicture.com/view.php?img=LPic64c7b7b88b2e71702437055)
+
 
 - Desclaimer - All rights of images are belong to the Flixxit. This project is created just for educational purposes only. we do not intend to use it for any commercial purposes.
