@@ -3,7 +3,7 @@ import { config } from "dotenv";
 
 
 config()
-const connection = mongoose.connect(process.env.MONGODB,
+const connection = mongoose.connect(`mongodb+srv://pratya0011:${process.env.PASSWORD}@cluster0.o1efyoe.mongodb.net/?retryWrites=true&w=majority`,
 {
     useNewUrlParser: true,
     useUnifiedTopology: true
