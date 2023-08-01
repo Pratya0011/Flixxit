@@ -12,7 +12,7 @@ function Profile() {
   const name = useSelector((state) => state.app.name);
   const email = useSelector((state) => state.app.email);
 
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState(53);
 
   const dispatch = useDispatch();
 
