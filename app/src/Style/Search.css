@@ -46,7 +46,7 @@
     
 
   }
-  .coloum-container.search-div.coloum.coloum-div .search-content {
+  .coloum-container.search-div.coloum.coloum-div .row-content {
     position: absolute;
     bottom: 0; /* Place the row-content at the bottom of the coloum-div */
     left: 0;
@@ -88,7 +88,7 @@
       transform: translateY(0);
     }
   }
-  .search-component.search-content{
+  .row-content{
     width:12vw
   }
   
