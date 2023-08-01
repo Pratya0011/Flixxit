@@ -35,7 +35,7 @@ To run this project on your local machine, follow these steps:
   success@razorpay
 
 ## Note
-Free instance of web sevice types spins down with inactivity.
+Free instance of web sevice types spins down with inactivity.so it might take some time to connect
 
 ## Features & Usage
 - Login or Register as an user

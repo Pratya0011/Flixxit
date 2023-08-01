@@ -107,7 +107,7 @@ function WatchPlaylist() {
     setShowSkipButton(false); 
   };
   const qualityOptions = [
-    { value: "auto", label: "Auto Quality" },
+    { value: "auto", label: "Auto" },
     { value: "720", label: "720p" }, 
   ];
 
@@ -131,6 +131,7 @@ function WatchPlaylist() {
     }else{
       localStorage.setItem("watchlistId", watchlist[watchlist.length-1])
       setShowSkipButton(false)
+      alert('Played the last content in the watchlist, autoplay stopped')
     }
   };
   const handlePlayInstance= () =>{
