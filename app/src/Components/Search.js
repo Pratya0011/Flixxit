@@ -35,7 +35,7 @@ function Search() {
                     src={img_base_url + item.poster_path}
                     alt={item.name || item.title}
                   />
-                  <div className="row-content">
+                  <div className="search-content">
                     <div className="row-item">
                       <p
                         className="title"

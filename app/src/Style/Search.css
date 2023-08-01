@@ -41,12 +41,12 @@
     transition: 0.3s ease-in-out;
     cursor: pointer;
   }
-  .search-div.coloum .coloum-div:hover .row-content {
+  .search-div.coloum .coloum-div:hover .search-content {
     opacity: 1; 
     
 
   }
-  .coloum-container.search-div.coloum.coloum-div .row-content {
+   .search-content {
     position: absolute;
     bottom: 0; /* Place the row-content at the bottom of the coloum-div */
     left: 0;
@@ -88,7 +88,7 @@
       transform: translateY(0);
     }
   }
-  .search-component.row-content{
+  .search-component.search-content{
     width:12vw
   }
   
