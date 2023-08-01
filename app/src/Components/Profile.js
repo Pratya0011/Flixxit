@@ -37,6 +37,7 @@ function Profile() {
     event.preventDefault();
     axios.patch(`${getuser.favgenre}/${id}?value=${selectedOption}`).then(res=>{
       localStorage.setItem('genre', res.data.genre)
+      alert('Genre added')
     }).catch(err=>{
       throw err
     })
