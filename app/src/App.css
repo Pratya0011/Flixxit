@@ -193,6 +193,14 @@ padding: 5px;
   margin-top: 10px;
   cursor: pointer;
 }
+.expired{
+  width: 100%;
+  text-align: center;
+  background-color: #e50914;
+  color: white;
+  font-weight: 700;
+  height: 2rem;
+}
 
 
 
@@ -245,6 +253,52 @@ padding: 5px;
 
 /* Add media query for even smaller screens */
 @media (max-width:  392px) {
+  .landing-container {
+    min-height: 70vh;
+  }
+  .toggle-form {
+    height: 4vh;
+    width: 100%;
+
+  }
+  .view-toggle .eye{
+    right: 1rem;
+  }
+  .showcase .heading {
+    font-size: 1.5rem;
+  }
+  .login-component{
+    width: 100%;
+  }
+  .signup-component{
+    width: 100%;
+  }
+  .form-component{
+    width: 90%;
+  }
+  .signup{
+    width: 100%;
+  }
+  .login{
+    width: 100%;
+  }
+  .registerButton button {
+    width: 100%;
+    font-size: 18px;
+  }
+  .signup .view-toggle .eye{
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    cursor: pointer;
+  }
+  .login form input,
+  .signup form input {
+    width: 100%;
+  }
+}
+
+@media (max-width:  415px) {
   .landing-container {
     min-height: 70vh;
   }

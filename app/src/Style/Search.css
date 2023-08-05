@@ -98,5 +98,13 @@
       height: 20vh; 
       width: 136px;
     }
+    .coloum-container p{
+      width: 162px;
+      height: 25px;
+      cursor: pointer;
+    }
+    .row-content{
+      width:162px
+    }
   }
   

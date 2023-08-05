@@ -52,3 +52,10 @@
         padding: 20px 0px 20px 0px;
     }
 }
+
+@media (max-width: 415px) {
+    .banner-button{
+        display: flex;
+        padding: 20px 0px 20px 0px;
+    }
+}

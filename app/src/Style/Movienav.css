@@ -43,3 +43,16 @@
     display: inline-block; /* Change back to inline-block for horizontal layout */
   }
 }
+@media (max-width: 415px) {
+  .movie-menu ul li {
+    padding: 10px 15px; /* Adjust padding for better spacing on smaller screens */
+  }
+
+  .movie-menu {
+    text-align: center; /* Center the menu items */
+  }
+
+  .movie-menu ul li {
+    display: inline-block; /* Change back to inline-block for horizontal layout */
+  }
+}

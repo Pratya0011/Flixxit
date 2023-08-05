@@ -21,6 +21,7 @@ const initialState = {
   searchName: "",
   watchlist: null,
   loading: true,
+  message: ''
 };
 
 export const appSlice = createSlice({
@@ -39,6 +40,9 @@ export const appSlice = createSlice({
     setSeachName: (state, action) => {
       state.searchName = action.payload;
     },
+    setMessage: (state, action) =>{
+      state.message=action.payload;
+    }
   },
   extraReducers: {
     [fetchSearch.pending]: (state) => {
@@ -63,6 +67,6 @@ export const appSlice = createSlice({
     },
   },
 });
-export const { setId, setName, setEmail, setGenre, setType, setSeachName } =
+export const { setId, setName, setEmail, setGenre, setType, setSeachName, setMessage } =
   appSlice.actions;
 export default appSlice.reducer;

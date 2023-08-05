@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Login from "./Login";
 import Signup from "./Signup";
+import { useSelector } from "react-redux";
 import "../App.css";
 
 function Landing() {
@@ -13,6 +14,8 @@ function Landing() {
   const [isActiveOne, setIsActiveOne] = useState(false);
   const [isActiveTwo, setIsActiveTwo] = useState(false);
 
+  const message = useSelector((state)=>state.app.message)
+
   useEffect(() => {
     axios.get("http://localhost:8080/").then((res) => {
       setResponse(res.data.message1);
@@ -21,6 +24,7 @@ function Landing() {
 
   return (
     <div className="landing-container">
+      {message?(<div className="expired">{message}</div>):(<></>)}
       <div className="logo">
         <h2>Flᴉxxᴉt</h2>
       </div>

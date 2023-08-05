@@ -163,6 +163,10 @@
     height: 30vh;
     width: 25vw;
   }
+  .row p{
+    width: 205px;
+    cursor: pointer;
+  }
 }
 @media (max-width: 392px){
   .row-div {
@@ -171,5 +175,22 @@
   }
   .component.row-content {
     width: 35vw;
+}
+.row p{
+  width: 145px;
+  cursor: pointer;
+}
+}
+@media (max-width: 415px){
+  .row-div {
+    height: 30vh;
+    width: 35vw;
+  }
+  .component.row-content {
+    width: 35vw;
+}
+.row p{
+  width: 145px;
+  cursor: pointer;
 }
 }

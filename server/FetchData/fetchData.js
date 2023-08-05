@@ -11,7 +11,7 @@ export const movieList = async () => {
         `https://api.themoviedb.org/3/discover/movie`,
         {
           params: {
-            api_key: "b43f37eb1d6f107f8b687b89fd5dc583",
+            api_key: process.env.API_KEY,
             page: i,
             with_original_language: "hi",
             include_video: false,
@@ -24,7 +24,7 @@ export const movieList = async () => {
     }
     const res = await axios.get(`https://api.themoviedb.org/3/discover/movie`, {
       params: {
-        api_key: "b43f37eb1d6f107f8b687b89fd5dc583",
+        api_key: process.env.API_KEY,
         page: 1,
         with_original_language: "hi",
         with_genres: 99,
@@ -52,7 +52,7 @@ export const tvList = async () => {
     for (let i = 1; i < 6; i++) {
       const res = await axios.get(`https://api.themoviedb.org/3/discover/tv`, {
         params: {
-          api_key: 'b43f37eb1d6f107f8b687b89fd5dc583',
+          api_key: process.env.API_KEY,
           page: i,
           with_original_language: "hi",
           include_video: false,
@@ -67,7 +67,7 @@ export const tvList = async () => {
 
     const res = await axios.get(`https://api.themoviedb.org/3/discover/tv`, {
       params: {
-        api_key: 'b43f37eb1d6f107f8b687b89fd5dc583',
+        api_key: process.env.API_KEY,
         page: 1,
         with_original_language: "hi",
         with_genres: 99,

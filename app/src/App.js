@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Landing from "./Components/Landing";
 import Footer from "./Components/Footer";
 import Home from "./Components/Home";
@@ -33,10 +34,12 @@ import WatchlistComponent from "./Components/WatchlistComponent";
 import Profile from "./Components/Profile";
 import Overview from "./Components/Overview";
 import History from "./Components/History";
+import { setMessage } from "./features/AppSlice";
 
 function App() {
   const [state, setState] = useState(false);
-  const [message, setMessage] = useState("");
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const authenticate = () => {
@@ -48,7 +51,6 @@ function App() {
       };
       if (!accessToken && !refreshToken) {
         setState(false);
-        console.log('invalid')
       } else {
         axios
           .post("https://flixxit-server-9v89.onrender.com/user/authenticate", {}, { headers })
@@ -58,7 +60,7 @@ function App() {
               setState(true);
             } else {
               setState(false);
-              setMessage(res.data.message);
+              dispatch(setMessage(res.data.message))
             }
           })
           .catch((err) => {
@@ -68,7 +70,7 @@ function App() {
       }
     };
     authenticate();
-  },[state]);
+  },[state, dispatch]);
  
   return (
     <div className="App">

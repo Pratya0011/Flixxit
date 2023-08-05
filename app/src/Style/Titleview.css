@@ -207,3 +207,48 @@ background-color: #f1f1f1;
       font-size: 12px; /* Reduce the font size of the comment */
     }
   }
+  @media (max-width: 415px) {
+    .titleview-component .title-banner {
+      height: 40vh; /* Reduce the height of the title banner */
+      padding: 0.5rem; /* Adjust the padding of the title banner */
+    }
+    
+    .title-banner h1 {
+      font-size: 20px; /* Reduce the font size of the title */
+    }
+    
+    .title-banner .overview {
+      width: 95vw; /* Increase the width of the overview */
+      font-size: 10px; /* Reduce the font size of the overview */
+    }
+    
+    .title-banner .type span {
+      padding: 3px; /* Reduce the padding of the type span */
+      font-size: 10px; /* Reduce the font size of the type span */
+    }
+    
+    .titleview-component .review-div {
+      padding: 0.5rem; /* Adjust the padding of the review div */
+    }
+    
+    .titleview-component .heading {
+      font-size: 1.2rem; /* Reduce the font size of the heading */
+    }
+    
+    .textarea {
+      width: 60vw; /* Increase the width of the textarea */
+      height: 6vh; /* Reduce the height of the textarea */
+    }
+    
+    .comment-wrapper .comment-div {
+      padding: 8px; 
+    }
+    
+    .comment-div .name {
+      font-size: 14px; /* Reduce the font size of the name */
+    }
+    
+    .comment-div .comment {
+      font-size: 12px; /* Reduce the font size of the comment */
+    }
+  }
