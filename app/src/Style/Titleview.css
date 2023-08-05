@@ -34,6 +34,10 @@
     font-size: 13px;
     font-weight: 400;
 }
+.title-banner .type span:last-child i{
+  color: white;
+  font-size: 10px;
+}
 .title-banner .plus{
     display: flex;
     justify-content: center;

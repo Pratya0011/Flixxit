@@ -12,7 +12,8 @@ import {
   horrorMovies,
   romanceMovies,
   likes,
-  dislikes
+  dislikes,
+  getLikes
 } from "./controllers/movieController.js";
 
 const router = express.Router();
@@ -31,5 +32,6 @@ router.get("/horrorMovies",horrorMovies)
 router.get("/romanceMovies",romanceMovies)
 router.patch("/likes/:contentId", likes)
 router.patch("/dislikes/:contentId", dislikes)
+router.get("/getlike/:contentId", getLikes)
 
 export default router;

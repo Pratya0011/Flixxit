@@ -17,6 +17,7 @@ function TitleView() {
   const [comments, setComments] = useState([]);
   const [commentCount, setCommentCount] = useState(0);
   const [rerender, setRerender] = useState(false);
+  const [likecount, setLikecount] = useState(0)
 
   const recomended = useSelector((state) => state.home.recomended);
   const loading = useSelector((state) => state.home.loading);
@@ -55,7 +56,8 @@ function TitleView() {
     getData();
     getwatchlist();
     getComments();
-  }, [dispatch, rerender]);
+    getLikes()
+  }, [dispatch, rerender, likecount, like]);
   const clickHandler = (contentId, navigate) => {
     if (!contentId) {
       return;
@@ -64,6 +66,17 @@ function TitleView() {
       rerender ? setRerender(false) : setRerender(true);
     }
   };
+
+  const getLikes = ()=>{
+    const contentId = localStorage.getItem("contentId");
+    axios.get(`${likes.getLikes}/${contentId}`).then((res)=>{
+      if(res.data.status===200){
+        setLikecount(res.data.likes);
+      }else{
+        setLikecount(0);
+      }
+    })
+  }
 
   const getwatchlist = () => {
     const id = localStorage.getItem("userId");
@@ -221,6 +234,7 @@ function TitleView() {
               <p className="type">
                 <span>U/A</span>
                 <span>Hindi</span>
+                <span><i className="fa fa-thumbs-up" aria-hidden="true"></i> {likecount}</span>
               </p>
               <div className="overview">{data[0].overview}</div>
               <div className="banner-button">

@@ -7,6 +7,8 @@ import { videoRoutes, homeRequest, Watchlist } from "./request";
 import {  useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 import { fetchRecomended } from "../features/HomeSlice";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function WatchPlaylist() {
   const videoRef = useRef(null);
@@ -131,7 +133,7 @@ function WatchPlaylist() {
     }else{
       localStorage.setItem("watchlistId", watchlist[watchlist.length-1])
       setShowSkipButton(false)
-      alert('Played the last content in the watchlist, autoplay stopped')
+      toast.success('Played the last content in the watchlist, autoplay stopped')
     }
   };
   const handlePlayInstance= () =>{
@@ -208,7 +210,7 @@ function WatchPlaylist() {
               </div>
             </div>
           )}
-
+<ToastContainer position="top-center"autoClose={3000}theme="dark" hideProgressBar />
     </div>
   )
 }

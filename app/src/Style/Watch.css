@@ -89,6 +89,9 @@
   cursor: pointer;
   background: transparent;
 }
+.Toastify__toast--success svg {
+  color: #e50914; /* Replace 'red' with your desired color */
+}
 
 @media (max-width: 820px) {
   .titles {

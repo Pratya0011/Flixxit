@@ -1,6 +1,8 @@
 import React, { useState} from "react";
 import axios from "axios";
 import { signup } from "./request";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import '../App.css'
 
@@ -25,10 +27,12 @@ function Signup() {
       })
       .then((res) => {
         if (res.data.status === 200) {
-          alert(res.data.message);
-          window.location.reload();
+          toast.success(res.data.message);
+          setTimeout(()=>{
+            window.location.reload();
+          },3000)
         } else {
-          alert(res.data.message);
+          toast.success(res.data.message);
         }
       })
       .catch((error) => {
@@ -98,6 +102,7 @@ function Signup() {
         
         <button type="submit">Submit</button>
       </form>
+      <ToastContainer position="top-center"autoClose={3000}theme="dark" hideProgressBar />
       </div>
       <p>{error}</p>
     </div>

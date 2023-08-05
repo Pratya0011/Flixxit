@@ -232,3 +232,20 @@ export const dislikes = async (req,res)=>{
     });
   }
   }
+
+  export const getLikes = async (req,res)=>{
+    const {contentId} = req.params
+    try{
+      const result = await content.findById(contentId)
+      const likes = result.rating_likes
+      res.send({
+        status:200,
+        likes
+      })
+    }catch (err) {
+      res.send({
+        status: 500,
+        message: "Internal server error",
+      });
+  }
+}

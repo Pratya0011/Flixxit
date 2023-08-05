@@ -5,6 +5,8 @@ import "../Style/Profile.css";
 import { fetchUser } from "../features/AppSlice";
 import { getuser } from "./request";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Profile() {
   const id = localStorage.getItem("userId");
@@ -37,7 +39,7 @@ function Profile() {
     event.preventDefault();
     axios.patch(`${getuser.favgenre}/${id}?value=${selectedOption}`).then(res=>{
       localStorage.setItem('genre', res.data.genre)
-      alert('Genre added')
+      toast.success('Genre added');
     }).catch(err=>{
       throw err
     })
@@ -102,6 +104,7 @@ function Profile() {
           </div>
         </div>
       </div>
+      <ToastContainer position="top-center"autoClose={3000}theme="dark" hideProgressBar />
     </div>
   );
 }

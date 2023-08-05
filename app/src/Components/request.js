@@ -79,5 +79,6 @@ export const historyRoutes = {
 }
 export const likes = {
     likes:`https://flixxit-server-9v89.onrender.com/user/likes`,
-    dislikes:`https://flixxit-server-9v89.onrender.com/user/dislikes`
+    dislikes:`https://flixxit-server-9v89.onrender.com/user/dislikes`,
+    getLikes: `https://flixxit-server-9v89.onrender.com/user/getlike`
 }

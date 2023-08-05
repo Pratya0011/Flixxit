@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../App.css'
 import { signup } from "./request";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Login() {
@@ -30,7 +32,10 @@ function Login() {
         localStorage.setItem('userId',res.data.id)
         localStorage.setItem('name',res.data.name)
         localStorage.setItem('email',res.data.email)
-        window.location.reload()
+        toast.success('Login Success');
+        setTimeout(()=>{
+          window.location.reload()
+        },2000)
         navigate('/')
       }else if(res.data.status === 403){
           setError(res.data.message)
@@ -51,7 +56,10 @@ function Login() {
         newPassword
     }).then((res)=>{
       if(res.data.status === 200){
-        window.location.reload()
+        toast.success('Password changed!');
+        setTimeout(()=>{
+          window.location.reload()
+        },2000)
         navigate('/')
       }else if(res.data.status === 403){
         setError(res.data.message)
@@ -96,6 +104,7 @@ function Login() {
           </div>
           <button type="submit">Log In</button>
         </form>
+        <ToastContainer position="top-center"autoClose={2000}theme="light"progressStyle={{ background: "#e50914" }}/>
         <div onClick={()=>{
           setLogin(false)
           setForgot(true)
@@ -143,6 +152,7 @@ function Login() {
           </div>
           <button type="submit">Submit</button>
         </form>
+        <ToastContainer position="top-center"autoClose={2000}theme="light"progressStyle={{ background: "#e50914" }}/>
         <div onClick={()=>{
           setLogin(true)
           setForgot(false)
