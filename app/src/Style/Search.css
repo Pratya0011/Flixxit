@@ -41,11 +41,7 @@
     transition: 0.3s ease-in-out;
     cursor: pointer;
   }
-  .search-div.coloum .coloum-div:hover .search-content {
-    opacity: 1; 
-    
-  }
-  .coloum-container.search-div.coloum.coloum-div .search-content {
+  .search-content {
     position: absolute;
     bottom: 0; /* Place the search-content at the bottom of the coloum-div */
     left: 0;
@@ -60,6 +56,9 @@
     padding-bottom: 10px;
     background-color: aqua;
   }
+  .search-content:hover {
+    opacity: 1;
+  }
   .coloum-container.search-div.coloum.coloum-div.row-item {
     color: white;
   }
@@ -70,6 +69,7 @@
     font-size: 10px;
     background-color: aqua;
   }
+ 
   .coloum-container p{
     width: 12vw;
     cursor: pointer;
