@@ -46,3 +46,16 @@
     border-radius: 8px;
     cursor: pointer;
 }
+@media (max-width: 392px) {
+    .moviebanner-button{
+        display: flex;
+        padding: 20px 0px 20px 0px;
+    }
+}
+
+@media (max-width: 415px) {
+    .moviebanner-button{
+        display: flex;
+        padding: 20px 0px 20px 0px;
+    }
+}

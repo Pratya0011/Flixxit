@@ -51,11 +51,59 @@
         display: flex;
         padding: 20px 0px 20px 0px;
     }
+    .banner-button button{
+        height: 1.5rem;
+        width: 5rem;
+        color: white;
+        background-color: #e50914;
+        border: none;
+        border-radius: 10px;
+        font-size: 10px;
+        cursor: pointer;
+    }
+    .banner-button .plus{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 15px;
+        margin: 0 0 0 15px;
+        padding: 0 0 5px 0;
+        height: 2rem;
+        width: 2.5rem;
+        background-color: rgba(0, 0, 0, 0.731);
+        border-radius: 8px;
+        cursor: pointer;
+    }
 }
 
 @media (max-width: 415px) {
     .banner-button{
         display: flex;
         padding: 20px 0px 20px 0px;
+    }
+    .banner-button button{
+        height: 1.5rem;
+        width: 5rem;
+        color: white;
+        background-color: #e50914;
+        border: none;
+        border-radius: 10px;
+        font-size: 10px;
+        cursor: pointer;
+    }
+    .banner-button .plus{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 15px;
+        margin: 0 0 0 15px;
+        padding: 0 0 5px 0;
+        height: 2rem;
+        width: 2.5rem;
+        background-color: rgba(0, 0, 0, 0.731);
+        border-radius: 8px;
+        cursor: pointer;
     }
 }
