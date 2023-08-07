@@ -51,8 +51,11 @@
         display: flex;
         padding: 20px 0px 20px 0px;
     }
+    .banner-button button i{
+        padding-right: 5px;
+    }
     .banner-button button{
-        height: 1.5rem;
+        height: 2rem;
         width: 5rem;
         color: white;
         background-color: #e50914;
@@ -82,8 +85,11 @@
         display: flex;
         padding: 20px 0px 20px 0px;
     }
+    .banner-button button i{
+        padding-right: 5px;
+    }
     .banner-button button{
-        height: 1.5rem;
+        height: 2;
         width: 5rem;
         color: white;
         background-color: #e50914;
@@ -100,8 +106,8 @@
         font-size: 15px;
         margin: 0 0 0 15px;
         padding: 0 0 5px 0;
-        height: 1rem;
-        width: 1.5rem;
+        height: 2rem;
+        width: 2.5rem;
         background-color: rgba(0, 0, 0, 0.731);
         border-radius: 8px;
         cursor: pointer;
