@@ -109,13 +109,13 @@
   }
   @media (max-width: 392px){
     
-   row-content {
+   .row-content {
       width: 35vw;
   }
 }
 @media (max-width: 415px){
     
-  row-content {
+  .row-content {
      width: 35vw;
  }
 }
