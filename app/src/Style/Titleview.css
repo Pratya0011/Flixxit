@@ -173,12 +173,13 @@ background-color: #f1f1f1;
     }
     
     .title-banner h1 {
-      font-size: 20px; /* Reduce the font size of the title */
+      font-size: 18px; /* Reduce the font size of the title */
     }
     
     .title-banner .overview {
       width: 100vw; /* Increase the width of the overview */
       font-size: 10px; /* Reduce the font size of the overview */
+      padding: 10px 0 10px 0;
     }
     
     .title-banner .type span {
@@ -218,12 +219,13 @@ background-color: #f1f1f1;
     }
     
     .title-banner h1 {
-      font-size: 20px; /* Reduce the font size of the title */
+      font-size: 18px; /* Reduce the font size of the title */
     }
     
     .title-banner .overview {
       width: 95vw; /* Increase the width of the overview */
       font-size: 10px; /* Reduce the font size of the overview */
+      padding: 10px 0 10px 0;
     }
     
     .title-banner .type span {
