@@ -49,7 +49,7 @@
 @media (max-width: 392px) {
     .banner-button{
         display: flex;
-        padding: 20px 0px 20px 0px;
+        padding: 15px 0px 15px 0px;
     }
     .banner-button button i{
         padding-right: 5px;
@@ -78,12 +78,17 @@
         border-radius: 8px;
         cursor: pointer;
     }
+    .banner h1{
+        color: white;
+        transition: all 0.5s; 
+        font-size: 18px;
+    }
 }
 
 @media (max-width: 415px) {
     .banner-button{
         display: flex;
-        padding: 20px 0px 20px 0px;
+        padding: 15px 0px 15px 0px;
     }
     .banner-button button i{
         padding-right: 5px;
@@ -111,5 +116,10 @@
         background-color: rgba(0, 0, 0, 0.731);
         border-radius: 8px;
         cursor: pointer;
+    }
+    .banner h1{
+        color: white;
+        transition: all 0.5s; 
+        font-size: 18px;
     }
 }

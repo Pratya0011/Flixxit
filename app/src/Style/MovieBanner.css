@@ -49,13 +49,77 @@
 @media (max-width: 392px) {
     .moviebanner-button{
         display: flex;
-        padding: 20px 0px 20px 0px;
+        padding: 15px 0px 15px 0px;
+    }
+    .moviebanner-button button i{
+        padding-right: 5px;
+    }
+    .moviebanner-button button{
+        height: 2rem;
+        width: 5rem;
+        color: white;
+        background-color: #e50914;
+        border: none;
+        border-radius: 10px;
+        font-size: 10px;
+        cursor: pointer;
+    }
+    .moviebanner-button .plus{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 15px;
+        margin: 0 0 0 15px;
+        padding: 0 0 5px 0;
+        height: 2rem;
+        width: 2.5rem;
+        background-color: rgba(0, 0, 0, 0.731);
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .moviebanner h1{
+        color: white;
+        transition: all 0.5s; 
+        font-size: 18px;
     }
 }
 
 @media (max-width: 415px) {
     .moviebanner-button{
         display: flex;
-        padding: 20px 0px 20px 0px;
+        padding: 15px 0px 15px 0px;
+    }
+    .moviebanner-button button i{
+        padding-right: 5px;
+    }
+    .moviebanner-button button{
+        height: 2rem;
+        width: 5rem;
+        color: white;
+        background-color: #e50914;
+        border: none;
+        border-radius: 10px;
+        font-size: 10px;
+        cursor: pointer;
+    }
+    .moviebanner-button .plus{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 15px;
+        margin: 0 0 0 15px;
+        padding: 0 0 5px 0;
+        height: 2rem;
+        width: 2.5rem;
+        background-color: rgba(0, 0, 0, 0.731);
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .moviebanner h1{
+        color: white;
+        transition: all 0.5s; 
+        font-size: 18px;
     }
 }
