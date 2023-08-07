@@ -71,9 +71,6 @@
     font-size: 10px;
     background-color: aqua;
   }
-  .coloum-container.search-div.coloum.coloum-div.search-content:hover {
-    opacity: 1;
-  }
   .coloum-container p{
     width: 12vw;
     cursor: pointer;
