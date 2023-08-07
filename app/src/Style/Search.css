@@ -54,7 +54,6 @@
     justify-content: space-around;
     box-shadow: inset 0px -40px 30px black;
     padding-bottom: 10px;
-    background-color: aqua;
   }
   .search-content:hover {
     opacity: 1;
@@ -106,12 +105,12 @@
   @media (max-width: 392px){
     
    .search-content {
-      width: 35vw;
+      width:162px
   }
 }
 @media (max-width: 415px){
     
   .search-content {
-     width: 35vw;
+     width:162px
  }
 }
