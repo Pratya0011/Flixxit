@@ -15,19 +15,12 @@ function DocumentaryTv() {
   const tv = useSelector((state) => state.tv.documentary);
   const loading = useSelector((state) => state.tv.loading);
   const [watchlist, setWatchlist] = useState([]);
-  const [data, setData] = useState([])
   const img_base_url = "https://image.tmdb.org/t/p/original";
   const navigate = useNavigate()
   useEffect(() => {
     dispatch(fetchDocumentaryTv());
     getwatchlist()
-    const filterData = () =>{
-      const item = tv.result.filter(data=> data.name!== 'Samvidhaan: The Making of the Constitution of India')
-      setData(item)
-    }
-    filterData()
-  }, [dispatch, tv.result]);
-  
+  }, [dispatch]);
   const getwatchlist = () => {
     const id = localStorage.getItem("userId");
     axios
@@ -74,7 +67,7 @@ function DocumentaryTv() {
       <>
         {template(
           "documentary",
-          data,
+          tv.result,
           "tv",
           img_base_url,
           loading,
