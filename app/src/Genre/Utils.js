@@ -37,7 +37,7 @@ export const template = (genre, content, mediaType, img_base_url,loading,watchli
                             data.original_name
                           ).slice(0, 10) + "..."}
                         </p>
-                        <p className="date">{data.release_date.slice(0, 4)}</p>
+                        {data.release_date && <p className="date">{data.release_date.slice(0, 4)}</p>}
                       </div>
                       {watchlist && watchlist.some((value) => data._id === value._id) ? (
                         <div
