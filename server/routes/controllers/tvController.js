@@ -91,9 +91,10 @@ export const actionAndAdventure = async (req, res) => {
 };
 export const documentaryTv = async (req, res) => {
   try {
-    const result = await content.find({
+    const value = await content.find({
       $and: [{ media_type: "tv" }, { genre_ids: 99 }],
     });
+    const result = value.filter(data=> data.name !== 'Samvidhaan: The Making of the Constitution of India')
     res.send({
       status: 200,
       result,
