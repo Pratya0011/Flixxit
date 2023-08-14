@@ -31,8 +31,12 @@ function Signup() {
           setTimeout(()=>{
             window.location.reload();
           },3000)
-        } else {
-          toast.success(res.data.message);
+        }
+        else if(res.code === "ERR_NETWORK"){
+          toast.info('Establishing connection please wait');
+        }
+         else {
+          toast.error(res.data.message);
         }
       })
       .catch((error) => {
