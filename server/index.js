@@ -16,20 +16,17 @@ import videoRouter from "./routes/videoRoutes.js";
 import historyRouter from "./routes/historyRoute.js";
 import User from "./model/userModel.js";
 import bcrypt from "bcrypt";
-import rateLimit from "express-rate-limit";
+
 
 import { config } from "dotenv";
 config();
 const app = express();
-app.set('trust proxy', true);
+
 app.use(cors({ origin: "https://flixxit-2i45.onrender.com" }));
 // app.use(cors({ origin: "http://localhost:3000"  }))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const limitter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-});
+
 
 app.set("view engine", "pug");
 
@@ -65,8 +62,8 @@ app.post("/admin/signup", async (req, res) => {
   }
   return res.redirect("/admin");
 });
-app.use("/admin", limitter);
-app.use("/user", limitter);
+
+
 app.use("/admin", adminRouter);
 app.use("/user", userRouter);
 app.use("/admin", adminDashboad);
