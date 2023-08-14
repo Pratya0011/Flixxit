@@ -24,9 +24,7 @@ function Login() {
   const onSubmitHandler=(e)=>{
     e.preventDefault()
     setConnecting(true)
-      if(connecting){
         toast.info('Establishing Connection please wait')
-      }
     axios.post(signup.loginUrl,{
         username,
         password

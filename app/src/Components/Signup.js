@@ -20,9 +20,7 @@ function Signup() {
     e.preventDefault();
     if(password === cpassword){
       setConnecting(true)
-      if(connecting){
         toast.info('Establishing Connection please wait')
-      }
       axios.post(signup.signUpUrl, {
         name: name,
         email: email,
