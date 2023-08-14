@@ -14,11 +14,14 @@ function Signup() {
   const [cpassword, setCpassword] = useState("")
   const [type, setType] = useState('password')
   const [error, setError] = useState("");
+  const [connecting, setConnecting] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    password === cpassword ?(axios
-      .post(signup.signUpUrl, {
+    if(password === cpassword){
+      setConnecting(true)
+      toast.info('Establishing Connection please wait')
+      axios.post(signup.signUpUrl, {
         name: name,
         email: email,
         username: username,
@@ -32,16 +35,18 @@ function Signup() {
             window.location.reload();
           },3000)
         }
-        else if(res.code === "ERR_NETWORK"){
-          toast.info('Establishing connection please wait');
-        }
          else {
           toast.error(res.data.message);
         }
       })
       .catch((error) => {
         error?alert("Request failed"):<></>;
-      })):setError('Password donot match')
+      }).finally(()=>{
+        setConnecting(false)
+      })
+    }else{
+        setError('Password donot match')
+      }
   };
   const toggleType=()=>{
     type === 'password'?setType('text'):setType('password')
