@@ -17,11 +17,16 @@ function Login() {
   const [type, setType] = useState('password')
   const [forgot, setForgot] = useState(false)
   const [login, setLogin] = useState(true)
+  const [connecting, setConnecting] = useState(false);
   const navigate = useNavigate()
 
   
   const onSubmitHandler=(e)=>{
     e.preventDefault()
+    setConnecting(true)
+      if(connecting){
+        toast.info('Establishing Connection please wait')
+      }
     axios.post(signup.loginUrl,{
         username,
         password
@@ -44,6 +49,8 @@ function Login() {
         }
     }).catch(err=>{
         setError("Request failed")
+    }).finally(()=>{
+      setConnecting(false)
     })
   }
   const onPasswordChange = (e)=>{
