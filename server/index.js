@@ -21,6 +21,7 @@ import rateLimit from "express-rate-limit";
 import { config } from "dotenv";
 config();
 const app = express();
+app.set('trust proxy', true);
 app.use(cors({ origin: "https://flixxit-2i45.onrender.com" }));
 // app.use(cors({ origin: "http://localhost:3000"  }))
 app.use(bodyParser.json());
