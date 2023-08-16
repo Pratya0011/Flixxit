@@ -65,11 +65,14 @@
   width: 5.5rem;
   z-index: 1;
   border: none;
+  background-color: rgba(255, 255, 255, 0.582);
+  border-radius: 20px;
 }
 .skipIntro button{
   height: 100%;
   width: 100%;
-  border: 1px solid #e50914;
+  border-radius: 20px;
+  border: none;
   background: transparent;
   color: white;
   cursor: pointer;
@@ -89,6 +92,7 @@
   cursor: pointer;
   background: transparent;
 }
+
 .Toastify__toast--success svg {
   color: #e50914; /* Replace 'red' with your desired color */
 }
