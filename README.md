@@ -14,8 +14,8 @@ Flixxit is a cutting-edge web application that seeks to provide users with an im
 To run this project on your local machine, follow these steps:
 
 - Clone the repository: git clone https://github.com/Pratya0011/Flixxit.git
-- Change directory: cd server
-- Install dependencies: npm install
+- ### Change directory: `cd server`
+- Install dependencies: `npm install`
 - Start development mode: npm start
 - Create a .env file and add the following environment variables:
 - JWT_SECRET_KEY: Used for JWT token generation and validation.
