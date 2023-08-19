@@ -13,26 +13,26 @@ Flixxit is a cutting-edge web application that seeks to provide users with an im
 
 To run this project on your local machine, follow these steps:
 
-- Clone the repository: git clone https://github.com/Pratya0011/Flixxit.git
-- ### Change directory: `cd server`
+- Clone the repository: `git clone https://github.com/Pratya0011/Flixxit.git`
+- Change directory: `cd server`
 - Install dependencies: `npm install`
-- Start development mode: npm start
-- Create a .env file and add the following environment variables:
-- JWT_SECRET_KEY: Used for JWT token generation and validation.
-- JWT_REFRESH_SECRET: Used for refreshing JWT tokens.
-- RAZORPAY_API_KEY: The API key for Razorpay payment integration.
-- RAZORPAY_API_SECRET: The API secret for Razorpay payment integration.
+- Start development mode: `npm start`
+- Create a `.env` file and add the following environment variables:
+- `JWT_SECRET_KEY`: Used for JWT token generation and validation.
+- `JWT_REFRESH_SECRET`: Used for refreshing JWT tokens.
+- `RAZORPAY_API_KEY`: The API key for Razorpay payment integration.
+- `RAZORPAY_API_SECRET`: The API secret for Razorpay payment integration.
 
-- Then cd .. to comes back to root file and do cd app and then do npm install.
-- Start the development server: npm start
+- Then `cd ..` to comes back to root file and do cd app and then do `npm install`.
+- Start the development server: `npm start`
 
 ## Payment
 - Test card details:
- Mastercard	5267 3181 8797 5449	Random CVV	Any future date
- Visa 4111 1111 1111 1111	Random CVV	Any future date
+ Mastercard	`5267 3181 8797 5449`	Random CVV	Any future date
+ Visa `4111 1111 1111 1111`	Random CVV	Any future date
 
 - Test UPI ID:
-  success@razorpay
+  `success@razorpay`
 
 *** Note ***
 Free instance of web sevice types spins down with inactivity.so it might take some time to connect
