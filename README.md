@@ -34,7 +34,7 @@ To run this project on your local machine, follow these steps:
 - Test UPI ID:
   success@razorpay
 
-## Note
+*** Note ***
 Free instance of web sevice types spins down with inactivity.so it might take some time to connect
 
 ## Features & Usage
