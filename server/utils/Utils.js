@@ -57,3 +57,44 @@ export const authenticateToken = (req, res, next) => {
     });
   }
 };
+
+export const authentiacteRoute = async (req, res, next) => {
+  let accessToken = req.header("access");
+  let refreshToken = req.header("refresh");
+  if (!accessToken) {
+    return res.status(401).send({ message: "Access not allowed" });
+  }else {
+    jwt.verify(accessToken, process.env.JWT_SECRET, (err, user) => {
+      if (err) {
+        if (err.name === "TokenExpiredError") {
+          if (!refreshToken) {
+            return res
+              .status(401)
+              .send({ message: "Access not allowed" });
+          } else {
+            jwt.verify(
+              refreshToken,
+              process.env.JWT_REFRESHSECRET,
+              (err, user) => {
+                if (err) {
+                  return res.send({
+                    status: 502,
+                    name: err.name,
+                    message: "Session Expired",
+                  });
+                } else {
+                  req.user = user
+                  next();
+                }
+              }
+            );
+          }
+        } else {
+          return res.status(500).send({ message: "Access not allowed" });
+        }
+      } else {
+        next();
+      }
+    });
+  }
+}

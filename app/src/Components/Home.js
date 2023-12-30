@@ -11,12 +11,13 @@ import {
 } from "../features/HomeSlice";
 import Hoding from "./Hoding.js";
 import "../Style/Home.css";
-import axios from "axios";
 import { Watchlist } from "./request";
 import { clickHandler } from "./Utils";
+import useApi from "../Custom/useApi.js";
 
 function Home() {
   const [watchlist, setWatchlist] = useState([]);
+  const {get, patch} = useApi()
   const toprated = useSelector((state) => state.home.toprated);
   const popular = useSelector((state) => state.home.popular);
   const topten = useSelector((state) => state.home.topten);
@@ -89,8 +90,7 @@ function Home() {
   };
   const getwatchlist = () => {
     const id = localStorage.getItem("userId");
-    axios
-      .get(`${Watchlist.getWatchlist}/${id}`)
+    get(`${Watchlist.getWatchlist}/${id}`)
       .then((res) => {
         setWatchlist(res.data.contentResult);
       })
@@ -101,14 +101,12 @@ function Home() {
   const toggleWatchlist = (contentid) => {
     const id = localStorage.getItem("userId");
     const queryParam = new URLSearchParams({ contentId: contentid });
-    axios
-      .patch(`${Watchlist.addWatchlist}/${id}`, null, { params: queryParam })
+    patch(`${Watchlist.addWatchlist}/${id}`, {}, { params: queryParam })
       .then((res) => {
         if (res.data.status === 200) {
           setWatchlist(res.data.contentResult);
         } else if (res.data.status === 409) {
-          axios
-            .patch(`${Watchlist.deleteWatchlist}/${id}`, null, {
+          patch(`${Watchlist.deleteWatchlist}/${id}`, {}, {
               params: queryParam,
             })
             .then((res) => {

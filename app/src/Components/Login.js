@@ -6,10 +6,11 @@ import '../App.css'
 import { signup } from "./request";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useApi from "../Custom/useApi";
 
 
 function Login() {
-  
+  const {get,post,put, patch,del} = useApi()
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -25,7 +26,7 @@ function Login() {
     e.preventDefault()
     setConnecting(true)
         toast.info('Establishing Connection please wait')
-    axios.post(signup.loginUrl,{
+    post(signup.loginUrl,{
         username,
         password
     }).then(res=>{
@@ -56,7 +57,7 @@ function Login() {
     if(password !== newPassword){
       setError('Passord donot match')
     }else{
-    axios.post(signup.fogotPassword,{
+    post(signup.fogotPassword,{
         username,
         newPassword
     }).then((res)=>{

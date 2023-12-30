@@ -1,76 +1,75 @@
 const url = 'https://flixxit-server-9v89.onrender.com'
-// https://flixxit-server-9v89.onrender.com
-// http://localhost:8080
+// const url = `http://localhost:8080`
 
 export const signup = {
-    signUpUrl : `${url}/user/signup`,
-    loginUrl  :`${url}/user/login`,
-    fogotPassword : `${url}/user/forgotPassword`
+    signUpUrl : `/user/signup`,
+    loginUrl  :`/user/login`,
+    fogotPassword : `/user/forgotPassword`
 }
 
 export const homeRequest = {
-    topRatedFlixxit: `${url}/user/toprated`,
-    popularFlixxit:`${url}/user/popular`,
-    toptenFlixxit:`${url}/user/topten`,
-    documentaryFlixxit:`${url}/user/documentary`,
-    recomendedFlixxit:`${url}/user/recomended`,
-    getTitle:`${url}/user/getTitle`
+    topRatedFlixxit: `/user/toprated`,
+    popularFlixxit:`/user/popular`,
+    toptenFlixxit:`/user/topten`,
+    documentaryFlixxit:`/user/documentary`,
+    recomendedFlixxit:`/user/recomended`,
+    getTitle:`/user/getTitle`
 }
 
 export const movieRequest = {
-    topRatedMovies: `${url}/user/topRatedMovies`,
-    popularMovies: `${url}/user/popularMovies`,
-    thrillerMovies: `${url}/user/thrillerMovies`,
-    crimeMovies: `${url}/user/crimeMovies`,
-    dramaMovies: `${url}/user/dramaMovies`,
-    actionMovies: `${url}/user/actionMovies`,
-    adventureMovies: `${url}/user/adventureMovies`,
-    horrorMovies: `${url}/user/horrorMovies`,
-    comedyMovies: `${url}/user/comedyMovies`,
-    romanceMovies: `${url}/user/romanceMovies`,
-    documentaryMovies: `${url}/user/documentaryMovies`
+    topRatedMovies: `/user/topRatedMovies`,
+    popularMovies: `/user/popularMovies`,
+    thrillerMovies: `/user/thrillerMovies`,
+    crimeMovies: `/user/crimeMovies`,
+    dramaMovies: `/user/dramaMovies`,
+    actionMovies: `/user/actionMovies`,
+    adventureMovies: `/user/adventureMovies`,
+    horrorMovies: `/user/horrorMovies`,
+    comedyMovies: `/user/comedyMovies`,
+    romanceMovies: `/user/romanceMovies`,
+    documentaryMovies: `/user/documentaryMovies`
 }
 
 export const tvRequest = {
-    topRatedTv: `${url}/user/topRatedTv`,
-    popularTv: `${url}/user/popularTv`,
-    crimeTv:   `${url}/user/crimeTv`,
-    dramaTv: `${url}/user/dramaTv`,
-    comedyTv: `${url}/user/comedyTv`,
-    mysteryTv: `${url}/user/mysteryTv`,
-    actionadventureTv: `${url}/user/action&advntureTv`,
-    documentaryTv: `${url}/user/documentaryTv`
+    topRatedTv: `/user/topRatedTv`,
+    popularTv: `/user/popularTv`,
+    crimeTv:   `/user/crimeTv`,
+    dramaTv: `/user/dramaTv`,
+    comedyTv: `/user/comedyTv`,
+    mysteryTv: `/user/mysteryTv`,
+    actionadventureTv: `/user/action&advntureTv`,
+    documentaryTv: `/user/documentaryTv`
 }
 
 export const Watchlist={
-    getWatchlist : `${url}/user/getWatchlist`,
-    addWatchlist : `${url}/user/addWatchlist`,
-    deleteWatchlist : `${url}/user/deleteWatchlist`
+    getWatchlist : `/user/getWatchlist`,
+    addWatchlist : `/user/addWatchlist`,
+    deleteWatchlist : `/user/deleteWatchlist`
 }
 
 export const searchBar = {
-    getSearch: `${url}/user/search`
+    getSearch: `/user/search`
 }
 
 export const subscribitionPlan = {
-    getAllSubsPlans: `${url}/user/getPlan`,
-    checkOut:`${url}/user/checkout`,
+    getAllSubsPlans: `/user/getPlan`,
+    checkOut:`/user/checkout`,
     paymentVerification:`${url}/user/paymentverification`,
-    getkey:`${url}/user/getKey`,
-    updatePaymentStatus:`${url}/user/updatePaymentStatus`
+    getkey:`/user/getKey`,
+    updatePaymentStatus:`/user/updatePaymentStatus`
 } 
 
 export const getuser = {
-    getUserById : `${url}/admin/getUser`,
-    getallUser : `${url}/admin/getallusers`,
-    getSubscribedUser: `${url}/admin/getsubscribed`,
-    getAmount : `${url}/admin/getamount`,
-    favgenre : `${url}/user/genre`
+    getUserById : `/admin/getUser`,
+    getallUser : `/admin/getallusers`,
+    getSubscribedUser: `/admin/getsubscribed`,
+    getAmount : `/admin/getamount`,
+    favgenre : `/user/genre`
 }
 
 export const commentsRequest = {
-    getComments: `${url}/user/comments`,
-    postComments: `${url}/user/addcomment`
+    getComments: `/user/comments`,
+    postComments: `/user/addcomment`
 }
 
 export const videoRoutes = {
@@ -78,11 +77,11 @@ export const videoRoutes = {
 }
 
 export const historyRoutes = {
-    addHistory :`${url}/user/addhistory`,
-    getHistory : `${url}/user/gethistory`
+    addHistory :`/user/addhistory`,
+    getHistory : `/user/gethistory`
 }
 export const likes = {
-    likes:`${url}/user/likes`,
-    dislikes:`${url}/user/dislikes`,
-    getLikes: `${url}/user/getlike`
+    likes:`/user/likes`,
+    dislikes:`/user/dislikes`,
+    getLikes: `/user/getlike`
 }

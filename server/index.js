@@ -19,11 +19,12 @@ import bcrypt from "bcrypt";
 
 
 import { config } from "dotenv";
-config();
+import { authentiacteRoute } from "./utils/Utils.js";
+config()
 const app = express();
 
 app.use(cors({ origin: "https://flixxit-2i45.onrender.com" }));
-// app.use(cors({ origin: "http://localhost:3000"  }))
+// app.use(cors({ origin: "http://localhost:3000"}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -66,6 +67,11 @@ app.post("/admin/signup", async (req, res) => {
 
 app.use("/admin", adminRouter);
 app.use("/user", userRouter);
+app.use("/user", videoRouter);
+app.use("/user", paymentRouter);
+
+app.use(authentiacteRoute)
+
 app.use("/admin", adminDashboad);
 app.use("/user", homeRouter);
 app.use("/user", searchRouter);
@@ -73,8 +79,6 @@ app.use("/user", movieRouter);
 app.use("/user", tvRouter);
 app.use("/user", watchlistRouter);
 app.use("/user", subscribePlan);
-app.use("/user", paymentRouter);
-app.use("/user", videoRouter);
 app.use("/user", historyRouter);
 
 connection

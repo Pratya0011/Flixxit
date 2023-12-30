@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Login from "./Login";
 import Signup from "./Signup";
 import { useSelector } from "react-redux";
 import "../App.css";
+import useApi from "../Custom/useApi";
 
 function Landing() {
   const [response, setResponse] = useState("");
+  const {get} = useApi()
   const [buttonDisplay, setButtonDisplay] = useState(true);
   const [formDisplay, setFormDisplay] = useState(false);
   const [loginForm, setLoginForm] = useState(true);
@@ -17,7 +18,7 @@ function Landing() {
   const message = useSelector((state)=>state.app.message)
 
   useEffect(() => {
-    axios.get("http://localhost:8080/").then((res) => {
+    get("/").then((res) => {
       setResponse(res.data.message1);
     });
   }, []);

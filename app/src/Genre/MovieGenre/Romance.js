@@ -5,14 +5,15 @@ import { template } from "../Utils";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchRomance } from "../../features/MovieSlice";
 import "../../Style/Content.css";
-import axios from "axios";
 import { Watchlist } from "../../Components/request";
 import { clickHandler } from "../../Components/Utils";
 import { useNavigate } from "react-router-dom";
+import useApi from "../../Custom/useApi";
 
 function Romance() {
   const dispatch = useDispatch();
   const [watchlist, setWatchlist] = useState([]);
+  const {get, patch} = useApi()
   const movie = useSelector((state) => state.movie.romance);
   const loading = useSelector((state) => state.movie.loading);
   const img_base_url = "https://image.tmdb.org/t/p/original";
@@ -23,8 +24,7 @@ function Romance() {
   }, [dispatch]);
   const getwatchlist = () => {
     const id = localStorage.getItem("userId");
-    axios
-      .get(`${Watchlist.getWatchlist}/${id}`)
+    get(`${Watchlist.getWatchlist}/${id}`)
       .then((res) => {
         setWatchlist(res.data.contentResult);
       })
@@ -33,17 +33,14 @@ function Romance() {
       });
   };
   const toggleWatchlist = (contentid) => {
-    console.log(contentid);
     const id = localStorage.getItem("userId");
     const queryParam = new URLSearchParams({ contentId: contentid });
-    axios
-      .patch(`${Watchlist.addWatchlist}/${id}`, null, { params: queryParam })
+    patch(`${Watchlist.addWatchlist}/${id}`, {}, { params: queryParam })
       .then((res) => {
         if (res.data.status === 200) {
           setWatchlist(res.data.contentResult);
         } else if (res.data.status === 409) {
-          axios
-            .patch(`${Watchlist.deleteWatchlist}/${id}`, null, {
+          patch(`${Watchlist.deleteWatchlist}/${id}`, {}, {
               params: queryParam,
             })
             .then((res) => {

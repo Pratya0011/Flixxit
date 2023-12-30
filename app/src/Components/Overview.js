@@ -1,31 +1,32 @@
 import React,{useState,useEffect,useMemo} from 'react'
 import { MaterialReactTable } from 'material-react-table';
 import { getuser } from './request'
-import axios from 'axios'
 import '../Style/Dashboard.css'
+import useApi from '../Custom/useApi';
 
 function Overview() {
   const [allUsers, setAllUsers] = useState(0)
   const [subscribedUsers, setSubscribedUsers] = useState(0)
   const [amount, setAmount] = useState(0)
+  const {get} = useApi()
 
   useEffect(()=>{
     const getallUser = ()=>{
-      axios.get(`${getuser.getallUser}`).then((res)=>{
+      get(`${getuser.getallUser}`).then((res)=>{
         setAllUsers(res.data.count)
       }).catch(err=>{
         throw err
       })
     }
     const getSubscribed = () => {
-      axios.get(`${getuser.getSubscribedUser}`).then((res)=>{
+      get(`${getuser.getSubscribedUser}`).then((res)=>{
         setSubscribedUsers(res.data.count)
       }).catch(err=>{
         throw err
       })
   }
     const getAmount = () => {
-      axios.get(`${getuser.getAmount}`).then((res)=>{
+      get(`${getuser.getAmount}`).then((res)=>{
         setAmount(res.data.amount)
       }).catch(err=>{
         throw err

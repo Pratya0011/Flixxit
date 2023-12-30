@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { tvRequest, historyRoutes } from "./request";
 import "../Style/MovieBanner.css";
 import { Watchlist } from "./request";
 import { useNavigate } from "react-router-dom";
 import { getuser } from "./request";
+import useApi from "../Custom/useApi";
 
 function TvBanner() {
   const [data, setData] = useState("");
@@ -12,6 +12,7 @@ function TvBanner() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const img_base_url = "https://image.tmdb.org/t/p/original";
   const navigate = useNavigate();
+  const {get, patch} = useApi()
 
   useEffect(() => {
     fetchData();
@@ -25,8 +26,7 @@ function TvBanner() {
   }, [data.length]);
 
   const fetchData = () => {
-    axios
-      .get(tvRequest.popularTv)
+    get(tvRequest.popularTv)
       .then((res) => {
         setData(res.data.result);
       })
@@ -36,8 +36,7 @@ function TvBanner() {
   };
   const getwatchlist = () => {
     const id = localStorage.getItem("userId");
-    axios
-      .get(`${Watchlist.getWatchlist}/${id}`)
+    get(`${Watchlist.getWatchlist}/${id}`)
       .then((res) => {
         setWatchlist(res.data.contentResult);
       })
@@ -48,14 +47,12 @@ function TvBanner() {
   const toggleWatchlist = (contentid) => {
     console.log(contentid);
     const id = localStorage.getItem("userId");
-    axios
-      .patch(`${Watchlist.addWatchlist}/${id}?contentId=${contentid}`)
+    patch(`${Watchlist.addWatchlist}/${id}?contentId=${contentid}`)
       .then((res) => {
         if (res.data.status === 200) {
           setWatchlist(res.data.contentResult);
         } else if (res.data.status === 409) {
-          axios
-            .patch(`${Watchlist.deleteWatchlist}/${id}?contentId=${contentid}`)
+          patch(`${Watchlist.deleteWatchlist}/${id}?contentId=${contentid}`)
             .then((res) => {
               setWatchlist(res.data.contentResult);
             })
@@ -75,7 +72,7 @@ function TvBanner() {
   const playvideo = (contentid) => {
     const id = localStorage.getItem("userId");
     watchlist && watchlist.some((data) => data._id === contentid)
-      ? axios.get(`${getuser.getUserById}/${id}`).then((res) => {
+      ? get(`${getuser.getUserById}/${id}`).then((res) => {
           if (res.data.user.subscription.subscriptionStatus) {
             localStorage.setItem("watchlistId", contentid);
             addHistory(id,contentid)
@@ -84,7 +81,7 @@ function TvBanner() {
             navigate("/subscribe");
           }
         })
-      : axios.get(`${getuser.getUserById}/${id}`).then((res) => {
+      : get(`${getuser.getUserById}/${id}`).then((res) => {
           if (res.data.user.subscription.subscriptionStatus) {
             localStorage.setItem("contentId", contentid);
             addHistory(id,contentid)
@@ -95,7 +92,7 @@ function TvBanner() {
         });
   };
   const addHistory = (id, contentId)=>{
-    axios.patch(`${historyRoutes.addHistory}/${id}?contentId=${contentId}`).then((res)=>{
+    patch(`${historyRoutes.addHistory}/${id}?contentId=${contentId}`).then((res)=>{
       if(res.data.status === 200){
         console.log('added to history')
       }else{

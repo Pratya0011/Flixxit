@@ -35,9 +35,11 @@ import Profile from "./Components/Profile";
 import Overview from "./Components/Overview";
 import History from "./Components/History";
 import { setMessage } from "./features/AppSlice";
+import useApi from "./Custom/useApi";
 
 function App() {
   const [state, setState] = useState(false);
+  const {get, post, put, del } = useApi();
 
   const dispatch = useDispatch()
 
@@ -45,15 +47,10 @@ function App() {
     const authenticate = () => {
       let accessToken = localStorage.getItem("accessToken");
       let refreshToken = localStorage.getItem("refreshToken");
-      const headers = {
-        access: accessToken,
-        refresh: refreshToken,
-      };
       if (!accessToken && !refreshToken) {
         setState(false);
       } else {
-        axios
-          .post("https://flixxit-server-9v89.onrender.com/user/authenticate", {}, { headers })
+        post("/user/authenticate")
           .then((res) => {
             if (res.data.status === 200) {
               localStorage.setItem("accessToken", res.data.accessToken);

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import Nav from "./Nav";
 import ReactPlayer from "react-player";
 import '../Style/Watch.css'
@@ -7,6 +6,8 @@ import { videoRoutes, homeRequest} from "./request";
 import {  useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 import { fetchRecomended } from "../features/HomeSlice";
+import useApi from "../Custom/useApi";
+import axios from "axios";
 
 
 function Watch() {
@@ -18,6 +19,7 @@ function Watch() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [duration, setDuration] = useState(0.0)
+  const {get} = useApi()
   
 
   // const recomended = useSelector((state) => state.home.recomended);
@@ -32,8 +34,7 @@ function Watch() {
 
     const getData = () => {
         const contentId = localStorage.getItem("contentId");
-        axios
-          .get(`${homeRequest.getTitle}?contentId=${contentId}`)
+        get(`${homeRequest.getTitle}?contentId=${contentId}`)
           .then((res) => {
             if (res.data.status === 200) {
               setData(res.data.result);

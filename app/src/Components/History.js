@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { historyRoutes} from "./request";
-import axios from "axios";
 import Nav from "./Nav";
 import { clickHandler } from "./Utils";
 import { useNavigate } from "react-router-dom";
 import '../Style/History.css'
+import useApi from "../Custom/useApi";
 
 function History() {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {get} = useApi()
   const img_base_url = "https://image.tmdb.org/t/p/original";
   const navigate = useNavigate()
   useEffect(() => {
@@ -16,8 +17,7 @@ function History() {
   }, []);
   const getHistory = () => {
     const id = localStorage.getItem("userId");
-    axios
-      .get(`${historyRoutes.getHistory}/${id}`)
+   get(`${historyRoutes.getHistory}/${id}`)
       .then((res) => {
         setHistory(res.data.contentResult);
         setLoading(false);

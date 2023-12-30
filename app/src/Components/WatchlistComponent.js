@@ -4,7 +4,8 @@ import Nav from './Nav'
 import "../Style/Search.css";
 import { clickHandler } from "./Utils";
 import { Watchlist } from "./request";
-import axios from 'axios';
+import useApi from '../Custom/useApi';
+
 
 function WatchlistComponent() {
   const [loading, setLoading] = useState(true)
@@ -12,11 +13,12 @@ function WatchlistComponent() {
   const navigate = useNavigate();
   const [watchlist,setWatchlist]=useState([])
   const [newWatchlist, setNewWatchlist]= useState([])
+  const {get, patch} = useApi()
 
   useEffect(()=>{
     const getwatchlist=()=>{
       const id = localStorage.getItem("userId")
-      axios.get(`${Watchlist.getWatchlist}/${id}`).then((res)=>{
+      get(`${Watchlist.getWatchlist}/${id}`).then((res)=>{
         setWatchlist(res.data.contentResult)
         setLoading(false)
       }).catch(err=>{
@@ -29,7 +31,7 @@ function WatchlistComponent() {
 
   const deleteWatchlist = (contentId)=>{
     const id = localStorage.getItem("userId")
-    axios.patch(`${Watchlist.deleteWatchlist}/${id}?contentId=${contentId}`).then(res=>{
+    patch(`${Watchlist.deleteWatchlist}/${id}?contentId=${contentId}`).then(res=>{
       setNewWatchlist(res.data.contentResult)
     }).catch(err=>{
       throw err

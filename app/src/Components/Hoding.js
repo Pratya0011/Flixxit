@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { homeRequest, historyRoutes } from "./request";
 import "../Style/Hoding.css";
 import { Watchlist } from "./request";
 import { useNavigate } from "react-router-dom";
 import { getuser } from "./request";
+import useApi from "../Custom/useApi";
 
 
 function Hoding() {
   const [data, setData] = useState("");
   const [watchlist, setWatchlist] = useState([]);
+  const {get, patch} = useApi()
   const [currentIndex, setCurrentIndex] = useState(0);
   const img_base_url = "https://image.tmdb.org/t/p/original";
   const navigate = useNavigate();
@@ -27,8 +28,7 @@ function Hoding() {
   }, [data.length]);
 
   const fetchData = () => {
-    axios
-      .get(homeRequest.popularFlixxit)
+    get(homeRequest.popularFlixxit)
       .then((res) => {
         setData(res.data.result);
       })
@@ -38,8 +38,7 @@ function Hoding() {
   };
   const getwatchlist = () => {
     const id = localStorage.getItem("userId");
-    axios
-      .get(`${Watchlist.getWatchlist}/${id}`)
+    get(`${Watchlist.getWatchlist}/${id}`)
       .then((res) => {
         setWatchlist(res.data.contentResult);
       })
@@ -50,14 +49,12 @@ function Hoding() {
   const toggleWatchlist = (contentid) => {
     const id = localStorage.getItem("userId");
     const queryParam = new URLSearchParams({ contentId: contentid });
-    axios
-      .patch(`${Watchlist.addWatchlist}/${id}`, null, { params: queryParam })
+    patch(`${Watchlist.addWatchlist}/${id}`, {}, { params: queryParam })
       .then((res) => {
         if (res.data.status === 200) {
           setWatchlist(res.data.contentResult);
         } else if (res.data.status === 409) {
-          axios
-            .patch(`${Watchlist.deleteWatchlist}/${id}`, null, {
+          patch(`${Watchlist.deleteWatchlist}/${id}`, {}, {
               params: queryParam,
             })
             .then((res) => {
@@ -79,7 +76,7 @@ function Hoding() {
   const playvideo = (contentid)=>{
     const id = localStorage.getItem("userId");
     watchlist && watchlist.some((data) => data._id === contentid)?(
-      axios.get(`${getuser.getUserById}/${id}`).then((res)=>{
+      get(`${getuser.getUserById}/${id}`).then((res)=>{
         if(res.data.user.subscription.subscriptionStatus){
           localStorage.setItem('watchlistId', contentid)
           addHistory(id,contentid)
@@ -89,7 +86,7 @@ function Hoding() {
         }
       })
     ):(
-      axios.get(`${getuser.getUserById}/${id}`).then((res)=>{
+      get(`${getuser.getUserById}/${id}`).then((res)=>{
         if(res.data.user.subscription.subscriptionStatus){
           localStorage.setItem('contentId', contentid)
           addHistory(id,contentid)
@@ -102,7 +99,7 @@ function Hoding() {
   }
 
   const addHistory = (id, contentId)=>{
-    axios.patch(`${historyRoutes.addHistory}/${id}?contentId=${contentId}`).then((res)=>{
+    patch(`${historyRoutes.addHistory}/${id}?contentId=${contentId}`).then((res)=>{
       if(res.data.status === 200){
         console.log('added to history')
       }else{

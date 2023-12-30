@@ -12,9 +12,9 @@ import {
   fetchDramaTv,
 } from "../features/TvSlice";
 import "../Style/Home.css";
-import axios from "axios";
 import { Watchlist } from "./request";
 import { clickHandler } from "./Utils";
+import useApi from "../Custom/useApi";
 
 function Shows() {
   const [watchlist, setWatchlist] = useState([]);
@@ -24,6 +24,7 @@ function Shows() {
   const documentary = useSelector((state) => state.tv.documentary);
   const drama = useSelector((state) => state.tv.drama);
   const loading = useSelector((state)=>state.tv.loading)
+  const {get, patch} = useApi()
 
   const dispatch = useDispatch();
   const img_base_url = "https://image.tmdb.org/t/p/original";
@@ -87,8 +88,7 @@ function Shows() {
   };
   const getwatchlist = () => {
     const id = localStorage.getItem("userId");
-    axios
-      .get(`${Watchlist.getWatchlist}/${id}`)
+    get(`${Watchlist.getWatchlist}/${id}`)
       .then((res) => {
         setWatchlist(res.data.contentResult);
       })
@@ -99,14 +99,12 @@ function Shows() {
   const toggleWatchlist = (contentid) => {
     const id = localStorage.getItem("userId");
     const queryParam = new URLSearchParams({ contentId: contentid });
-    axios
-      .patch(`${Watchlist.addWatchlist}/${id}`, null, { params: queryParam })
+    patch(`${Watchlist.addWatchlist}/${id}`, {}, { params: queryParam })
       .then((res) => {
         if (res.data.status === 200) {
           setWatchlist(res.data.contentResult);
         } else if (res.data.status === 409) {
-          axios
-            .patch(`${Watchlist.deleteWatchlist}/${id}`, null, {
+          patch(`${Watchlist.deleteWatchlist}/${id}`, {}, {
               params: queryParam,
             })
             .then((res) => {

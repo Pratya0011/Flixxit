@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { subscribitionPlan } from "./request";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import logo from '../flixxit.png'
 import "../Style/Subscription.css";
+import useApi from "../Custom/useApi";
 
 
 function Subscribe() {
   const [plan, setPlan] = useState([]);
   const [error, setError] = useState("");
   const [key,setKey]=useState('')
+  const {get, post} = useApi()
   const navigate = useNavigate()
   const name = useSelector((state)=>state.app.name)
   const email = useSelector((state)=>state.app.email)
 
   useEffect(() => {
-    console.log(name,email)
-    axios
-      .get(subscribitionPlan.getAllSubsPlans)
+    get(subscribitionPlan.getAllSubsPlans)
       .then((res) => {
         if (res.data.status === 200) {
           setPlan(res.data.plan);
@@ -29,40 +28,43 @@ function Subscribe() {
       .catch((err) => {
         console.log(err.message);
       });
+
   }, []);
 
-  const checkout = (amount,username,useremail)=>{
-    axios.get(subscribitionPlan.getkey).then(res=>{
-      setKey(res.data.key)
+  useEffect(()=>{
+    get(subscribitionPlan.getkey).then((res) => {
+      setKey(res.data.key);
     })
+  },[])
 
-    axios.post(subscribitionPlan.checkOut,{amount}).then((res)=>{
+  const checkout = async (amount,username,useremail)=>{
+
+      const resCheckout = await post(subscribitionPlan.checkOut,{amount})
       const id = localStorage.getItem("userId")
-      console.log(name,email)
-      const options = {
-        key, // Enter the Key ID generated from the Dashboard
-        amount: res.data.order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-        currency: "INR",
-        name: "Flixxit",
-        description: "Gold Subscription",
-        image: logo,
-        order_id: res.data.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        callback_url: `${subscribitionPlan.paymentVerification}?userId=${id}`,
-        prefill: {
-            name: username,
-            email: useremail,
-            contact: "9000090000"
-        },
-        
-        theme: {
-            color: "#e50914"
-        }
-    };
+      console.log(name,email, key)
+      if(key){
+       var options = {
+          key, // Enter the Key ID generated from the Dashboard
+          amount: resCheckout.data.order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          currency: "INR",
+          name: "Flixxit",
+          description: "Gold Subscription",
+          image: logo,
+          order_id: resCheckout.data.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+          callback_url: `${subscribitionPlan.paymentVerification}?userId=${id}`,
+          prefill: {
+              name: username,
+              email: useremail,
+              contact: "9000090000"
+          },
+          
+          theme: {
+              color: "#e50914"
+          }
+      }
+      }
     var razor = new window.Razorpay(options);
         razor.open();
-    }).catch(err=>{
-      console.log(err)
-    })
     
     
   }
@@ -94,7 +96,9 @@ function Subscribe() {
               </div>
             ))}
           </div>
-          <div className="plan-button"><button onClick={()=>checkout(100,name,email)}>Subscribe for Monthly</button></div>
+          {key && (
+            <div className="plan-button"><button onClick={()=>checkout(100,name,email)}>Subscribe for Monthly</button></div>
+          )}
         </div>
       )}
     </div>

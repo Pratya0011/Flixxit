@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { homeRequest, Watchlist, commentsRequest, getuser, historyRoutes, likes } from "./request";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 import Nav from "./Nav";
 import "../Style/Titleview.css";
 import "../Style/Home.css";
 import { fetchRecomended } from "../features/HomeSlice";
+import useApi from "../Custom/useApi";
 
 function TitleView() {
   const [data, setData] = useState([]);
@@ -18,6 +18,7 @@ function TitleView() {
   const [commentCount, setCommentCount] = useState(0);
   const [rerender, setRerender] = useState(false);
   const [likecount, setLikecount] = useState(0)
+  const {get,post,patch} = useApi()
 
   const recomended = useSelector((state) => state.home.recomended);
   const loading = useSelector((state) => state.home.loading);
@@ -30,8 +31,7 @@ function TitleView() {
   useEffect(() => {
     const getData = () => {
       const contentId = localStorage.getItem("contentId");
-      axios
-        .get(`${homeRequest.getTitle}?contentId=${contentId}`)
+      get(`${homeRequest.getTitle}?contentId=${contentId}`)
         .then((res) => {
           if (res.data.status === 200) {
             setData(res.data.result);
@@ -69,7 +69,7 @@ function TitleView() {
 
   const getLikes = ()=>{
     const contentId = localStorage.getItem("contentId");
-    axios.get(`${likes.getLikes}/${contentId}`).then((res)=>{
+    get(`${likes.getLikes}/${contentId}`).then((res)=>{
       if(res.data.status===200){
         setLikecount(res.data.likes);
       }else{
@@ -80,8 +80,7 @@ function TitleView() {
 
   const getwatchlist = () => {
     const id = localStorage.getItem("userId");
-    axios
-      .get(`${Watchlist.getWatchlist}/${id}`)
+    get(`${Watchlist.getWatchlist}/${id}`)
       .then((res) => {
         setWatchlist(res.data.contentResult);
       })
@@ -91,8 +90,7 @@ function TitleView() {
   };
   const getComments = () => {
     const contentid = localStorage.getItem("contentId");
-    axios
-      .get(`${commentsRequest.getComments}/${contentid}`)
+    get(`${commentsRequest.getComments}/${contentid}`)
       .then((res) => {
         setComments(res.data.comments);
         setCommentCount(res.data.commentCount);
@@ -104,8 +102,7 @@ function TitleView() {
   const postComment = () => {
     const contentid = localStorage.getItem("contentId");
     const name = localStorage.getItem("name");
-    axios
-      .post(`${commentsRequest.postComments}/${contentid}`, {
+    post(`${commentsRequest.postComments}/${contentid}`, {
         name: name,
         comment: review,
       })
@@ -121,14 +118,12 @@ function TitleView() {
   const toggleWatchlist = (contentid) => {
     const id = localStorage.getItem("userId");
     const queryParam = new URLSearchParams({ contentId: contentid });
-    axios
-      .patch(`${Watchlist.addWatchlist}/${id}`, null, { params: queryParam })
+    patch(`${Watchlist.addWatchlist}/${id}`, {}, { params: queryParam })
       .then((res) => {
         if (res.data.status === 200) {
           setWatchlist(res.data.contentResult);
         } else if (res.data.status === 409) {
-          axios
-            .patch(`${Watchlist.deleteWatchlist}/${id}`, null, {
+          patch(`${Watchlist.deleteWatchlist}/${id}`, {}, {
               params: queryParam,
             })
             .then((res) => {
@@ -149,7 +144,7 @@ function TitleView() {
   const playvideo = (contentid) => {
     const id = localStorage.getItem("userId");
     watchlist && watchlist.some((data) => data._id === contentid)
-      ? axios.get(`${getuser.getUserById}/${id}`).then((res) => {
+      ? get(`${getuser.getUserById}/${id}`).then((res) => {
           if (res.data.user.subscription.subscriptionStatus) {
             localStorage.setItem("watchlistId", contentid);
             addHistory(id,contentid)
@@ -158,7 +153,7 @@ function TitleView() {
             navigate("/subscribe");
           }
         })
-      : axios.get(`${getuser.getUserById}/${id}`).then((res) => {
+      : get(`${getuser.getUserById}/${id}`).then((res) => {
           if (res.data.user.subscription.subscriptionStatus) {
             localStorage.setItem("contentId", contentid);
             addHistory(id,contentid)
@@ -170,7 +165,7 @@ function TitleView() {
   };
 
   const addHistory = (id, contentId)=>{
-    axios.patch(`${historyRoutes.addHistory}/${id}?contentId=${contentId}`).then((res)=>{
+    patch(`${historyRoutes.addHistory}/${id}?contentId=${contentId}`).then((res)=>{
       if(res.data.status === 200){
         console.log('added to history')
       }else{
@@ -190,7 +185,7 @@ function TitleView() {
     recomendedSectionRef.current.style.scrollBehavior = "smooth";
   };
   const Like=(id)=>{
-    axios.patch(`${likes.likes}/${id}`).then(res=>{
+    patch(`${likes.likes}/${id}`).then(res=>{
       if(res.data.status === 200){
       setLike("like")
       setDislike("")
@@ -203,7 +198,7 @@ function TitleView() {
       
   }
   const Dislike=(id)=>{
-    axios.patch(`${likes.dislikes}/${id}`).then(res=>{
+    patch(`${likes.dislikes}/${id}`).then(res=>{
       if(res.data.status === 200){
       setLike("")
       setDislike("like")
@@ -343,6 +338,7 @@ function TitleView() {
                               onClick={() => {
                                 toggleWatchlist(item._id);
                               }}
+                              style={{cursor:'pointer'}}
                             >
                               ✓
                             </div>
@@ -352,6 +348,8 @@ function TitleView() {
                               onClick={() => {
                                 toggleWatchlist(item._id);
                               }}
+                              style={{cursor:'pointer'}}
+
                             >
                               +
                             </div>

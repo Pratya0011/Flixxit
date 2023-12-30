@@ -1,10 +1,10 @@
 import React, { useState} from "react";
-import axios from "axios";
 import { signup } from "./request";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import '../App.css'
+import useApi from "../Custom/useApi";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -15,13 +15,14 @@ function Signup() {
   const [type, setType] = useState('password')
   const [error, setError] = useState("");
   const [connecting, setConnecting] = useState(false);
+  const {post} = useApi()
 
   const submitHandler = (e) => {
     e.preventDefault();
     if(password === cpassword){
       setConnecting(true)
         toast.info('Establishing Connection please wait')
-      axios.post(signup.signUpUrl, {
+      post(signup.signUpUrl, {
         name: name,
         email: email,
         username: username,

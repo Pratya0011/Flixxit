@@ -4,15 +4,16 @@ import Nav from "./Nav";
 import "../Style/Profile.css";
 import { fetchUser } from "../features/AppSlice";
 import { getuser } from "./request";
-import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useApi from "../Custom/useApi";
 
 function Profile() {
   const id = localStorage.getItem("userId");
   const user = useSelector((state) => state.app.user);
   const name = useSelector((state) => state.app.name);
   const email = useSelector((state) => state.app.email);
+  const {patch} = useApi()
 
   const [selectedOption, setSelectedOption] = useState(53);
 
@@ -37,7 +38,7 @@ function Profile() {
   }
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.patch(`${getuser.favgenre}/${id}?value=${selectedOption}`).then(res=>{
+    patch(`${getuser.favgenre}/${id}?value=${selectedOption}`).then(res=>{
       localStorage.setItem('genre', res.data.genre)
       toast.success('Genre added');
     }).catch(err=>{

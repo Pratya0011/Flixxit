@@ -2,11 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import ProfileOptions from "./ProfileOptions";
 import { useSelector,useDispatch } from "react-redux";
 import { NavLink,useNavigate } from "react-router-dom";
-import axios from "axios";
 import "../Style/Nav.css";
 import { fetchSearch, setSeachName } from "../features/AppSlice";
 import { subscribitionPlan } from "./request";
 import { getuser } from "./request";
+import useApi from "../Custom/useApi";
 
 function Nav() {
   const [search, setSearch] = useState("");
@@ -14,6 +14,7 @@ function Nav() {
   const [subscribed, setSubscribed] = useState(false);
   const [value, setValue] = useState('')
   const [showProfileOptions, setShowProfileOptions] = useState(false);
+  const {get, patch} = useApi()
   const id = useSelector((state) => state.app.id);
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -21,15 +22,14 @@ function Nav() {
 
   useEffect(() => {
     const getUser = () => {
-      axios
-        .get(`${getuser.getUserById}/${id}`)
+      get(`${getuser.getUserById}/${id}`)
         .then((res) => {
           setRole(res.data.user.role);
          let currentDate = new Date()
          if(currentDate < new Date(res.data.user.payment.expiredDate)){
           setSubscribed(res.data.user.subscription.subscriptionStatus)
          }else{
-          axios.patch(`${subscribitionPlan.updatePaymentStatus}/${id}`).then((res)=>{
+          patch(`${subscribitionPlan.updatePaymentStatus}/${id}`).then((res)=>{
             setSubscribed(res.data.user.subscription.subscriptionStatus)
           }).catch(err=>{
             console.log("Error in patch request:", err);

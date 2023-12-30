@@ -54,6 +54,7 @@
     border: 1px solid #999;
     background-color: #212121;
     opacity: 0.5;
+    cursor: pointer;
 }
 .title-banner .like{
     color: #e50914;
@@ -227,6 +228,7 @@ background-color: #f1f1f1;
       border: 1px solid #999;
       background-color: #212121;
       opacity: 0.5;
+      cursor: pointer;
   }
   }
   @media (max-width: 415px) {
@@ -290,5 +292,6 @@ background-color: #f1f1f1;
       border: 1px solid #999;
       background-color: #212121;
       opacity: 0.5;
+      cursor: pointer;
   }
   }
