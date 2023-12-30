@@ -10,7 +10,7 @@ import {
 
 const router = express.Router();
 
-router.get("/toprated", topRatedFlixxit);
+router.get("/toprated",authenticateToken, topRatedFlixxit);
 router.get("/popular", popularFlixxit);
 router.get("/topten", toptenFlixxit);
 router.get("/documentary", documentaryFlixxit);

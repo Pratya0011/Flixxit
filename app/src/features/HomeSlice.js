@@ -3,7 +3,11 @@ import { homeRequest } from "../Components/request";
 import axios from "axios";
 
 export const fetchTopRated = createAsyncThunk("topRated", async () => {
-  const res = await axios.get(homeRequest.topRatedFlixxit);
+  const headers = {
+    access: accessToken,
+    refresh: refreshToken,
+  };
+  const res = await axios.get(homeRequest.topRatedFlixxit,{}, { headers });
   return res.data;
 });
 export const fetchPopular = createAsyncThunk("popular", async () => {
