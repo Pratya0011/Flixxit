@@ -7,6 +7,7 @@ import {
   topRatedFlixxit,
   toptenFlixxit,
 } from "./controllers/homeRouteController.js";
+import { authenticateToken } from "../utils/Utils.js";
 
 const router = express.Router();
 
