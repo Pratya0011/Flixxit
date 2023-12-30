@@ -10,7 +10,7 @@ export const fetchTopRated = createAsyncThunk("topRated", async () => {
     access: accessToken,
     refresh: refreshToken,
   };
-  const res = await axios.get(homeRequest.topRatedFlixxit, {}, { headers });
+  const res = await axios.get(homeRequest.topRatedFlixxit,{ headers });
   return res.data;
 });
 export const fetchPopular = createAsyncThunk("popular", async () => {
