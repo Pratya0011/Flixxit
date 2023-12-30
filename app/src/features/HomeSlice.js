@@ -2,12 +2,15 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { homeRequest } from "../Components/request";
 import axios from "axios";
 
+let accessToken = localStorage.getItem("accessToken");
+let refreshToken = localStorage.getItem("refreshToken");
+
 export const fetchTopRated = createAsyncThunk("topRated", async () => {
   const headers = {
     access: accessToken,
     refresh: refreshToken,
   };
-  const res = await axios.get(homeRequest.topRatedFlixxit,{}, { headers });
+  const res = await axios.get(homeRequest.topRatedFlixxit, {}, { headers });
   return res.data;
 });
 export const fetchPopular = createAsyncThunk("popular", async () => {
@@ -23,7 +26,9 @@ export const fetchDocumentary = createAsyncThunk("documentary", async () => {
   return res.data;
 });
 export const fetchRecomended = createAsyncThunk("recomended", async (genre) => {
-  const res = await axios.get(`${homeRequest.recomendedFlixxit}?genre=${genre}`);
+  const res = await axios.get(
+    `${homeRequest.recomendedFlixxit}?genre=${genre}`
+  );
   return res.data;
 });
 
@@ -87,7 +92,7 @@ export const homeSlice = createSlice({
     [fetchRecomended.fulfilled]: (state, action) => {
       state.loading = false;
       state.recomended = action.payload;
-      console.log(state.recomended)
+      console.log(state.recomended);
     },
     [fetchRecomended.rejected]: (state, action) => {
       state.loading = true;
