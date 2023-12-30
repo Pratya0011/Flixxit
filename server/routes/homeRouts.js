@@ -7,11 +7,10 @@ import {
   topRatedFlixxit,
   toptenFlixxit,
 } from "./controllers/homeRouteController.js";
-import { authenticateToken } from "../utils/Utils.js";
 
 const router = express.Router();
 
-router.get("/toprated",authenticateToken, topRatedFlixxit);
+router.get("/toprated", topRatedFlixxit);
 router.get("/popular", popularFlixxit);
 router.get("/topten", toptenFlixxit);
 router.get("/documentary", documentaryFlixxit);

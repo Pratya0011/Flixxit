@@ -6,11 +6,7 @@ let accessToken = localStorage.getItem("accessToken");
 let refreshToken = localStorage.getItem("refreshToken");
 
 export const fetchTopRated = createAsyncThunk("topRated", async () => {
-  const headers = {
-    access: accessToken,
-    refresh: refreshToken,
-  };
-  const res = await axios.get(homeRequest.topRatedFlixxit,{ headers });
+  const res = await axios.get(homeRequest.topRatedFlixxit);
   return res.data;
 });
 export const fetchPopular = createAsyncThunk("popular", async () => {
