@@ -9,7 +9,7 @@ import {  useDispatch } from "react-redux";
 import { fetchRecomended } from "../features/HomeSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useApi from "../Custom/useApi";
+import {get} from "../Custom/useApi";
 
 function WatchPlaylist() {
   const videoRef = useRef(null);
@@ -22,7 +22,6 @@ function WatchPlaylist() {
   const [duration, setDuration] = useState(0.0);
   const [curentId, setCurentId] = useState(localStorage.getItem("watchlistId"))
   const [watchlist, setWatchlist] = useState([]);
-  const {get, patch} = useApi()
   
 
   // const recomended = useSelector((state) => state.home.recomended);

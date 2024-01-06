@@ -8,11 +8,10 @@ import "../../Style/Content.css";
 import { Watchlist } from "../../Components/request";
 import { clickHandler } from "../../Components/Utils";
 import { useNavigate } from "react-router-dom";
-import useApi from "../../Custom/useApi";
+import {get, patch} from "../../Custom/useApi";
 
 function Drama() {
   const dispatch = useDispatch();
-  const {get, patch} = useApi()
   const [watchlist, setWatchlist] = useState([]);
   const movie = useSelector((state) => state.movie.drama);
   const loading = useSelector((state) => state.movie.loading);

@@ -6,14 +6,13 @@ import { fetchUser } from "../features/AppSlice";
 import { getuser } from "./request";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useApi from "../Custom/useApi";
+import {patch} from "../Custom/useApi";
 
 function Profile() {
   const id = localStorage.getItem("userId");
   const user = useSelector((state) => state.app.user);
   const name = useSelector((state) => state.app.name);
   const email = useSelector((state) => state.app.email);
-  const {patch} = useApi()
 
   const [selectedOption, setSelectedOption] = useState(53);
 

@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { searchBar, getuser } from "../Components/request";
-import apiService from "../Custom/AxiosService";
+import {get} from '../Custom/useApi'
 
 export const fetchSearch = createAsyncThunk("search", async (value) => {
-  const res = await apiService.get(`${searchBar.getSearch}?name=${value}`);
+  const res = await get(`${searchBar.getSearch}?name=${value}`);
   return res.data.result;
 });
 
 export const fetchUser = createAsyncThunk("user", async(id)=>{
-  const res = await apiService.get(`${getuser.getUserById}/${id}`);
+  const res = await get(`${getuser.getUserById}/${id}`);
   return res.data.user;
 })
 

@@ -58,3 +58,26 @@ export const gettotalamount = async(req,res)=>{
   }
 }
 
+export const getAllSubscribedUserList = async (req, res) =>{
+  try{
+    let user = await User.find({"subscription.subscriptionStatus":true})
+    if(!user || user.length === 0){
+      res.send({
+        status:404,
+        message: 'No User Found'
+      })
+    }else{
+      res.send({
+        status: 200,
+        results: user,
+        count: user.length
+      })
+    }
+  }catch(error){
+    console.error('Error:', error);
+    res.send({
+      status: 500,
+      message: 'Internal Server Error'
+    })
+  }
+}

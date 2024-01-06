@@ -1,26 +1,26 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { homeRequest } from "../Components/request";
-import apiService from "../Custom/AxiosService";
+import {get} from '../Custom/useApi'
 
 
 export const fetchTopRated = createAsyncThunk("topRated", async () => {
-  const res = await apiService.get(homeRequest.topRatedFlixxit);
+  const res = await get(homeRequest.topRatedFlixxit);
   return res.data;
 });
 export const fetchPopular = createAsyncThunk("popular", async () => {
-  const res = await apiService.get(homeRequest.popularFlixxit);
+  const res = await get(homeRequest.popularFlixxit);
   return res.data;
 });
 export const fetchTopten = createAsyncThunk("topten", async () => {
-  const res = await apiService.get(homeRequest.toptenFlixxit);
+  const res = await get(homeRequest.toptenFlixxit);
   return res.data;
 });
 export const fetchDocumentary = createAsyncThunk("documentary", async () => {
-  const res = await apiService.get(homeRequest.documentaryFlixxit);
+  const res = await get(homeRequest.documentaryFlixxit);
   return res.data;
 });
 export const fetchRecomended = createAsyncThunk("recomended", async (genre) => {
-  const res = await apiService.get(
+  const res = await get(
     `${homeRequest.recomendedFlixxit}?genre=${genre}`
   );
   return res.data;

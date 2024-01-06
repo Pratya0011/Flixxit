@@ -1,43 +1,43 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import { tvRequest } from "../Components/request";
-import apiService from "../Custom/AxiosService";
+import {get} from '../Custom/useApi'
 
 export const fetchTopRated = createAsyncThunk("topRated", async () => {
-    const res = await apiService.get(tvRequest.topRatedTv);
+    const res = await get(tvRequest.topRatedTv);
     return res.data;
   });
   export const fetchPopular = createAsyncThunk("topPopula", async () => {
-    const res = await apiService.get(tvRequest.popularTv);
+    const res = await get(tvRequest.popularTv);
     return res.data;
   });
    // Crime Tv
    export const fetchCrimeTv = createAsyncThunk("crime", async () => {
-    const res = await apiService.get(tvRequest.crimeTv);
+    const res = await get(tvRequest.crimeTv);
     return res.data;
   });
   // Drama Tv
   export const fetchDramaTv = createAsyncThunk("drama", async () => {
-    const res = await apiService.get(tvRequest.dramaTv);
+    const res = await get(tvRequest.dramaTv);
     return res.data;
   });
   // Action and Adventures TV Shows
   export const fetchActionadventure = createAsyncThunk("actionadventure", async () => {
-    const res = await apiService.get(tvRequest.actionadventureTv);
+    const res = await get(tvRequest.actionadventureTv);
     return res.data;
   });
   // Comedy TV shows
   export const fetchComedyTv = createAsyncThunk("comedy", async () => {
-    const res = await apiService.get(tvRequest.comedyTv);
+    const res = await get(tvRequest.comedyTv);
     return res.data;
   });
   // Mystery TV Showss
   export const fetchMystery = createAsyncThunk("mystery", async () => {
-    const res = await apiService.get(tvRequest.mysteryTv);
+    const res = await get(tvRequest.mysteryTv);
     return res.data;
   });
   // Documentaries
   export const fetchDocumentaryTv = createAsyncThunk("documentaries", async () => {
-    const res = await apiService.get(tvRequest.documentaryTv);
+    const res = await get(tvRequest.documentaryTv);
     return res.data;
   });
 

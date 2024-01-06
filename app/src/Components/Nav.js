@@ -6,7 +6,7 @@ import "../Style/Nav.css";
 import { fetchSearch, setSeachName } from "../features/AppSlice";
 import { subscribitionPlan } from "./request";
 import { getuser } from "./request";
-import useApi from "../Custom/useApi";
+import {get, patch} from "../Custom/useApi";
 
 function Nav() {
   const [search, setSearch] = useState("");
@@ -14,7 +14,6 @@ function Nav() {
   const [subscribed, setSubscribed] = useState(false);
   const [value, setValue] = useState('')
   const [showProfileOptions, setShowProfileOptions] = useState(false);
-  const {get, patch} = useApi()
   const id = useSelector((state) => state.app.id);
   const dispatch = useDispatch()
   const navigate = useNavigate()

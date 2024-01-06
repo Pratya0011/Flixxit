@@ -1,58 +1,59 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import { movieRequest } from "../Components/request";
 import apiService from "../Custom/AxiosService";
+import {get} from '../Custom/useApi'
 
 export const fetchTopRated = createAsyncThunk("topRated", async () => {
-    const res = await apiService.get(movieRequest.topRatedMovies);
+    const res = await get(movieRequest.topRatedMovies);
     return res.data;
   });
   export const fetchPopular = createAsyncThunk("popular", async () => {
-    const res = await apiService.get(movieRequest.popularMovies);
+    const res = await get(movieRequest.popularMovies);
     return res.data;
   });
   // Thriller movies
   export const fetchThriller = createAsyncThunk("thriller", async () => {
-    const res = await apiService.get(movieRequest.thrillerMovies);
+    const res = await get(movieRequest.thrillerMovies);
     return res.data;
   });
   // Crime Movies
   export const fetchCrime = createAsyncThunk("crime", async () => {
-    const res = await apiService.get(movieRequest.crimeMovies);
+    const res = await get(movieRequest.crimeMovies);
     return res.data;
   });
   // Drama Movie
   export const fetchDrama = createAsyncThunk("drama", async () => {
-    const res = await apiService.get(movieRequest.dramaMovies);
+    const res = await get(movieRequest.dramaMovies);
     return res.data;
   });
   // Action Movie
   export const fetchAction = createAsyncThunk("action", async () => {
-    const res = await apiService.get(movieRequest.actionMovies);
+    const res = await get(movieRequest.actionMovies);
     return res.data;
   });
   // Adventure Movie
   export const fetchAdventure = createAsyncThunk("adventure", async () => {
-    const res = await apiService.get(movieRequest.adventureMovies);
+    const res = await get(movieRequest.adventureMovies);
     return res.data;
   });
   // Comedy Movie
   export const fetchComedy = createAsyncThunk("comedy", async () => {
-    const res = await apiService.get(movieRequest.comedyMovies);
+    const res = await get(movieRequest.comedyMovies);
     return res.data;
   });
   // Horror Movie
   export const fetchHorror = createAsyncThunk("horror", async () => {
-    const res = await apiService.get(movieRequest.horrorMovies);
+    const res = await get(movieRequest.horrorMovies);
     return res.data;
   });
   // Romantic Movie
   export const fetchRomance = createAsyncThunk("romance", async () => {
-    const res = await apiService.get(movieRequest.romanceMovies);
+    const res = await get(movieRequest.romanceMovies);
     return res.data;
   });
   // Documentary Movie
   export const fetchDocumentary = createAsyncThunk("documentary", async () => {
-    const res = await apiService.get(movieRequest.documentaryMovies);
+    const res = await get(movieRequest.documentaryMovies);
     return res.data;
   });
 

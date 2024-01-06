@@ -13,11 +13,10 @@ import Hoding from "./Hoding.js";
 import "../Style/Home.css";
 import { Watchlist } from "./request";
 import { clickHandler } from "./Utils";
-import useApi from "../Custom/useApi.js";
+import {get, patch} from "../Custom/useApi.js";
 
 function Home() {
   const [watchlist, setWatchlist] = useState([]);
-  const {get, patch} = useApi()
   const toprated = useSelector((state) => state.home.toprated);
   const popular = useSelector((state) => state.home.popular);
   const topten = useSelector((state) => state.home.topten);

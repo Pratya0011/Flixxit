@@ -4,14 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import logo from '../flixxit.png'
 import "../Style/Subscription.css";
-import useApi from "../Custom/useApi";
+import {get, post} from "../Custom/useApi";
 
 
 function Subscribe() {
   const [plan, setPlan] = useState([]);
   const [error, setError] = useState("");
   const [key,setKey]=useState('')
-  const {get, post} = useApi()
   const navigate = useNavigate()
   const name = useSelector((state)=>state.app.name)
   const email = useSelector((state)=>state.app.email)

@@ -4,7 +4,7 @@ import "../Style/MovieBanner.css";
 import { Watchlist } from "./request";
 import { useNavigate } from "react-router-dom";
 import { getuser } from "./request";
-import useApi from "../Custom/useApi";
+import {get, patch} from "../Custom/useApi";
 
 function TvBanner() {
   const [data, setData] = useState("");
@@ -12,7 +12,6 @@ function TvBanner() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const img_base_url = "https://image.tmdb.org/t/p/original";
   const navigate = useNavigate();
-  const {get, patch} = useApi()
 
   useEffect(() => {
     fetchData();

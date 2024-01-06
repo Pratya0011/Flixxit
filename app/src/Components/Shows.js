@@ -14,7 +14,7 @@ import {
 import "../Style/Home.css";
 import { Watchlist } from "./request";
 import { clickHandler } from "./Utils";
-import useApi from "../Custom/useApi";
+import {get, patch} from "../Custom/useApi";
 
 function Shows() {
   const [watchlist, setWatchlist] = useState([]);
@@ -24,7 +24,6 @@ function Shows() {
   const documentary = useSelector((state) => state.tv.documentary);
   const drama = useSelector((state) => state.tv.drama);
   const loading = useSelector((state)=>state.tv.loading)
-  const {get, patch} = useApi()
 
   const dispatch = useDispatch();
   const img_base_url = "https://image.tmdb.org/t/p/original";

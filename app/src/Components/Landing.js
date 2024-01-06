@@ -3,11 +3,10 @@ import Login from "./Login";
 import Signup from "./Signup";
 import { useSelector } from "react-redux";
 import "../App.css";
-import useApi from "../Custom/useApi";
+import {get} from "../Custom/useApi";
 
 function Landing() {
   const [response, setResponse] = useState("");
-  const {get} = useApi()
   const [buttonDisplay, setButtonDisplay] = useState(true);
   const [formDisplay, setFormDisplay] = useState(false);
   const [loginForm, setLoginForm] = useState(true);

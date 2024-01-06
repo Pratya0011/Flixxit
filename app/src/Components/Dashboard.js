@@ -1,7 +1,7 @@
 import React from 'react'
 import Nav from './Nav'
 import '../Style/Dashboard.css'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 
 function Dashboard() {
 
@@ -24,9 +24,12 @@ function Dashboard() {
             </div>
             <div className="list">
               <ul>
-                <Link to="overview" className="link">
+                <NavLink to="overview" className={({isActive}) => (isActive ? "activeLink":"link" )}>
                   <li style={{ listStyleType: "none" }}>overview</li>
-                </Link>
+                </NavLink>
+                <NavLink to="subscribeduserlist" className={({isActive}) => (isActive ? "activeLink":"link" )}>
+                <li style={{ listStyleType: "none" }}>Subscribed Users</li>
+                </NavLink>
               </ul>
             </div>
           </div>

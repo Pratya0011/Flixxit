@@ -6,7 +6,7 @@ import Nav from "./Nav";
 import "../Style/Titleview.css";
 import "../Style/Home.css";
 import { fetchRecomended } from "../features/HomeSlice";
-import useApi from "../Custom/useApi";
+import {get,post,patch} from "../Custom/useApi";
 
 function TitleView() {
   const [data, setData] = useState([]);
@@ -18,7 +18,6 @@ function TitleView() {
   const [commentCount, setCommentCount] = useState(0);
   const [rerender, setRerender] = useState(false);
   const [likecount, setLikecount] = useState(0)
-  const {get,post,patch} = useApi()
 
   const recomended = useSelector((state) => state.home.recomended);
   const loading = useSelector((state) => state.home.loading);

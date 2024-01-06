@@ -8,12 +8,11 @@ import Tvnav from "../../Components/Tvnav";
 import { Watchlist } from "../../Components/request";
 import { clickHandler } from "../../Components/Utils";
 import { useNavigate } from "react-router-dom";
-import useApi from "../../Custom/useApi";
+import {get, patch} from "../../Custom/useApi";
 
 function DramaTv() {
   const dispatch = useDispatch();
   const [watchlist, setWatchlist] = useState([]);
-  const {get, patch} = useApi()
   const tv = useSelector((state) => state.tv.drama);
   const loading = useSelector((state) => state.tv.loading);
   const img_base_url = "https://image.tmdb.org/t/p/original";

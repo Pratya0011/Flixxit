@@ -35,11 +35,11 @@ import Profile from "./Components/Profile";
 import Overview from "./Components/Overview";
 import History from "./Components/History";
 import { setMessage } from "./features/AppSlice";
-import useApi from "./Custom/useApi";
+import {post} from "./Custom/useApi"
+import SubscribedUserList from "./Components/SubscribedUserList";
 
 function App() {
   const [state, setState] = useState(false);
-  const {get, post, put, del } = useApi();
 
   const dispatch = useDispatch()
 
@@ -94,6 +94,7 @@ function App() {
           <Route path="/Tv/Documentary" element={state ? <DocumentaryTv /> : <Landing />}></Route>
           <Route path="/Dashboard" element={state ? <Dashboard /> : <Landing />}>
           <Route path="overview" element={<Overview/>}></Route>
+          <Route path="subscribeduserlist" element={<SubscribedUserList/>}></Route>
           </Route>
           <Route path='/subscribe' element={state ? <Subscribe /> : <Landing />}></Route>
           <Route path="/search" element={state ? <Search/> : <Landing />}></Route>

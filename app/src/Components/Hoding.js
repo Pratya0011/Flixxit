@@ -4,13 +4,12 @@ import "../Style/Hoding.css";
 import { Watchlist } from "./request";
 import { useNavigate } from "react-router-dom";
 import { getuser } from "./request";
-import useApi from "../Custom/useApi";
+import {get, patch} from "../Custom/useApi";
 
 
 function Hoding() {
   const [data, setData] = useState("");
   const [watchlist, setWatchlist] = useState([]);
-  const {get, patch} = useApi()
   const [currentIndex, setCurrentIndex] = useState(0);
   const img_base_url = "https://image.tmdb.org/t/p/original";
   const navigate = useNavigate();

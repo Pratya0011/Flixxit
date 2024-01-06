@@ -6,7 +6,7 @@ import { videoRoutes, homeRequest} from "./request";
 import {  useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 import { fetchRecomended } from "../features/HomeSlice";
-import useApi from "../Custom/useApi";
+import {get} from "../Custom/useApi";
 import axios from "axios";
 
 
@@ -19,7 +19,6 @@ function Watch() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [duration, setDuration] = useState(0.0)
-  const {get} = useApi()
   
 
   // const recomended = useSelector((state) => state.home.recomended);

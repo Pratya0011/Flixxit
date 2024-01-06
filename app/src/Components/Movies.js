@@ -15,12 +15,11 @@ import {
 import "../Style/Home.css";
 import { Watchlist } from "./request";
 import { clickHandler } from "./Utils";
-import useApi from "../Custom/useApi";
+import {get, patch} from "../Custom/useApi";
 
 
 function Movies() {
   const [watchlist,setWatchlist]=useState([])
-  const {get, patch} = useApi()
   const toprated = useSelector((state) => state.movie.topratedmovies);
   const popular = useSelector((state) => state.movie.popularmovies);
   const thriller = useSelector((state) => state.movie.thriller);

@@ -62,6 +62,7 @@ export const subscribitionPlan = {
 export const getuser = {
     getUserById : `/admin/getUser`,
     getallUser : `/admin/getallusers`,
+    getSubscribedUserList: `/admin/getsubscribeduserlist`,
     getSubscribedUser: `/admin/getsubscribed`,
     getAmount : `/admin/getamount`,
     favgenre : `/user/genre`

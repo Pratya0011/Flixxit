@@ -4,7 +4,7 @@ import Nav from './Nav'
 import "../Style/Search.css";
 import { clickHandler } from "./Utils";
 import { Watchlist } from "./request";
-import useApi from '../Custom/useApi';
+import {get, patch} from '../Custom/useApi';
 
 
 function WatchlistComponent() {
@@ -13,7 +13,6 @@ function WatchlistComponent() {
   const navigate = useNavigate();
   const [watchlist,setWatchlist]=useState([])
   const [newWatchlist, setNewWatchlist]= useState([])
-  const {get, patch} = useApi()
 
   useEffect(()=>{
     const getwatchlist=()=>{

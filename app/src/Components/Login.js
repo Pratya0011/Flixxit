@@ -6,11 +6,10 @@ import '../App.css'
 import { signup } from "./request";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useApi from "../Custom/useApi";
+import {post} from "../Custom/useApi";
 
 
 function Login() {
-  const {get,post,put, patch,del} = useApi()
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");

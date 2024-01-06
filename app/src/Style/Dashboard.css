@@ -45,12 +45,20 @@
   }
   .list {
    text-align: center;
-   border-right: 2px solid #e50914;
   }
   .list ul li {
     margin-top: 20px;
     font-size: 20px;
     font-weight: 700;
+  }
+
+  .activeLink{
+    text-decoration: none;
+  }
+  .activeLink li{
+    text-decoration: none;
+    color: #e50914;
+    border-right: 2px solid #e50914;
   }
   .link {
     text-decoration: none;

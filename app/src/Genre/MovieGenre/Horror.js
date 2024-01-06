@@ -8,13 +8,12 @@ import "../../Style/Content.css";
 import { Watchlist } from "../../Components/request";
 import { clickHandler } from "../../Components/Utils";
 import { useNavigate } from "react-router-dom";
-import useApi from "../../Custom/useApi";
+import {get, patch} from "../../Custom/useApi";
 
 function Horror() {
   const dispatch = useDispatch();
   const movie = useSelector((state) => state.movie.horror);
   const [watchlist, setWatchlist] = useState([]);
-  const {get, patch} = useApi()
   const loading = useSelector((state) => state.movie.loading);
   const img_base_url = "https://image.tmdb.org/t/p/original";
   const navigate = useNavigate();

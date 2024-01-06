@@ -1,14 +1,13 @@
 import React,{useState,useEffect,useMemo} from 'react'
-import { MaterialReactTable } from 'material-react-table';
+import { DataGrid } from '@mui/x-data-grid';
 import { getuser } from './request'
 import '../Style/Dashboard.css'
-import useApi from '../Custom/useApi';
+import {get} from '../Custom/useApi';
 
 function Overview() {
   const [allUsers, setAllUsers] = useState(0)
   const [subscribedUsers, setSubscribedUsers] = useState(0)
   const [amount, setAmount] = useState(0)
-  const {get} = useApi()
 
   useEffect(()=>{
     const getallUser = ()=>{
@@ -38,7 +37,8 @@ function Overview() {
   }
   ,[])
   const data = [
-    {
+    { 
+      id: 1,
       All_Users: allUsers,
       Subscribed_users :subscribedUsers,
       Amount: `₹ ${amount}`
@@ -49,26 +49,31 @@ function Overview() {
     () => [
       
       {
-        accessorKey: 'All_Users', //normal accessorKey
-        header: 'All_Users',
-        size: 200,
+        field: 'All_Users', //normal accessorKey
+        headerName: 'All_Users',
+        width: 200,
       },
       {
-        accessorKey: 'Subscribed_users', //normal accessorKey
-        header: 'Subscribed_users',
-        size: 200,
+        field: 'Subscribed_users', //normal accessorKey
+        headerName: 'Subscribed_users',
+        width: 200,
       },
       {
-        accessorKey: 'Amount', //normal accessorKey
-        header: 'Total Collection',
-        size: 200,
+        field: 'Amount', //normal accessorKey
+        headerName: 'Total Collection',
+        width: 200,
       },
     ],
     []
   )
   return (
     <div className='table.container'>
-      <MaterialReactTable columns={columns} data={data} enablePagination={false}/>
+      <DataGrid
+      sx={{color: '#000', backgroundColor: '#f0f0f0'}}
+       rows={data}
+       columns={columns}
+       setSelectrdRowv={false}
+      />
     </div>
   )
 }

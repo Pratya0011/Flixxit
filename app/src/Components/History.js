@@ -4,12 +4,11 @@ import Nav from "./Nav";
 import { clickHandler } from "./Utils";
 import { useNavigate } from "react-router-dom";
 import '../Style/History.css'
-import useApi from "../Custom/useApi";
+import { get } from "../Custom/useApi";
 
 function History() {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
-  const {get} = useApi()
   const img_base_url = "https://image.tmdb.org/t/p/original";
   const navigate = useNavigate()
   useEffect(() => {
