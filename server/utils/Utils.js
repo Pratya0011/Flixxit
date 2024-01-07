@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { config } from "dotenv";
+import rateLimit from 'express-rate-limit'
 
 config();
 
@@ -98,3 +99,20 @@ export const authentiacteRoute = async (req, res, next) => {
     });
   }
 }
+
+export const reteLimit = rateLimit({
+  windowMs: 60 * 1000, 
+  max: 200,
+  handler: (req, res) => {
+    const resetTime = new Date(req.rateLimit.resetTime).toLocaleTimeString();
+    res.status(429).json({
+      error: 'Too many requests, please try again later.',
+      retryAfter: resetTime,
+      currentRateLimit: {
+        limit: req.rateLimit.limit,
+        current: req.rateLimit.current,
+        remaining: req.rateLimit.remaining,
+      },
+    });
+  },
+})
