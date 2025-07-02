@@ -9,8 +9,7 @@ const headers = {
 };
 
 const apiService = axios.create({
-  // baseURL : 'https://flixxit-server-9v89.onrender.com',
-  baseURL: "http://localhost:8080",
+  baseURL: "https://flixxit-server-9v89.onrender.com",
   headers: headers,
 });
 

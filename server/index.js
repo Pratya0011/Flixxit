@@ -23,16 +23,12 @@ import { config } from "dotenv";
 config();
 const app = express();
 
-// app.use(cors({ origin: "https://flixxit-2i45.onrender.com" }));
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "https://flixxit-2i45.onrender.com" }));
+// app.use(cors({ origin: "http://localhost:3000"}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("view engine", "pug");
-
-app.get("/api/test", (req, res) => {
-  res.send("API is working!");
-});
 
 app.get("/", (req, res) => {
   res.send({
@@ -85,7 +81,7 @@ app.use("/user", historyRouter);
 
 connection
   .then(() =>
-    app.listen(8080, () => {
+    app.listen(process.env.PORT, () => {
       console.log("server listening on port 8080");
       console.log("connected to mongoDB");
     })
