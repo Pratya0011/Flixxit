@@ -20,16 +20,19 @@ import { authentiacteRoute, reteLimit } from "./utils/Utils.js";
 
 import { config } from "dotenv";
 
-config()
+config();
 const app = express();
 
-app.use(cors({ origin: "https://flixxit-2i45.onrender.com" }));
-// app.use(cors({ origin: "http://localhost:3000"}))
+// app.use(cors({ origin: "https://flixxit-2i45.onrender.com" }));
+app.use(cors({ origin: "http://localhost:3000" }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 app.set("view engine", "pug");
+
+app.get("/api/test", (req, res) => {
+  res.send("API is working!");
+});
 
 app.get("/", (req, res) => {
   res.send({
@@ -64,13 +67,12 @@ app.post("/admin/signup", async (req, res) => {
   return res.redirect("/admin");
 });
 
-
 app.use("/admin", adminRouter);
 app.use("/user", userRouter);
 app.use("/user", videoRouter);
 app.use("/user", paymentRouter);
 
-app.use(authentiacteRoute, reteLimit)
+app.use(authentiacteRoute, reteLimit);
 
 app.use("/admin", adminDashboad);
 app.use("/user", homeRouter);
