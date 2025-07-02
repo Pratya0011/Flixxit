@@ -85,7 +85,7 @@ app.use("/user", historyRouter);
 
 connection
   .then(() =>
-    app.listen(process.env.PORT, () => {
+    app.listen(8080, () => {
       console.log("server listening on port 8080");
       console.log("connected to mongoDB");
     })
